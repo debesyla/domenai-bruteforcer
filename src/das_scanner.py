@@ -731,7 +731,7 @@ async def progress_logger(
                 domains_since_last = db_completed - last_logged
                 time_since_last = now - last_log_time
                 rps = (domains_since_last / time_since_last) if time_since_last > 0 else 0.0
-                eta_days = (remaining / rps / 3600 / 24) if rps > 0 else float("inf")
+                eta_hours = (remaining / rps / 3600) if rps > 0 else float("inf")
                 pct = (db_completed / total * 100) if total > 0 else 0.0
                 
                 # Status breakdown
@@ -739,7 +739,7 @@ async def progress_logger(
                 counts = cur.fetchall()
                 status_parts = " ".join(f"{s}={c}" for s, c in counts)
                 
-                print(f"[PROGRESS] Processed {db_completed}/{total} ({pct:.2f}%) | {rps:.1f} req/sec | ETA: {eta_days:.1f} days")
+                print(f"[PROGRESS] Processed {db_completed}/{total} ({pct:.2f}%) | {rps:.1f} req/sec | ETA: {eta_hours:.1f} hours")
                 print(f"[PROGRESS] Status: {status_parts}")
                 
                 last_logged = db_completed
