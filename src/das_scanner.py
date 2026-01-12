@@ -163,17 +163,17 @@ def import_domains(conn: sqlite3.Connection, input_path: str, batch_size: int = 
         if to_insert:
             _batch_insert(conn, to_insert)
             inserted += len(to_insert)
-    
+
     # Get count after import to see how many were actually new
     cur.execute("SELECT COUNT(*) FROM domains;")
     count_after = cur.fetchone()[0]
     new_domains = count_after - count_before
-    
+
     if new_domains > 0:
         print(f"[IMPORT] Import complete: {new_domains} new domains added (from {total_lines} in file)")
     else:
         print(f"[IMPORT] No new domains to import (all {total_lines} already in database)")
-    
+
     return new_domains
 
 
@@ -219,7 +219,7 @@ class PickerThread(threading.Thread):
         self._conn = get_db_conn(self.db_path)
         # Queue to store domains that need to be marked back
         self._requeue_domains = []
-        
+
         try:
             while not self.shutdown_event.is_set():
                 # First, handle any domains that need re-queuing
@@ -231,26 +231,26 @@ class PickerThread(threading.Thread):
                         print(f"[PICKER] Failed to re-queue domains: {e}")
                         time.sleep(0.5)
                         continue
-                
+
                 # small sleep to avoid busy spin when no pending rows exist
                 pending_batch = self._pick_batch(PICK_BATCH_SIZE)
                 if not pending_batch:
                     # no pending rows: sleep a bit
                     time.sleep(0.25)
                     continue
-                
+
                 # push to asyncio picker_queue thread-safely
                 # Store reference to self for closure
                 picker_self = self
                 pending_batch_ref = pending_batch
-                
+
                 def safe_put():
                     try:
                         picker_self.picker_queue.put_nowait(pending_batch_ref)
                     except asyncio.QueueFull:
                         # Queue is full, add to requeue list (picker thread will handle it)
                         picker_self._requeue_domains.extend(pending_batch_ref)
-                
+
                 try:
                     self.loop.call_soon_threadsafe(safe_put)
                     # Small sleep to allow workers to consume
@@ -612,7 +612,7 @@ async def worker_task(
     """
     loop = asyncio.get_running_loop()
     consecutive_empty_batches = 0
-    
+
     while not shutdown_flag.is_set():
         try:
             batch: List[str] = await asyncio.wait_for(picker_queue.get(), timeout=1.0)
@@ -623,17 +623,17 @@ async def worker_task(
             if consecutive_empty_batches > 5:
                 break
             continue
-        
+
         if not batch:
             # empty batch -> continue
             consecutive_empty_batches += 1
             if consecutive_empty_batches > 5:
                 break
             continue
-        
+
         # Got work, reset counter
         consecutive_empty_batches = 0
-        
+
         for domain in batch:
             if shutdown_flag.is_set():
                 break
@@ -655,8 +655,8 @@ async def worker_task(
 
 
 async def progress_logger(
-    db_path: str, 
-    shutdown_flag: asyncio.Event, 
+    db_path: str,
+    shutdown_flag: asyncio.Event,
     stats: Dict[str, int],
     stats_lock: asyncio.Lock,
     check_interval: int = PROGRESS_INTERVAL
@@ -671,14 +671,14 @@ async def progress_logger(
         cur = conn.cursor()
         cur.execute("SELECT COUNT(*) FROM domains;")
         total_domains = cur.fetchone()[0]
-        
+
         # For small datasets, use time-based logging
         use_time_based = total_domains < check_interval
-        
+
         last_logged = 0
         last_log_time = time.time()
         start_time = time.time()
-        
+
         # Log initial status immediately
         await asyncio.sleep(2)  # Give workers 2 seconds to start
         cur.execute(
@@ -692,14 +692,14 @@ async def progress_logger(
         remaining = int(row[0] or 0)
         db_completed = int(row[1] or 0)
         total = int(row[2] or 0)
-        print(f"[PROGRESS] Starting: {db_completed}/{total} already completed, {remaining} remaining")
-        
+        print(f"Starting: {db_completed}/{total} already completed, {remaining} remaining")
+
         while not shutdown_flag.is_set():
             await asyncio.sleep(5)  # check every 5 seconds
-            
+
             async with stats_lock:
                 completed = stats["completed"]
-            
+
             cur = conn.cursor()
             cur.execute(
                 "SELECT "
@@ -712,11 +712,11 @@ async def progress_logger(
             remaining = int(row[0] or 0)
             db_completed = int(row[1] or 0)
             total = int(row[2] or 0)
-            
+
             # Decide whether to log
             should_log = False
             now = time.time()
-            
+
             if use_time_based:
                 # For small datasets, log every 5 seconds if there's progress
                 if db_completed > last_logged and (now - last_log_time) >= 5:
@@ -725,7 +725,7 @@ async def progress_logger(
                 # For large datasets, log every check_interval domains
                 if db_completed - last_logged >= check_interval:
                     should_log = True
-            
+
             if should_log:
                 # Calculate req/sec based on domains completed since last log
                 domains_since_last = db_completed - last_logged
@@ -733,15 +733,15 @@ async def progress_logger(
                 rps = (domains_since_last / time_since_last) if time_since_last > 0 else 0.0
                 eta_hours = (remaining / rps / 3600) if rps > 0 else float("inf")
                 pct = (db_completed / total * 100) if total > 0 else 0.0
-                
+
                 # Status breakdown
                 cur.execute("SELECT status, COUNT(*) FROM domains WHERE status != 'pending' GROUP BY status;")
                 counts = cur.fetchall()
                 status_parts = " ".join(f"{s}={c}" for s, c in counts)
-                
-                print(f"[PROGRESS] Processed {db_completed}/{total} ({pct:.2f}%) | {rps:.1f} req/sec | ETA: {eta_hours:.1f} hours")
-                print(f"[PROGRESS] Status: {status_parts}")
-                
+
+                print(f"Processed {db_completed}/{total} ({pct:.2f}%) | {rps:.1f} req/sec | ETA: {eta_hours:.1f} hours")
+                print(f"{status_parts}")
+
                 last_logged = db_completed
                 last_log_time = now
     finally:
@@ -829,18 +829,18 @@ async def main_async(args):
     install_signal_handlers(loop, shutdown_event, shutdown_flag)
 
     print(f"[MAIN] Starting scanner: {CONCURRENCY} workers, {RATE} req/sec")
-    
+
     # Initial status check
     conn_check = get_db_conn(DB_PATH)
     cur_check = conn_check.cursor()
     cur_check.execute("SELECT COUNT(*) FROM domains WHERE status='pending';")
     pending_count = cur_check.fetchone()[0]
     conn_check.close()
-    
+
     if pending_count == 0:
         print(f"[MAIN] No pending domains to process. Exiting.")
         return
-    
+
     print(f"[MAIN] {pending_count} domains pending")
     print(f"[MAIN] Progress will be logged every {PROGRESS_INTERVAL if pending_count >= PROGRESS_INTERVAL else '5 seconds for small datasets'}")
 
