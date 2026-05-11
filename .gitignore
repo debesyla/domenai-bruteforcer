@@ -159,3 +159,6 @@ assets/input.txt
 *.db-shm
 *.db-wal
 *.sqlite3
+# Runtime data (special-phones branch)
+assets/phone_scan_checkpoint.txt
+assets/phone_hits.txt
