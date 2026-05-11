@@ -37,6 +37,7 @@ DEFAULT_END = 10_000_000 - 1  # inclusive (9999999)
 
 CHECKPOINT_FILE = "assets/phone_scan_checkpoint.txt"
 HITS_FILE = "assets/phone_hits.txt"
+LOG_FILE = "assets/phone_scan_log.txt"
 
 PROGRESS_INTERVAL = 5000      # log every N queries
 CHECKPOINT_INTERVAL = 2000    # save position every N queries
@@ -131,6 +132,20 @@ def write_checkpoint(path: str, value: int):
     Path(path).write_text(str(value))
 
 
+def log_msg(msg: str):
+    """Write to both internal log file and stdout."""
+    line = msg.rstrip()
+    print(line, flush=True)
+    try:
+        p = Path("assets/phone_scan_log.txt")
+        p.parent.mkdir(parents=True, exist_ok=True)
+        with open(p, "a", encoding="utf-8") as f:
+            f.write(line + "\n")
+            f.flush()
+    except OSError:
+        pass
+
+
 def append_hit(path: str, domain: str, status: str):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path, "a", encoding="utf-8") as f:
@@ -146,7 +161,7 @@ _shutdown_flag = False
 
 def _handle_signal(signum, frame):
     global _shutdown_flag
-    print(f"\n[SIGNAL] Caught signal {signum}. Shutting down gracefully...")
+    log_msg(f"\n[SIGNAL] Caught signal {signum}. Shutting down gracefully...")
     _shutdown_flag = True
 
 
@@ -171,20 +186,20 @@ async def main_async(args: argparse.Namespace):
     # Resume logic
     current = read_checkpoint(ckpt_path)
     if current is not None and current >= start_num and not args.no_resume:
-        print(f"[MAIN] Resuming from checkpoint: {current} ({domain_for(current)})")
+        log_msg(f"[MAIN] Resuming from checkpoint: {current} ({domain_for(current)})")
         current += 1
     else:
         current = start_num
         write_checkpoint(ckpt_path, current)
-        print(f"[MAIN] Starting fresh from {current} ({domain_for(current)})")
+        log_msg(f"[MAIN] Starting fresh from {current} ({domain_for(current)})")
 
     expected_days = total / (CONCURRENCY * CHECK_TIMEOUT) / 3600 * 24
-    print(f"[MAIN] Range: {start_num} to {end_num} ({total:,} domains)")
-    print(f"[MAIN] Workers: {CONCURRENCY} | Target: ~7-8 req/s")
-    print(f"[MAIN] Expected duration: roughly {total / 7 / 3600:.0f}h ({total / 7 / 3600 / 24:.1f}d)")
-    print(f"[MAIN] Hits file: {hits_path}")
-    print(f"[MAIN] Checkpoint file: {ckpt_path}")
-    print(f"[MAIN] Start: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    log_msg(f"[MAIN] Range: {start_num} to {end_num} ({total:,} domains)")
+    log_msg(f"[MAIN] Workers: {CONCURRENCY} | Target: ~7-8 req/s")
+    log_msg(f"[MAIN] Expected duration: roughly {total / 7 / 3600:.0f}h ({total / 7 / 3600 / 24:.1f}d)")
+    log_msg(f"[MAIN] Hits file: {hits_path}")
+    log_msg(f"[MAIN] Checkpoint file: {ckpt_path}")
+    log_msg(f"[MAIN] Start: {time.strftime('%Y-%m-%d %H:%M:%S')}")
 
     install_signal_handlers()
 
@@ -221,7 +236,7 @@ async def main_async(args: argparse.Namespace):
                 append_hit(hits_path, domain, status)
                 async with lock:
                     hits += 1
-                print(f"[HIT] {domain} -> {status}", flush=True)
+                log_msg(f"[HIT] {domain} -> {status}")
 
             async with lock:
                 c = completed
@@ -237,11 +252,10 @@ async def main_async(args: argparse.Namespace):
                 pct = (c / total * 100) if total > 0 else 0
                 rate = c / elapsed if elapsed > 0 else 0
                 eta_h = (total - c) / rate / 3600 if rate > 0 else 0
-                print(
+                log_msg(
                     f"[PROGRESS] {c:,}/{total:,} ({pct:.2f}%) "
                     f"| hits: {h} | errors: {e} "
-                    f"| {rate:.1f} req/s | ETA: {eta_h:.1f}h",
-                    flush=True,
+                    f"| {rate:.1f} req/s | ETA: {eta_h:.1f}h"
                 )
 
         # Final checkpoint
@@ -258,18 +272,19 @@ async def main_async(args: argparse.Namespace):
         pass
 
     elapsed = time.monotonic() - start_time
-    print(f"\n{'='*55}")
-    print(f"  [SUMMARY] Scan {'stopped' if _shutdown_flag else 'complete'}")
-    print(f"  [SUMMARY] Domains scanned: {completed:,}")
-    print(f"  [SUMMARY] Non-available hits: {hits}")
-    print(f"  [SUMMARY] Errors: {errors}")
-    print(f"  [SUMMARY] Elapsed: {elapsed/3600:.1f}h ({elapsed:.0f}s)")
+    log_msg(f"")
+    log_msg(f"{'='*55}")
+    log_msg(f"  [SUMMARY] Scan {'stopped' if _shutdown_flag else 'complete'}")
+    log_msg(f"  [SUMMARY] Domains scanned: {completed:,}")
+    log_msg(f"  [SUMMARY] Non-available hits: {hits}")
+    log_msg(f"  [SUMMARY] Errors: {errors}")
+    log_msg(f"  [SUMMARY] Elapsed: {elapsed/3600:.1f}h ({elapsed:.0f}s)")
     rate = completed / elapsed if elapsed > 0 else 0
-    print(f"  [SUMMARY] Avg rate: {rate:.1f} req/s")
-    print(f"  [SUMMARY] Hits saved to: {hits_path}")
-    print(f"  [SUMMARY] Checkpoint at: {ckpt_path}")
-    print(f"  [SUMMARY] End: {time.strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"{'='*55}")
+    log_msg(f"  [SUMMARY] Avg rate: {rate:.1f} req/s")
+    log_msg(f"  [SUMMARY] Hits saved to: {hits_path}")
+    log_msg(f"  [SUMMARY] Checkpoint at: {ckpt_path}")
+    log_msg(f"  [SUMMARY] End: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    log_msg(f"{'='*55}")
 
     async with lock:
         final_n = counter
