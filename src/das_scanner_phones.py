@@ -6,22 +6,16 @@ Generates all 3706XXXXXXX.lt domains (10M total) and checks each against
 the .lt Domain Availability Service. Almost all return 'available'; only
 non-available results (registered, blocked, reserved, etc.) are logged.
 
-Key differences from das_scanner.py:
-  - No SQLite database (no input.txt, no progress DB)
-  - No batched writes — hits written to file immediately
-  - No picker thread — domains generated incrementally from a counter
-  - Checkpoint file for resume capability
-  - Rate limited to 20 req/sec
+Architecture: Uses 4 concurrent async workers with no artificial rate
+limiting. The DAS server's natural response time (~130ms per query)
+gives ~7-8 req/s throughput with <1% error rate at this concurrency.
 
 Usage:
     python3 src/das_scanner_phones.py
-    # Or with custom range:
-    python3 src/das_scanner_phones.py --start 500000 --end 9999999
 """
 
 import argparse
 import asyncio
-import os
 import signal
 import time
 from pathlib import Path
@@ -29,32 +23,27 @@ from pathlib import Path
 # ------------------------
 # Settings (tunable)
 # ------------------------
-RATE = 20                     # requests/sec
-CONCURRENCY = 40              # async workers
+CONCURRENCY = 4               # parallel workers (sweet spot for DAS server)
 DAS_HOST = "das.domreg.lt"
 DAS_PORT = 4343
 DAS_QUERY_TEMPLATE = "get 1.0 {domain}\n"
 CHECK_TIMEOUT = 6             # seconds per TCP query
-MAX_RETRIES = 1
-RETRY_BACKOFF = 2             # seconds
 
 PREFIX = "3706"               # phone number prefix
 DIGITS = 7                    # digits after prefix → 37060000000 .. 37069999999
 
-# Default scan range (7 digits = 0 to 9,999,999)
 DEFAULT_START = 0
-DEFAULT_END = 10_000_000 - 1  # inclusive
+DEFAULT_END = 10_000_000 - 1  # inclusive (9999999)
 
 CHECKPOINT_FILE = "assets/phone_scan_checkpoint.txt"
 HITS_FILE = "assets/phone_hits.txt"
 
-PROGRESS_INTERVAL = 5000     # log every N queries
-CHECKPOINT_INTERVAL = 2000   # save position every N queries
+PROGRESS_INTERVAL = 5000      # log every N queries
+CHECKPOINT_INTERVAL = 2000    # save position every N queries
 
-STATUSES_OF_INTEREST = frozenset({
-    "available",        # skip these
-    "unknown",          # skip unparseable responses too
-})
+# Only "available" is skipped; everything else (registered, blocked, etc.)
+# or unrecognised responses are logged as hits.
+SKIP_STATUSES = frozenset({"available"})
 
 
 # ------------------------
@@ -62,146 +51,70 @@ STATUSES_OF_INTEREST = frozenset({
 # ------------------------
 
 def domain_for(n: int) -> str:
-    """Generate 3706XXXXXXX.lt from integer."""
     return f"{PREFIX}{n:0{DIGITS}d}.lt"
 
 
 # ------------------------
-# Async worker
+# DAS query
 # ------------------------
 
-class TokenBucket:
-    """Simple asyncio token bucket for rate limiting."""
-
-    def __init__(self, rate: float):
-        self.rate = rate
-        self.capacity = int(max(1, rate))
-        self._tokens = float(self.capacity)
-        self._lock = asyncio.Lock()
-        self._last = time.monotonic()
-        self._refill_task = None
-
-    async def start(self):
-        self._refill_task = asyncio.create_task(self._refill_loop())
-
-    async def stop(self):
-        if self._refill_task:
-            self._refill_task.cancel()
-            try:
-                await self._refill_task
-            except asyncio.CancelledError:
-                pass
-
-    async def _refill_loop(self):
-        while True:
-            await asyncio.sleep(1.0 / self.rate)
-            async with self._lock:
-                self._tokens = min(self.capacity, self._tokens + 1)
-
-    async def acquire(self):
-        while True:
-            async with self._lock:
-                if self._tokens >= 1:
-                    self._tokens -= 1
-                    return
-            await asyncio.sleep(0.01)
-
-
-async def query_das(domain: str, bucket: TokenBucket) -> str | None:
+async def query_das(domain: str) -> str | None:
     """
-    Send a single DAS query for `domain`.
-    Returns the status string (e.g., 'available', 'registered') or None on error.
+    Query DAS and return status string or None on error.
+    DAS response format (3 lines):
+        % .lt registry DAS service
+        Domain: example.lt
+        Status: available
     """
-    await bucket.acquire()
     query = DAS_QUERY_TEMPLATE.format(domain=domain).encode()
+    try:
+        reader, writer = await asyncio.wait_for(
+            asyncio.open_connection(DAS_HOST, DAS_PORT),
+            timeout=CHECK_TIMEOUT,
+        )
+        writer.write(query)
+        await writer.drain()
 
-    for attempt in range(MAX_RETRIES + 1):
-        try:
-            reader, writer = await asyncio.wait_for(
-                asyncio.open_connection(DAS_HOST, DAS_PORT),
-                timeout=CHECK_TIMEOUT,
-            )
-            writer.write(query)
-            await writer.drain()
-            # DAS returns multiple lines; read all until newline+newline or timeout
-            lines = []
-            for _ in range(5):
-                try:
-                    line = await asyncio.wait_for(
-                        reader.readline(), timeout=CHECK_TIMEOUT / 2
-                    )
-                    if not line:
-                        break
-                    decoded = line.decode("utf-8", errors="replace").rstrip("\r\n")
-                    lines.append(decoded)
-                except asyncio.TimeoutError:
-                    break
-            writer.close()
+        lines = []
+        for _ in range(5):
             try:
-                await writer.wait_closed()
-            except (ConnectionResetError, BrokenPipeError):
-                pass
+                line = await asyncio.wait_for(reader.readline(), timeout=CHECK_TIMEOUT / 2)
+                if not line:
+                    break
+                lines.append(line.decode("utf-8", errors="replace").rstrip("\r\n"))
+            except asyncio.TimeoutError:
+                break
 
-            # Parse response: looks for "Status: <value>" line
-            status = _parse_das_status("\n".join(lines))
-            return status
+        writer.close()
+        try:
+            await writer.wait_closed()
+        except (ConnectionResetError, BrokenPipeError):
+            pass
 
-        except (OSError, asyncio.TimeoutError) as exc:
-            if attempt < MAX_RETRIES:
-                await asyncio.sleep(RETRY_BACKOFF)
-                continue
-            return None
+        return _parse_status("\n".join(lines))
 
-    return None
-
-
-# ------------------------
-# DAS response parser
-# ------------------------
-
-CANONICAL_STATUSES = {
-    "available",
-    "registered",
-    "blocked",
-    "reserved",
-    "restricteddisposal",
-    "restrictedrights",
-    "stopped",
-    "pendingcreate",
-    "pendingdelete",
-    "pendingrelease",
-    "outofservice",
-}
+    except (OSError, asyncio.TimeoutError):
+        return None
 
 
-def _parse_das_status(response_text: str) -> str:
-    """
-    Parse the DAS response for a 'Status:' line.
-    Returns canonical lowercase status or 'unknown'.
-    """
-    if not response_text:
+def _parse_status(response: str) -> str:
+    """Extract the Status: line value."""
+    if not response:
         return "unknown"
-    for line in response_text.splitlines():
-        line_stripped = line.strip()
-        if line_stripped.lower().startswith("status:"):
-            parts = line_stripped.split(":", 1)
+    for line in response.splitlines():
+        stripped = line.strip().lower()
+        if stripped.startswith("status:"):
+            parts = line.split(":", 1)
             if len(parts) > 1:
-                s = parts[1].strip().lower()
-                s_norm = s.replace(" ", "").replace("-", "")
-                if s_norm in CANONICAL_STATUSES:
-                    return s_norm
-                if s in CANONICAL_STATUSES:
-                    return s
-                return s if s else "unknown"
+                return parts[1].strip().lower()
     return "unknown"
 
 
 # ------------------------
-# Checkpoint persistence
+# Persistence
 # ------------------------
 
-def read_checkpoint(path: str) -> int:
-    """Read last scanned number from checkpoint file. Returns None if missing."""
+def read_checkpoint(path: str) -> int | None:
     p = Path(path)
     if p.exists():
         raw = p.read_text().strip()
@@ -214,13 +127,11 @@ def read_checkpoint(path: str) -> int:
 
 
 def write_checkpoint(path: str, value: int):
-    """Save current position to checkpoint file."""
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     Path(path).write_text(str(value))
 
 
 def append_hit(path: str, domain: str, status: str):
-    """Immediately write a hit (non-available domain) to the hits file."""
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path, "a", encoding="utf-8") as f:
         f.write(f"{domain} -> {status}\n")
@@ -252,44 +163,43 @@ async def main_async(args: argparse.Namespace):
     global _shutdown_flag
 
     start_num = args.start
-    end_num = args.end  # inclusive
+    end_num = args.end
     total = end_num - start_num + 1
-    checkpoint_path = args.checkpoint
+    ckpt_path = args.checkpoint
     hits_path = args.hits
 
-    # Resume from checkpoint if available
-    current = read_checkpoint(checkpoint_path)
+    # Resume logic
+    current = read_checkpoint(ckpt_path)
     if current is not None and current >= start_num and not args.no_resume:
-        print(f"[MAIN] Resuming from checkpoint: {current} (domain {domain_for(current)})")
-        # Advance past the last checkpoint
+        print(f"[MAIN] Resuming from checkpoint: {current} ({domain_for(current)})")
         current += 1
     else:
         current = start_num
-        write_checkpoint(checkpoint_path, current)
+        write_checkpoint(ckpt_path, current)
         print(f"[MAIN] Starting fresh from {current} ({domain_for(current)})")
 
+    expected_days = total / (CONCURRENCY * CHECK_TIMEOUT) / 3600 * 24
     print(f"[MAIN] Range: {start_num} to {end_num} ({total:,} domains)")
-    print(f"[MAIN] Rate: {RATE}/sec | Workers: {CONCURRENCY}")
+    print(f"[MAIN] Workers: {CONCURRENCY} | Target: ~7-8 req/s")
+    print(f"[MAIN] Expected duration: roughly {total / 7 / 3600:.0f}h ({total / 7 / 3600 / 24:.1f}d)")
     print(f"[MAIN] Hits file: {hits_path}")
-    print(f"[MAIN] Checkpoint file: {checkpoint_path}")
+    print(f"[MAIN] Checkpoint file: {ckpt_path}")
+    print(f"[MAIN] Start: {time.strftime('%Y-%m-%d %H:%M:%S')}")
 
     install_signal_handlers()
 
-    bucket = TokenBucket(RATE)
-    await bucket.start()
-
-    # Shared state
-    counter_lock = asyncio.Lock()
+    lock = asyncio.Lock()
     counter = current
     completed = 0
     hits = 0
     errors = 0
     start_time = time.monotonic()
+    last_stats_time = start_time
 
     async def worker(worker_id: int):
         nonlocal counter, completed, hits, errors
         while not _shutdown_flag:
-            async with counter_lock:
+            async with lock:
                 n = counter
                 counter += 1
 
@@ -297,52 +207,55 @@ async def main_async(args: argparse.Namespace):
                 break
 
             domain = domain_for(n)
-            status = await query_das(domain, bucket)
+            status = await query_das(domain)
 
-            async with counter_lock:
+            async with lock:
                 completed += 1
 
             if status is None:
-                async with counter_lock:
+                async with lock:
                     errors += 1
                 continue
 
-            if status not in STATUSES_OF_INTEREST:
+            if status not in SKIP_STATUSES:
                 append_hit(hits_path, domain, status)
-                async with counter_lock:
+                async with lock:
                     hits += 1
-                print(f"[HIT] {domain} -> {status}")
+                print(f"[HIT] {domain} -> {status}", flush=True)
 
-            # Periodic checkpoint + progress
-            if completed % CHECKPOINT_INTERVAL == 0 and not _shutdown_flag:
-                write_checkpoint(checkpoint_path, n)
+            async with lock:
+                c = completed
+                e = errors
+                h = hits
 
-            if completed % PROGRESS_INTERVAL == 0 or completed == 1:
+            # Periodic checkpoint & progress
+            if c % CHECKPOINT_INTERVAL == 0 and not _shutdown_flag:
+                write_checkpoint(ckpt_path, n)
+
+            if c % PROGRESS_INTERVAL == 0 or c == 1:
                 elapsed = time.monotonic() - start_time
-                pct = (completed / total * 100) if total > 0 else 0
-                rate_actual = completed / elapsed if elapsed > 0 else 0
-                eta_sec = (total - completed) / rate_actual if rate_actual > 0 else 0
+                pct = (c / total * 100) if total > 0 else 0
+                rate = c / elapsed if elapsed > 0 else 0
+                eta_h = (total - c) / rate / 3600 if rate > 0 else 0
                 print(
-                    f"[PROGRESS] Worker#{worker_id} "
-                    f"→ {completed:,}/{total:,} ({pct:.2f}%) "
-                    f"| hits: {hits} | errors: {errors} "
-                    f"| {rate_actual:.1f} req/s "
-                    f"| ETA: {eta_sec/3600:.1f}h"
+                    f"[PROGRESS] {c:,}/{total:,} ({pct:.2f}%) "
+                    f"| hits: {h} | errors: {e} "
+                    f"| {rate:.1f} req/s | ETA: {eta_h:.1f}h",
+                    flush=True,
                 )
 
-        # Final checkpoint for this worker
+        # Final checkpoint
         if not _shutdown_flag:
-            write_checkpoint(checkpoint_path, n)
+            async with lock:
+                fn = counter
+            write_checkpoint(ckpt_path, fn)
 
-    # Start workers
     workers = [asyncio.create_task(worker(i)) for i in range(CONCURRENCY)]
 
     try:
         await asyncio.gather(*workers)
     except asyncio.CancelledError:
         pass
-    finally:
-        await bucket.stop()
 
     elapsed = time.monotonic() - start_time
     print(f"\n{'='*55}")
@@ -351,29 +264,25 @@ async def main_async(args: argparse.Namespace):
     print(f"  [SUMMARY] Non-available hits: {hits}")
     print(f"  [SUMMARY] Errors: {errors}")
     print(f"  [SUMMARY] Elapsed: {elapsed/3600:.1f}h ({elapsed:.0f}s)")
-    print(f"  [SUMMARY] Avg rate: {completed/elapsed:.1f} req/s" if elapsed > 0 else "  [SUMMARY] Avg rate: N/A")
+    rate = completed / elapsed if elapsed > 0 else 0
+    print(f"  [SUMMARY] Avg rate: {rate:.1f} req/s")
     print(f"  [SUMMARY] Hits saved to: {hits_path}")
-    print(f"  [SUMMARY] Checkpoint at: {checkpoint_path}")
+    print(f"  [SUMMARY] Checkpoint at: {ckpt_path}")
+    print(f"  [SUMMARY] End: {time.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'='*55}")
 
-    # Final checkpoint
-    async with counter_lock:
+    async with lock:
         final_n = counter
-    write_checkpoint(checkpoint_path, final_n)
+    write_checkpoint(ckpt_path, final_n)
 
 
 def parse_args():
     p = argparse.ArgumentParser(description="DAS Scanner — Phone pattern (special-phones)")
-    p.add_argument("--start", type=int, default=DEFAULT_START,
-                    help=f"Starting number (default: {DEFAULT_START})")
-    p.add_argument("--end", type=int, default=DEFAULT_END,
-                    help=f"Ending number, inclusive (default: {DEFAULT_END})")
-    p.add_argument("--checkpoint", default=CHECKPOINT_FILE,
-                    help=f"Checkpoint file (default: {CHECKPOINT_FILE})")
-    p.add_argument("--hits", default=HITS_FILE,
-                    help=f"Hits output file (default: {HITS_FILE})")
-    p.add_argument("--no-resume", action="store_true",
-                    help="Ignore checkpoint file and start fresh")
+    p.add_argument("--start", type=int, default=DEFAULT_START)
+    p.add_argument("--end", type=int, default=DEFAULT_END)
+    p.add_argument("--checkpoint", default=CHECKPOINT_FILE)
+    p.add_argument("--hits", default=HITS_FILE)
+    p.add_argument("--no-resume", action="store_true")
     return p.parse_args()
 
 
