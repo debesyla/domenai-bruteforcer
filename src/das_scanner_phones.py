@@ -19,10 +19,10 @@ import signal
 from pathlib import Path
 
 # ======== Settings ========
-THREADS = 4
+THREADS = 1
 DAS_HOST = "das.domreg.lt"
 DAS_PORT = 4343
-TIMEOUT = 10
+TIMEOUT = 5
 
 PREFIX = "3706"
 DIGITS = 7

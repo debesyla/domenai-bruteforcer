@@ -1,0 +1,1019 @@
+=== Scanner (4 threads) at Tue May 12 12:23:29 PM EEST 2026 ===
+[MAIN] Resuming from checkpoint: 346864 (37060346864.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-12 12:23:29
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 59.0 req/s | ETA: 47.1h
+[PROGRESS] 5,000/10,000,000 (0.05%) | hits: 0 | errors: 38 | 8.3 req/s | ETA: 333.0h
+[PROGRESS] 10,000/10,000,000 (0.10%) | hits: 0 | errors: 54 | 8.2 req/s | ETA: 339.5h
+[PROGRESS] 15,000/10,000,000 (0.15%) | hits: 1 | errors: 60 | 7.4 req/s | ETA: 375.7h
+[PROGRESS] 20,000/10,000,000 (0.20%) | hits: 1 | errors: 62 | 6.8 req/s | ETA: 409.6h
+[PROGRESS] 25,000/10,000,000 (0.25%) | hits: 3 | errors: 67 | 6.4 req/s | ETA: 433.3h
+[PROGRESS] 30,000/10,000,000 (0.30%) | hits: 3 | errors: 74 | 6.2 req/s | ETA: 444.5h
+[PROGRESS] 35,000/10,000,000 (0.35%) | hits: 3 | errors: 77 | 6.2 req/s | ETA: 449.0h
+[PROGRESS] 40,000/10,000,000 (0.40%) | hits: 3 | errors: 4720 | 6.9 req/s | ETA: 398.6h
+[PROGRESS] 45,000/10,000,000 (0.45%) | hits: 3 | errors: 9720 | 7.8 req/s | ETA: 354.1h
+[PROGRESS] 50,000/10,000,000 (0.50%) | hits: 3 | errors: 14720 | 8.7 req/s | ETA: 318.6h
+[PROGRESS] 55,000/10,000,000 (0.55%) | hits: 3 | errors: 19720 | 9.5 req/s | ETA: 289.5h
+[PROGRESS] 60,000/10,000,000 (0.60%) | hits: 3 | errors: 24720 | 10.4 req/s | ETA: 265.2h
+[PROGRESS] 65,000/10,000,000 (0.65%) | hits: 3 | errors: 29720 | 11.3 req/s | ETA: 244.7h
+[PROGRESS] 70,000/10,000,000 (0.70%) | hits: 3 | errors: 34720 | 12.1 req/s | ETA: 227.1h
+[PROGRESS] 75,000/10,000,000 (0.75%) | hits: 3 | errors: 39720 | 13.0 req/s | ETA: 211.9h
+[PROGRESS] 80,000/10,000,000 (0.80%) | hits: 3 | errors: 44720 | 13.9 req/s | ETA: 198.5h
+[PROGRESS] 85,000/10,000,000 (0.85%) | hits: 3 | errors: 49720 | 14.7 req/s | ETA: 186.8h
+[PROGRESS] 90,000/10,000,000 (0.90%) | hits: 3 | errors: 54720 | 15.6 req/s | ETA: 176.3h
+[PROGRESS] 95,000/10,000,000 (0.95%) | hits: 3 | errors: 59720 | 16.5 req/s | ETA: 167.0h
+[PROGRESS] 100,000/10,000,000 (1.00%) | hits: 3 | errors: 64720 | 17.3 req/s | ETA: 158.5h
+[PROGRESS] 105,000/10,000,000 (1.05%) | hits: 3 | errors: 69720 | 18.2 req/s | ETA: 150.9h
+[PROGRESS] 110,000/10,000,000 (1.10%) | hits: 3 | errors: 74720 | 19.1 req/s | ETA: 144.0h
+[PROGRESS] 115,000/10,000,000 (1.15%) | hits: 3 | errors: 79720 | 19.9 req/s | ETA: 137.7h
+[PROGRESS] 120,000/10,000,000 (1.20%) | hits: 3 | errors: 84720 | 20.8 req/s | ETA: 131.9h
+[PROGRESS] 125,000/10,000,000 (1.25%) | hits: 3 | errors: 89720 | 21.7 req/s | ETA: 126.5h
+[PROGRESS] 130,000/10,000,000 (1.30%) | hits: 3 | errors: 94720 | 22.5 req/s | ETA: 121.6h
+[PROGRESS] 135,000/10,000,000 (1.35%) | hits: 3 | errors: 99720 | 23.4 req/s | ETA: 117.0h
+[PROGRESS] 140,000/10,000,000 (1.40%) | hits: 3 | errors: 104720 | 24.3 req/s | ETA: 112.8h
+[PROGRESS] 145,000/10,000,000 (1.45%) | hits: 3 | errors: 109720 | 25.1 req/s | ETA: 108.9h
+[PROGRESS] 150,000/10,000,000 (1.50%) | hits: 3 | errors: 114720 | 26.0 req/s | ETA: 105.2h
+[PROGRESS] 155,000/10,000,000 (1.55%) | hits: 3 | errors: 119720 | 26.9 req/s | ETA: 101.7h
+[PROGRESS] 160,000/10,000,000 (1.60%) | hits: 3 | errors: 124720 | 27.7 req/s | ETA: 98.5h
+[PROGRESS] 165,000/10,000,000 (1.65%) | hits: 3 | errors: 129720 | 28.6 req/s | ETA: 95.5h
+[PROGRESS] 170,000/10,000,000 (1.70%) | hits: 3 | errors: 134720 | 29.5 req/s | ETA: 92.6h
+[PROGRESS] 175,000/10,000,000 (1.75%) | hits: 3 | errors: 139720 | 30.3 req/s | ETA: 89.9h
+[PROGRESS] 180,000/10,000,000 (1.80%) | hits: 3 | errors: 144720 | 31.2 req/s | ETA: 87.4h
+[PROGRESS] 185,000/10,000,000 (1.85%) | hits: 3 | errors: 149720 | 32.1 req/s | ETA: 85.0h
+[PROGRESS] 190,000/10,000,000 (1.90%) | hits: 3 | errors: 154720 | 32.9 req/s | ETA: 82.7h
+[PROGRESS] 195,000/10,000,000 (1.95%) | hits: 3 | errors: 159720 | 33.8 req/s | ETA: 80.6h
+[PROGRESS] 200,000/10,000,000 (2.00%) | hits: 3 | errors: 164720 | 34.7 req/s | ETA: 78.5h
+[PROGRESS] 205,000/10,000,000 (2.05%) | hits: 3 | errors: 169720 | 35.5 req/s | ETA: 76.6h
+[PROGRESS] 210,000/10,000,000 (2.10%) | hits: 3 | errors: 174720 | 36.4 req/s | ETA: 74.7h
+[PROGRESS] 215,000/10,000,000 (2.15%) | hits: 3 | errors: 179720 | 37.3 req/s | ETA: 72.9h
+[PROGRESS] 220,000/10,000,000 (2.20%) | hits: 3 | errors: 184720 | 38.1 req/s | ETA: 71.2h
+[PROGRESS] 225,000/10,000,000 (2.25%) | hits: 3 | errors: 189720 | 39.0 req/s | ETA: 69.6h
+[PROGRESS] 230,000/10,000,000 (2.30%) | hits: 3 | errors: 194720 | 39.9 req/s | ETA: 68.1h
+[PROGRESS] 235,000/10,000,000 (2.35%) | hits: 3 | errors: 199720 | 40.7 req/s | ETA: 66.6h
+[PROGRESS] 240,000/10,000,000 (2.40%) | hits: 3 | errors: 204720 | 41.6 req/s | ETA: 65.2h
+[PROGRESS] 245,000/10,000,000 (2.45%) | hits: 3 | errors: 209720 | 42.5 req/s | ETA: 63.8h
+[PROGRESS] 250,000/10,000,000 (2.50%) | hits: 3 | errors: 214720 | 43.3 req/s | ETA: 62.5h
+[PROGRESS] 255,000/10,000,000 (2.55%) | hits: 3 | errors: 219720 | 44.2 req/s | ETA: 61.2h
+[PROGRESS] 260,000/10,000,000 (2.60%) | hits: 3 | errors: 223304 | 44.1 req/s | ETA: 61.4h
+[PROGRESS] 265,000/10,000,000 (2.65%) | hits: 3 | errors: 223317 | 41.0 req/s | ETA: 65.9h
+[PROGRESS] 270,000/10,000,000 (2.70%) | hits: 3 | errors: 223326 | 35.6 req/s | ETA: 75.9h
+[PROGRESS] 275,000/10,000,000 (2.75%) | hits: 3 | errors: 223335 | 31.5 req/s | ETA: 85.9h
+[PROGRESS] 280,000/10,000,000 (2.80%) | hits: 3 | errors: 223344 | 29.2 req/s | ETA: 92.6h
+[PROGRESS] 285,000/10,000,000 (2.85%) | hits: 3 | errors: 223344 | 27.0 req/s | ETA: 99.8h
+[PROGRESS] 290,000/10,000,000 (2.90%) | hits: 3 | errors: 223346 | 25.3 req/s | ETA: 106.6h
+[PROGRESS] 295,000/10,000,000 (2.95%) | hits: 3 | errors: 223346 | 23.9 req/s | ETA: 112.8h
+[PROGRESS] 300,000/10,000,000 (3.00%) | hits: 3 | errors: 223346 | 22.6 req/s | ETA: 119.0h
+[PROGRESS] 305,000/10,000,000 (3.05%) | hits: 3 | errors: 223347 | 21.5 req/s | ETA: 125.5h
+[PROGRESS] 310,000/10,000,000 (3.10%) | hits: 3 | errors: 223355 | 20.2 req/s | ETA: 133.0h
+[PROGRESS] 315,000/10,000,000 (3.15%) | hits: 3 | errors: 223358 | 19.2 req/s | ETA: 140.0h
+[PROGRESS] 320,000/10,000,000 (3.20%) | hits: 3 | errors: 223360 | 18.3 req/s | ETA: 146.6h
+[PROGRESS] 325,000/10,000,000 (3.25%) | hits: 3 | errors: 224932 | 18.0 req/s | ETA: 149.5h
+[PROGRESS] 330,000/10,000,000 (3.30%) | hits: 3 | errors: 229932 | 18.3 req/s | ETA: 147.2h
+[PROGRESS] 335,000/10,000,000 (3.35%) | hits: 3 | errors: 234932 | 18.5 req/s | ETA: 144.9h
+[PROGRESS] 340,000/10,000,000 (3.40%) | hits: 3 | errors: 239932 | 18.8 req/s | ETA: 142.7h
+[PROGRESS] 345,000/10,000,000 (3.45%) | hits: 3 | errors: 244932 | 19.1 req/s | ETA: 140.6h
+[PROGRESS] 350,000/10,000,000 (3.50%) | hits: 3 | errors: 249932 | 19.4 req/s | ETA: 138.5h
+[PROGRESS] 355,000/10,000,000 (3.55%) | hits: 3 | errors: 254932 | 19.6 req/s | ETA: 136.5h
+[PROGRESS] 360,000/10,000,000 (3.60%) | hits: 3 | errors: 259932 | 19.9 req/s | ETA: 134.5h
+[PROGRESS] 365,000/10,000,000 (3.65%) | hits: 3 | errors: 264932 | 20.2 req/s | ETA: 132.6h
+[PROGRESS] 370,000/10,000,000 (3.70%) | hits: 3 | errors: 269932 | 20.5 req/s | ETA: 130.7h
+[PROGRESS] 375,000/10,000,000 (3.75%) | hits: 3 | errors: 274932 | 20.7 req/s | ETA: 128.9h
+[PROGRESS] 380,000/10,000,000 (3.80%) | hits: 3 | errors: 279932 | 21.0 req/s | ETA: 127.2h
+[PROGRESS] 385,000/10,000,000 (3.85%) | hits: 3 | errors: 284932 | 21.3 req/s | ETA: 125.4h
+[PROGRESS] 390,000/10,000,000 (3.90%) | hits: 3 | errors: 289932 | 21.6 req/s | ETA: 123.8h
+[PROGRESS] 395,000/10,000,000 (3.95%) | hits: 3 | errors: 294932 | 21.8 req/s | ETA: 122.1h
+[PROGRESS] 400,000/10,000,000 (4.00%) | hits: 3 | errors: 299932 | 22.1 req/s | ETA: 120.6h
+[PROGRESS] 405,000/10,000,000 (4.05%) | hits: 3 | errors: 304932 | 22.4 req/s | ETA: 119.0h
+[PROGRESS] 410,000/10,000,000 (4.10%) | hits: 3 | errors: 309932 | 22.7 req/s | ETA: 117.5h
+[PROGRESS] 415,000/10,000,000 (4.15%) | hits: 3 | errors: 314932 | 22.9 req/s | ETA: 116.0h
+[PROGRESS] 420,000/10,000,000 (4.20%) | hits: 3 | errors: 319932 | 23.2 req/s | ETA: 114.6h
+[PROGRESS] 425,000/10,000,000 (4.25%) | hits: 3 | errors: 324932 | 23.5 req/s | ETA: 113.2h
+[PROGRESS] 430,000/10,000,000 (4.30%) | hits: 3 | errors: 329932 | 23.8 req/s | ETA: 111.8h
+[PROGRESS] 435,000/10,000,000 (4.35%) | hits: 3 | errors: 334932 | 24.1 req/s | ETA: 110.5h
+[PROGRESS] 440,000/10,000,000 (4.40%) | hits: 3 | errors: 339932 | 24.3 req/s | ETA: 109.1h
+[PROGRESS] 445,000/10,000,000 (4.45%) | hits: 3 | errors: 344932 | 24.6 req/s | ETA: 107.9h
+[PROGRESS] 450,000/10,000,000 (4.50%) | hits: 3 | errors: 349932 | 24.9 req/s | ETA: 106.6h
+[PROGRESS] 455,000/10,000,000 (4.55%) | hits: 3 | errors: 354932 | 25.2 req/s | ETA: 105.4h
+[PROGRESS] 460,000/10,000,000 (4.60%) | hits: 3 | errors: 359932 | 25.4 req/s | ETA: 104.2h
+[PROGRESS] 465,000/10,000,000 (4.65%) | hits: 3 | errors: 364932 | 25.7 req/s | ETA: 103.0h
+[PROGRESS] 470,000/10,000,000 (4.70%) | hits: 3 | errors: 369932 | 26.0 req/s | ETA: 101.9h
+[PROGRESS] 475,000/10,000,000 (4.75%) | hits: 3 | errors: 374932 | 26.3 req/s | ETA: 100.7h
+[PROGRESS] 480,000/10,000,000 (4.80%) | hits: 3 | errors: 379932 | 26.5 req/s | ETA: 99.6h
+[PROGRESS] 485,000/10,000,000 (4.85%) | hits: 3 | errors: 384932 | 26.8 req/s | ETA: 98.6h
+[PROGRESS] 490,000/10,000,000 (4.90%) | hits: 3 | errors: 389932 | 27.1 req/s | ETA: 97.5h
+[PROGRESS] 495,000/10,000,000 (4.95%) | hits: 3 | errors: 394932 | 27.4 req/s | ETA: 96.5h
+[PROGRESS] 500,000/10,000,000 (5.00%) | hits: 3 | errors: 399932 | 27.6 req/s | ETA: 95.5h
+[PROGRESS] 505,000/10,000,000 (5.05%) | hits: 3 | errors: 404932 | 27.9 req/s | ETA: 94.5h
+[PROGRESS] 510,000/10,000,000 (5.10%) | hits: 3 | errors: 409932 | 28.2 req/s | ETA: 93.5h
+[PROGRESS] 515,000/10,000,000 (5.15%) | hits: 3 | errors: 414932 | 28.5 req/s | ETA: 92.5h
+[PROGRESS] 520,000/10,000,000 (5.20%) | hits: 3 | errors: 419932 | 28.7 req/s | ETA: 91.6h
+[PROGRESS] 525,000/10,000,000 (5.25%) | hits: 3 | errors: 424932 | 29.0 req/s | ETA: 90.7h
+[PROGRESS] 530,000/10,000,000 (5.30%) | hits: 3 | errors: 429932 | 29.3 req/s | ETA: 89.8h
+[PROGRESS] 535,000/10,000,000 (5.35%) | hits: 3 | errors: 434932 | 29.6 req/s | ETA: 88.9h
+[PROGRESS] 540,000/10,000,000 (5.40%) | hits: 3 | errors: 439932 | 29.9 req/s | ETA: 88.0h
+[PROGRESS] 545,000/10,000,000 (5.45%) | hits: 3 | errors: 444932 | 30.1 req/s | ETA: 87.2h
+[PROGRESS] 550,000/10,000,000 (5.50%) | hits: 3 | errors: 449932 | 30.4 req/s | ETA: 86.3h
+[PROGRESS] 555,000/10,000,000 (5.55%) | hits: 3 | errors: 454932 | 30.7 req/s | ETA: 85.5h
+[PROGRESS] 560,000/10,000,000 (5.60%) | hits: 3 | errors: 459932 | 31.0 req/s | ETA: 84.7h
+[PROGRESS] 565,000/10,000,000 (5.65%) | hits: 3 | errors: 464932 | 31.2 req/s | ETA: 83.9h
+[PROGRESS] 570,000/10,000,000 (5.70%) | hits: 3 | errors: 469932 | 31.5 req/s | ETA: 83.1h
+[PROGRESS] 575,000/10,000,000 (5.75%) | hits: 3 | errors: 474932 | 31.8 req/s | ETA: 82.4h
+[PROGRESS] 580,000/10,000,000 (5.80%) | hits: 3 | errors: 477212 | 31.7 req/s | ETA: 82.5h
+[PROGRESS] 585,000/10,000,000 (5.85%) | hits: 3 | errors: 477213 | 31.4 req/s | ETA: 83.3h
+[PROGRESS] 590,000/10,000,000 (5.90%) | hits: 3 | errors: 477220 | 31.1 req/s | ETA: 84.1h
+[PROGRESS] 595,000/10,000,000 (5.95%) | hits: 3 | errors: 477231 | 30.6 req/s | ETA: 85.3h
+[PROGRESS] 600,000/10,000,000 (6.00%) | hits: 3 | errors: 477239 | 30.2 req/s | ETA: 86.3h
+[PROGRESS] 605,000/10,000,000 (6.05%) | hits: 3 | errors: 477246 | 29.8 req/s | ETA: 87.6h
+[PROGRESS] 610,000/10,000,000 (6.10%) | hits: 3 | errors: 477253 | 29.2 req/s | ETA: 89.2h
+[PROGRESS] 615,000/10,000,000 (6.15%) | hits: 3 | errors: 477264 | 28.7 req/s | ETA: 90.9h
+[PROGRESS] 620,000/10,000,000 (6.20%) | hits: 3 | errors: 477281 | 28.0 req/s | ETA: 93.0h
+[PROGRESS] 625,000/10,000,000 (6.25%) | hits: 3 | errors: 477289 | 27.5 req/s | ETA: 94.6h
+[PROGRESS] 630,000/10,000,000 (6.30%) | hits: 3 | errors: 477299 | 27.1 req/s | ETA: 95.9h
+[PROGRESS] 635,000/10,000,000 (6.35%) | hits: 3 | errors: 477315 | 26.6 req/s | ETA: 97.7h
+[PROGRESS] 640,000/10,000,000 (6.40%) | hits: 3 | errors: 477328 | 26.3 req/s | ETA: 98.9h
+[PROGRESS] 645,000/10,000,000 (6.45%) | hits: 3 | errors: 477339 | 25.8 req/s | ETA: 100.6h
+[PROGRESS] 650,000/10,000,000 (6.50%) | hits: 3 | errors: 477347 | 25.5 req/s | ETA: 101.9h
+[PROGRESS] 655,000/10,000,000 (6.55%) | hits: 3 | errors: 477363 | 25.1 req/s | ETA: 103.5h
+[PROGRESS] 660,000/10,000,000 (6.60%) | hits: 3 | errors: 477369 | 24.8 req/s | ETA: 104.8h
+[PROGRESS] 665,000/10,000,000 (6.65%) | hits: 3 | errors: 477387 | 24.4 req/s | ETA: 106.3h
+[PROGRESS] 670,000/10,000,000 (6.70%) | hits: 3 | errors: 477394 | 24.1 req/s | ETA: 107.6h
+[PROGRESS] 675,000/10,000,000 (6.75%) | hits: 3 | errors: 477403 | 23.8 req/s | ETA: 108.9h
+[PROGRESS] 680,000/10,000,000 (6.80%) | hits: 3 | errors: 477415 | 23.5 req/s | ETA: 110.3h
+[PROGRESS] 685,000/10,000,000 (6.85%) | hits: 3 | errors: 477430 | 23.2 req/s | ETA: 111.7h
+[PROGRESS] 690,000/10,000,000 (6.90%) | hits: 3 | errors: 477442 | 22.9 req/s | ETA: 113.1h
+[PROGRESS] 695,000/10,000,000 (6.95%) | hits: 3 | errors: 477454 | 22.6 req/s | ETA: 114.5h
+[PROGRESS] 700,000/10,000,000 (7.00%) | hits: 3 | errors: 477465 | 22.3 req/s | ETA: 115.6h
+[PROGRESS] 705,000/10,000,000 (7.05%) | hits: 4 | errors: 477478 | 22.0 req/s | ETA: 117.1h
+[PROGRESS] 710,000/10,000,000 (7.10%) | hits: 4 | errors: 477482 | 21.8 req/s | ETA: 118.5h
+[PROGRESS] 715,000/10,000,000 (7.15%) | hits: 4 | errors: 477487 | 21.4 req/s | ETA: 120.3h
+[PROGRESS] 720,000/10,000,000 (7.20%) | hits: 6 | errors: 477493 | 21.0 req/s | ETA: 122.6h
+[PROGRESS] 725,000/10,000,000 (7.25%) | hits: 6 | errors: 477495 | 20.6 req/s | ETA: 125.3h
+[PROGRESS] 730,000/10,000,000 (7.30%) | hits: 6 | errors: 477497 | 20.3 req/s | ETA: 126.8h
+[PROGRESS] 735,000/10,000,000 (7.35%) | hits: 6 | errors: 477504 | 19.9 req/s | ETA: 129.6h
+[PROGRESS] 740,000/10,000,000 (7.40%) | hits: 6 | errors: 477508 | 19.4 req/s | ETA: 132.3h
+[PROGRESS] 745,000/10,000,000 (7.45%) | hits: 6 | errors: 477518 | 19.1 req/s | ETA: 134.9h
+[PROGRESS] 750,000/10,000,000 (7.50%) | hits: 6 | errors: 482384 | 19.2 req/s | ETA: 134.0h
+[PROGRESS] 755,000/10,000,000 (7.55%) | hits: 6 | errors: 487384 | 19.3 req/s | ETA: 133.1h
+[PROGRESS] 760,000/10,000,000 (7.60%) | hits: 6 | errors: 492384 | 19.4 req/s | ETA: 132.1h
+[PROGRESS] 765,000/10,000,000 (7.65%) | hits: 6 | errors: 497384 | 19.6 req/s | ETA: 131.2h
+[PROGRESS] 770,000/10,000,000 (7.70%) | hits: 6 | errors: 502384 | 19.7 req/s | ETA: 130.3h
+[PROGRESS] 775,000/10,000,000 (7.75%) | hits: 6 | errors: 507384 | 19.8 req/s | ETA: 129.4h
+[PROGRESS] 780,000/10,000,000 (7.80%) | hits: 6 | errors: 512384 | 19.9 req/s | ETA: 128.5h
+[PROGRESS] 785,000/10,000,000 (7.85%) | hits: 6 | errors: 517384 | 20.1 req/s | ETA: 127.6h
+[PROGRESS] 790,000/10,000,000 (7.90%) | hits: 6 | errors: 522384 | 20.2 req/s | ETA: 126.7h
+[PROGRESS] 795,000/10,000,000 (7.95%) | hits: 6 | errors: 527384 | 20.3 req/s | ETA: 125.8h
+[PROGRESS] 800,000/10,000,000 (8.00%) | hits: 6 | errors: 532384 | 20.4 req/s | ETA: 125.0h
+[PROGRESS] 805,000/10,000,000 (8.05%) | hits: 6 | errors: 537384 | 20.6 req/s | ETA: 124.1h
+[PROGRESS] 810,000/10,000,000 (8.10%) | hits: 6 | errors: 542384 | 20.7 req/s | ETA: 123.3h
+[PROGRESS] 815,000/10,000,000 (8.15%) | hits: 6 | errors: 547384 | 20.8 req/s | ETA: 122.5h
+[PROGRESS] 820,000/10,000,000 (8.20%) | hits: 6 | errors: 552384 | 21.0 req/s | ETA: 121.7h
+[PROGRESS] 825,000/10,000,000 (8.25%) | hits: 6 | errors: 557384 | 21.1 req/s | ETA: 120.9h
+[PROGRESS] 830,000/10,000,000 (8.30%) | hits: 6 | errors: 562384 | 21.2 req/s | ETA: 120.1h
+[PROGRESS] 835,000/10,000,000 (8.35%) | hits: 6 | errors: 567384 | 21.3 req/s | ETA: 119.3h
+[PROGRESS] 840,000/10,000,000 (8.40%) | hits: 6 | errors: 572384 | 21.5 req/s | ETA: 118.5h
+[PROGRESS] 845,000/10,000,000 (8.45%) | hits: 6 | errors: 577384 | 21.6 req/s | ETA: 117.8h
+[PROGRESS] 850,000/10,000,000 (8.50%) | hits: 6 | errors: 582384 | 21.7 req/s | ETA: 117.0h
+[PROGRESS] 855,000/10,000,000 (8.55%) | hits: 6 | errors: 587384 | 21.9 req/s | ETA: 116.3h
+[PROGRESS] 860,000/10,000,000 (8.60%) | hits: 6 | errors: 592384 | 22.0 req/s | ETA: 115.5h
+[PROGRESS] 865,000/10,000,000 (8.65%) | hits: 6 | errors: 597384 | 22.1 req/s | ETA: 114.8h
+[PROGRESS] 870,000/10,000,000 (8.70%) | hits: 6 | errors: 602384 | 22.2 req/s | ETA: 114.1h
+[PROGRESS] 875,000/10,000,000 (8.75%) | hits: 6 | errors: 607384 | 22.4 req/s | ETA: 113.4h
+[PROGRESS] 880,000/10,000,000 (8.80%) | hits: 6 | errors: 612384 | 22.5 req/s | ETA: 112.6h
+[PROGRESS] 885,000/10,000,000 (8.85%) | hits: 6 | errors: 617384 | 22.6 req/s | ETA: 112.0h
+[PROGRESS] 890,000/10,000,000 (8.90%) | hits: 6 | errors: 622384 | 22.7 req/s | ETA: 111.3h
+[PROGRESS] 895,000/10,000,000 (8.95%) | hits: 6 | errors: 627384 | 22.9 req/s | ETA: 110.6h
+[PROGRESS] 900,000/10,000,000 (9.00%) | hits: 6 | errors: 632384 | 23.0 req/s | ETA: 109.9h
+[PROGRESS] 905,000/10,000,000 (9.05%) | hits: 6 | errors: 637384 | 23.1 req/s | ETA: 109.2h
+[PROGRESS] 910,000/10,000,000 (9.10%) | hits: 6 | errors: 642384 | 23.3 req/s | ETA: 108.6h
+[PROGRESS] 915,000/10,000,000 (9.15%) | hits: 6 | errors: 647384 | 23.4 req/s | ETA: 107.9h
+[PROGRESS] 920,000/10,000,000 (9.20%) | hits: 6 | errors: 652384 | 23.5 req/s | ETA: 107.3h
+[PROGRESS] 925,000/10,000,000 (9.25%) | hits: 6 | errors: 657384 | 23.6 req/s | ETA: 106.6h
+[PROGRESS] 930,000/10,000,000 (9.30%) | hits: 6 | errors: 662384 | 23.8 req/s | ETA: 106.0h
+[PROGRESS] 935,000/10,000,000 (9.35%) | hits: 6 | errors: 667384 | 23.9 req/s | ETA: 105.4h
+[PROGRESS] 940,000/10,000,000 (9.40%) | hits: 6 | errors: 672384 | 24.0 req/s | ETA: 104.8h
+[PROGRESS] 945,000/10,000,000 (9.45%) | hits: 6 | errors: 677384 | 24.1 req/s | ETA: 104.2h
+[PROGRESS] 950,000/10,000,000 (9.50%) | hits: 6 | errors: 682384 | 24.3 req/s | ETA: 103.6h
+[PROGRESS] 955,000/10,000,000 (9.55%) | hits: 6 | errors: 687384 | 24.4 req/s | ETA: 103.0h
+[PROGRESS] 960,000/10,000,000 (9.60%) | hits: 6 | errors: 692384 | 24.5 req/s | ETA: 102.4h
+[PROGRESS] 965,000/10,000,000 (9.65%) | hits: 6 | errors: 697384 | 24.7 req/s | ETA: 101.8h
+[PROGRESS] 970,000/10,000,000 (9.70%) | hits: 6 | errors: 702384 | 24.8 req/s | ETA: 101.2h
+[PROGRESS] 975,000/10,000,000 (9.75%) | hits: 6 | errors: 707384 | 24.9 req/s | ETA: 100.6h
+[PROGRESS] 980,000/10,000,000 (9.80%) | hits: 6 | errors: 709514 | 24.9 req/s | ETA: 100.7h
+[PROGRESS] 985,000/10,000,000 (9.85%) | hits: 6 | errors: 709521 | 24.8 req/s | ETA: 101.0h
+[PROGRESS] 990,000/10,000,000 (9.90%) | hits: 6 | errors: 709525 | 24.7 req/s | ETA: 101.2h
+[PROGRESS] 995,000/10,000,000 (9.95%) | hits: 6 | errors: 709529 | 24.6 req/s | ETA: 101.5h
+[PROGRESS] 1,000,000/10,000,000 (10.00%) | hits: 6 | errors: 709537 | 24.6 req/s | ETA: 101.8h
+[PROGRESS] 1,005,000/10,000,000 (10.05%) | hits: 6 | errors: 709552 | 24.5 req/s | ETA: 102.1h
+[PROGRESS] 1,010,000/10,000,000 (10.10%) | hits: 6 | errors: 709557 | 24.4 req/s | ETA: 102.3h
+[PROGRESS] 1,015,000/10,000,000 (10.15%) | hits: 6 | errors: 709561 | 24.3 req/s | ETA: 102.6h
+[PROGRESS] 1,020,000/10,000,000 (10.20%) | hits: 6 | errors: 709571 | 24.3 req/s | ETA: 102.8h
+[PROGRESS] 1,025,000/10,000,000 (10.25%) | hits: 6 | errors: 709572 | 24.2 req/s | ETA: 103.0h
+[PROGRESS] 1,030,000/10,000,000 (10.30%) | hits: 6 | errors: 709580 | 24.1 req/s | ETA: 103.5h
+[PROGRESS] 1,035,000/10,000,000 (10.35%) | hits: 6 | errors: 709584 | 23.8 req/s | ETA: 104.7h
+[PROGRESS] 1,040,000/10,000,000 (10.40%) | hits: 6 | errors: 709589 | 23.5 req/s | ETA: 105.9h
+[PROGRESS] 1,045,000/10,000,000 (10.45%) | hits: 9 | errors: 709596 | 23.1 req/s | ETA: 107.6h
+[PROGRESS] 1,050,000/10,000,000 (10.50%) | hits: 10 | errors: 709618 | 22.7 req/s | ETA: 109.6h
+[PROGRESS] 1,055,000/10,000,000 (10.55%) | hits: 12 | errors: 709647 | 22.2 req/s | ETA: 111.8h
+[PROGRESS] 1,060,000/10,000,000 (10.60%) | hits: 12 | errors: 709664 | 21.9 req/s | ETA: 113.6h
+[PROGRESS] 1,065,000/10,000,000 (10.65%) | hits: 14 | errors: 709691 | 21.5 req/s | ETA: 115.3h
+[PROGRESS] 1,070,000/10,000,000 (10.70%) | hits: 15 | errors: 709705 | 21.2 req/s | ETA: 116.8h
+[PROGRESS] 1,075,000/10,000,000 (10.75%) | hits: 15 | errors: 709709 | 21.0 req/s | ETA: 118.1h
+[PROGRESS] 1,080,000/10,000,000 (10.80%) | hits: 17 | errors: 709729 | 20.6 req/s | ETA: 120.2h
+[PROGRESS] 1,085,000/10,000,000 (10.85%) | hits: 17 | errors: 709740 | 20.3 req/s | ETA: 121.8h
+[PROGRESS] 1,090,000/10,000,000 (10.90%) | hits: 17 | errors: 709748 | 20.1 req/s | ETA: 123.4h
+[PROGRESS] 1,095,000/10,000,000 (10.95%) | hits: 17 | errors: 709763 | 19.8 req/s | ETA: 124.7h
+[PROGRESS] 1,100,000/10,000,000 (11.00%) | hits: 17 | errors: 709773 | 19.7 req/s | ETA: 125.8h
+[PROGRESS] 1,105,000/10,000,000 (11.05%) | hits: 19 | errors: 709781 | 19.5 req/s | ETA: 127.0h
+[PROGRESS] 1,110,000/10,000,000 (11.10%) | hits: 19 | errors: 709788 | 19.3 req/s | ETA: 128.0h
+[PROGRESS] 1,115,000/10,000,000 (11.15%) | hits: 19 | errors: 709794 | 19.0 req/s | ETA: 129.8h
+[PROGRESS] 1,120,000/10,000,000 (11.20%) | hits: 19 | errors: 709799 | 18.8 req/s | ETA: 131.5h
+[PROGRESS] 1,125,000/10,000,000 (11.25%) | hits: 20 | errors: 709802 | 18.6 req/s | ETA: 132.7h
+[PROGRESS] 1,130,000/10,000,000 (11.30%) | hits: 20 | errors: 709806 | 18.4 req/s | ETA: 133.6h
+[PROGRESS] 1,135,000/10,000,000 (11.35%) | hits: 21 | errors: 709821 | 18.2 req/s | ETA: 135.3h
+[PROGRESS] 1,140,000/10,000,000 (11.40%) | hits: 21 | errors: 709825 | 18.0 req/s | ETA: 136.9h
+[PROGRESS] 1,145,000/10,000,000 (11.45%) | hits: 21 | errors: 709829 | 17.8 req/s | ETA: 138.1h
+[PROGRESS] 1,150,000/10,000,000 (11.50%) | hits: 21 | errors: 709831 | 17.7 req/s | ETA: 139.0h
+[PROGRESS] 1,155,000/10,000,000 (11.55%) | hits: 21 | errors: 709838 | 17.5 req/s | ETA: 140.4h
+[PROGRESS] 1,160,000/10,000,000 (11.60%) | hits: 21 | errors: 709838 | 17.3 req/s | ETA: 141.5h
+[PROGRESS] 1,165,000/10,000,000 (11.65%) | hits: 21 | errors: 709843 | 17.2 req/s | ETA: 142.4h
+[PROGRESS] 1,170,000/10,000,000 (11.70%) | hits: 21 | errors: 709852 | 17.1 req/s | ETA: 143.6h
+[PROGRESS] 1,175,000/10,000,000 (11.75%) | hits: 22 | errors: 709856 | 17.0 req/s | ETA: 144.5h
+[PROGRESS] 1,180,000/10,000,000 (11.80%) | hits: 22 | errors: 709870 | 16.8 req/s | ETA: 145.8h
+[PROGRESS] 1,185,000/10,000,000 (11.85%) | hits: 22 | errors: 709880 | 16.6 req/s | ETA: 147.2h
+[PROGRESS] 1,190,000/10,000,000 (11.90%) | hits: 23 | errors: 709892 | 16.5 req/s | ETA: 148.5h
+[PROGRESS] 1,195,000/10,000,000 (11.95%) | hits: 24 | errors: 709910 | 16.3 req/s | ETA: 150.0h
+[PROGRESS] 1,200,000/10,000,000 (12.00%) | hits: 24 | errors: 709919 | 16.2 req/s | ETA: 151.0h
+[PROGRESS] 1,205,000/10,000,000 (12.05%) | hits: 26 | errors: 709934 | 16.1 req/s | ETA: 151.8h
+[PROGRESS] 1,210,000/10,000,000 (12.10%) | hits: 27 | errors: 709935 | 16.0 req/s | ETA: 152.9h
+[PROGRESS] 1,215,000/10,000,000 (12.15%) | hits: 27 | errors: 709944 | 15.8 req/s | ETA: 154.2h
+[PROGRESS] 1,220,000/10,000,000 (12.20%) | hits: 27 | errors: 709946 | 15.7 req/s | ETA: 155.3h
+[PROGRESS] 1,225,000/10,000,000 (12.25%) | hits: 27 | errors: 709960 | 15.6 req/s | ETA: 156.7h
+[PROGRESS] 1,230,000/10,000,000 (12.30%) | hits: 27 | errors: 709969 | 15.4 req/s | ETA: 158.0h
+[PROGRESS] 1,235,000/10,000,000 (12.35%) | hits: 27 | errors: 709972 | 15.3 req/s | ETA: 159.4h
+[PROGRESS] 1,240,000/10,000,000 (12.40%) | hits: 27 | errors: 709977 | 15.2 req/s | ETA: 160.6h
+[PROGRESS] 1,245,000/10,000,000 (12.45%) | hits: 27 | errors: 709979 | 15.0 req/s | ETA: 161.8h
+[PROGRESS] 1,250,000/10,000,000 (12.50%) | hits: 27 | errors: 709988 | 14.9 req/s | ETA: 163.2h
+[PROGRESS] 1,255,000/10,000,000 (12.55%) | hits: 28 | errors: 710001 | 14.8 req/s | ETA: 164.4h
+[PROGRESS] 1,260,000/10,000,000 (12.60%) | hits: 28 | errors: 710006 | 14.7 req/s | ETA: 165.3h
+[PROGRESS] 1,265,000/10,000,000 (12.65%) | hits: 28 | errors: 710015 | 14.6 req/s | ETA: 166.5h
+[PROGRESS] 1,270,000/10,000,000 (12.70%) | hits: 28 | errors: 710031 | 14.5 req/s | ETA: 167.5h
+[PROGRESS] 1,275,000/10,000,000 (12.75%) | hits: 28 | errors: 710035 | 14.4 req/s | ETA: 168.7h
+[PROGRESS] 1,280,000/10,000,000 (12.80%) | hits: 28 | errors: 710038 | 14.3 req/s | ETA: 169.8h
+[PROGRESS] 1,285,000/10,000,000 (12.85%) | hits: 28 | errors: 710041 | 14.2 req/s | ETA: 170.9h
+[PROGRESS] 1,290,000/10,000,000 (12.90%) | hits: 28 | errors: 710041 | 14.1 req/s | ETA: 171.9h
+[PROGRESS] 1,295,000/10,000,000 (12.95%) | hits: 28 | errors: 710041 | 14.0 req/s | ETA: 172.9h
+[PROGRESS] 1,300,000/10,000,000 (13.00%) | hits: 28 | errors: 710044 | 13.9 req/s | ETA: 173.6h
+[PROGRESS] 1,305,000/10,000,000 (13.05%) | hits: 28 | errors: 710044 | 13.8 req/s | ETA: 174.4h
+[PROGRESS] 1,310,000/10,000,000 (13.10%) | hits: 28 | errors: 710050 | 13.8 req/s | ETA: 175.4h
+[PROGRESS] 1,315,000/10,000,000 (13.15%) | hits: 28 | errors: 710056 | 13.7 req/s | ETA: 176.3h
+[PROGRESS] 1,320,000/10,000,000 (13.20%) | hits: 28 | errors: 710071 | 13.6 req/s | ETA: 177.5h
+[PROGRESS] 1,325,000/10,000,000 (13.25%) | hits: 28 | errors: 710088 | 13.5 req/s | ETA: 178.3h
+[PROGRESS] 1,330,000/10,000,000 (13.30%) | hits: 29 | errors: 710098 | 13.4 req/s | ETA: 179.4h
+[PROGRESS] 1,335,000/10,000,000 (13.35%) | hits: 29 | errors: 710104 | 13.3 req/s | ETA: 180.4h
+[PROGRESS] 1,340,000/10,000,000 (13.40%) | hits: 30 | errors: 710117 | 13.3 req/s | ETA: 181.2h
+[PROGRESS] 1,345,000/10,000,000 (13.45%) | hits: 33 | errors: 710126 | 13.2 req/s | ETA: 182.0h
+[PROGRESS] 1,350,000/10,000,000 (13.50%) | hits: 33 | errors: 710136 | 13.2 req/s | ETA: 182.6h
+[PROGRESS] 1,355,000/10,000,000 (13.55%) | hits: 33 | errors: 710152 | 13.1 req/s | ETA: 183.4h
+[PROGRESS] 1,360,000/10,000,000 (13.60%) | hits: 33 | errors: 710168 | 13.0 req/s | ETA: 184.3h
+[PROGRESS] 1,365,000/10,000,000 (13.65%) | hits: 33 | errors: 710177 | 13.0 req/s | ETA: 185.1h
+[PROGRESS] 1,370,000/10,000,000 (13.70%) | hits: 33 | errors: 710188 | 12.9 req/s | ETA: 186.1h
+[PROGRESS] 1,375,000/10,000,000 (13.75%) | hits: 33 | errors: 710200 | 12.8 req/s | ETA: 186.9h
+[PROGRESS] 1,380,000/10,000,000 (13.80%) | hits: 33 | errors: 710206 | 12.8 req/s | ETA: 187.6h
+[PROGRESS] 1,385,000/10,000,000 (13.85%) | hits: 33 | errors: 710211 | 12.7 req/s | ETA: 188.6h
+[PROGRESS] 1,390,000/10,000,000 (13.90%) | hits: 36 | errors: 710217 | 12.6 req/s | ETA: 189.7h
+[PROGRESS] 1,395,000/10,000,000 (13.95%) | hits: 36 | errors: 710232 | 12.6 req/s | ETA: 190.4h
+[PROGRESS] 1,400,000/10,000,000 (14.00%) | hits: 36 | errors: 710240 | 12.5 req/s | ETA: 191.2h
+[PROGRESS] 1,405,000/10,000,000 (14.05%) | hits: 37 | errors: 710250 | 12.4 req/s | ETA: 191.8h
+[PROGRESS] 1,410,000/10,000,000 (14.10%) | hits: 37 | errors: 710254 | 12.4 req/s | ETA: 192.6h
+[PROGRESS] 1,415,000/10,000,000 (14.15%) | hits: 37 | errors: 710254 | 12.3 req/s | ETA: 193.3h
+[PROGRESS] 1,420,000/10,000,000 (14.20%) | hits: 37 | errors: 710254 | 12.3 req/s | ETA: 194.0h
+[PROGRESS] 1,425,000/10,000,000 (14.25%) | hits: 37 | errors: 710256 | 12.2 req/s | ETA: 194.9h
+[PROGRESS] 1,430,000/10,000,000 (14.30%) | hits: 37 | errors: 710256 | 12.2 req/s | ETA: 195.3h
+[PROGRESS] 1,435,000/10,000,000 (14.35%) | hits: 37 | errors: 710256 | 12.1 req/s | ETA: 195.8h
+[PROGRESS] 1,440,000/10,000,000 (14.40%) | hits: 37 | errors: 710256 | 12.1 req/s | ETA: 196.5h
+[PROGRESS] 1,445,000/10,000,000 (14.45%) | hits: 37 | errors: 710265 | 12.0 req/s | ETA: 197.4h
+[PROGRESS] 1,450,000/10,000,000 (14.50%) | hits: 37 | errors: 710265 | 12.0 req/s | ETA: 198.1h
+[PROGRESS] 1,455,000/10,000,000 (14.55%) | hits: 37 | errors: 710265 | 11.9 req/s | ETA: 198.8h
+[PROGRESS] 1,460,000/10,000,000 (14.60%) | hits: 37 | errors: 710273 | 11.9 req/s | ETA: 199.6h
+[PROGRESS] 1,465,000/10,000,000 (14.65%) | hits: 37 | errors: 710275 | 11.8 req/s | ETA: 200.5h
+[PROGRESS] 1,470,000/10,000,000 (14.70%) | hits: 37 | errors: 710284 | 11.8 req/s | ETA: 201.6h
+[PROGRESS] 1,475,000/10,000,000 (14.75%) | hits: 37 | errors: 710290 | 11.7 req/s | ETA: 202.0h
+[PROGRESS] 1,480,000/10,000,000 (14.80%) | hits: 37 | errors: 710301 | 11.7 req/s | ETA: 202.9h
+[PROGRESS] 1,485,000/10,000,000 (14.85%) | hits: 37 | errors: 710316 | 11.6 req/s | ETA: 204.0h
+[PROGRESS] 1,490,000/10,000,000 (14.90%) | hits: 37 | errors: 710326 | 11.5 req/s | ETA: 204.7h
+[PROGRESS] 1,495,000/10,000,000 (14.95%) | hits: 37 | errors: 710341 | 11.5 req/s | ETA: 205.6h
+[PROGRESS] 1,500,000/10,000,000 (15.00%) | hits: 37 | errors: 710350 | 11.4 req/s | ETA: 206.5h
+[PROGRESS] 1,505,000/10,000,000 (15.05%) | hits: 37 | errors: 710359 | 11.4 req/s | ETA: 207.4h
+[PROGRESS] 1,510,000/10,000,000 (15.10%) | hits: 37 | errors: 710369 | 11.3 req/s | ETA: 208.0h
+[PROGRESS] 1,515,000/10,000,000 (15.15%) | hits: 37 | errors: 710374 | 11.3 req/s | ETA: 208.3h
+[PROGRESS] 1,520,000/10,000,000 (15.20%) | hits: 37 | errors: 710384 | 11.3 req/s | ETA: 209.0h
+[PROGRESS] 1,525,000/10,000,000 (15.25%) | hits: 37 | errors: 710393 | 11.2 req/s | ETA: 209.5h
+[PROGRESS] 1,530,000/10,000,000 (15.30%) | hits: 37 | errors: 710395 | 11.2 req/s | ETA: 210.2h
+[PROGRESS] 1,535,000/10,000,000 (15.35%) | hits: 37 | errors: 710398 | 11.2 req/s | ETA: 210.7h
+[PROGRESS] 1,540,000/10,000,000 (15.40%) | hits: 37 | errors: 710404 | 11.1 req/s | ETA: 211.5h
+[PROGRESS] 1,545,000/10,000,000 (15.45%) | hits: 37 | errors: 710412 | 11.1 req/s | ETA: 212.3h
+[PROGRESS] 1,550,000/10,000,000 (15.50%) | hits: 37 | errors: 710422 | 11.0 req/s | ETA: 213.2h
+[PROGRESS] 1,555,000/10,000,000 (15.55%) | hits: 37 | errors: 710430 | 11.0 req/s | ETA: 214.2h
+[PROGRESS] 1,560,000/10,000,000 (15.60%) | hits: 37 | errors: 710439 | 10.9 req/s | ETA: 215.0h
+[PROGRESS] 1,565,000/10,000,000 (15.65%) | hits: 37 | errors: 710439 | 10.9 req/s | ETA: 215.5h
+[PROGRESS] 1,570,000/10,000,000 (15.70%) | hits: 37 | errors: 710442 | 10.8 req/s | ETA: 216.3h
+[PROGRESS] 1,575,000/10,000,000 (15.75%) | hits: 37 | errors: 710450 | 10.8 req/s | ETA: 217.2h
+[PROGRESS] 1,580,000/10,000,000 (15.80%) | hits: 37 | errors: 710453 | 10.7 req/s | ETA: 217.8h
+[PROGRESS] 1,585,000/10,000,000 (15.85%) | hits: 37 | errors: 710465 | 10.7 req/s | ETA: 218.6h
+[PROGRESS] 1,590,000/10,000,000 (15.90%) | hits: 37 | errors: 710474 | 10.6 req/s | ETA: 219.5h
+[PROGRESS] 1,595,000/10,000,000 (15.95%) | hits: 37 | errors: 710476 | 10.6 req/s | ETA: 219.8h
+[PROGRESS] 1,600,000/10,000,000 (16.00%) | hits: 37 | errors: 710483 | 10.6 req/s | ETA: 220.3h
+[PROGRESS] 1,605,000/10,000,000 (16.05%) | hits: 37 | errors: 710486 | 10.6 req/s | ETA: 220.9h
+[PROGRESS] 1,610,000/10,000,000 (16.10%) | hits: 37 | errors: 710490 | 10.5 req/s | ETA: 221.3h
+[PROGRESS] 1,615,000/10,000,000 (16.15%) | hits: 37 | errors: 710495 | 10.5 req/s | ETA: 222.1h
+[PROGRESS] 1,620,000/10,000,000 (16.20%) | hits: 37 | errors: 710499 | 10.5 req/s | ETA: 222.6h
+[PROGRESS] 1,625,000/10,000,000 (16.25%) | hits: 37 | errors: 710504 | 10.4 req/s | ETA: 223.2h
+[PROGRESS] 1,630,000/10,000,000 (16.30%) | hits: 37 | errors: 710517 | 10.4 req/s | ETA: 223.8h
+[PROGRESS] 1,635,000/10,000,000 (16.35%) | hits: 37 | errors: 710522 | 10.4 req/s | ETA: 224.5h
+[PROGRESS] 1,640,000/10,000,000 (16.40%) | hits: 37 | errors: 710526 | 10.3 req/s | ETA: 224.9h
+[PROGRESS] 1,645,000/10,000,000 (16.45%) | hits: 37 | errors: 710537 | 10.3 req/s | ETA: 225.2h
+[PROGRESS] 1,650,000/10,000,000 (16.50%) | hits: 37 | errors: 710544 | 10.3 req/s | ETA: 225.8h
+[PROGRESS] 1,655,000/10,000,000 (16.55%) | hits: 37 | errors: 710549 | 10.2 req/s | ETA: 226.6h
+[PROGRESS] 1,660,000/10,000,000 (16.60%) | hits: 37 | errors: 710567 | 10.2 req/s | ETA: 227.3h
+[PROGRESS] 1,665,000/10,000,000 (16.65%) | hits: 37 | errors: 710577 | 10.2 req/s | ETA: 227.9h
+[PROGRESS] 1,670,000/10,000,000 (16.70%) | hits: 37 | errors: 710584 | 10.1 req/s | ETA: 228.7h
+[PROGRESS] 1,675,000/10,000,000 (16.75%) | hits: 37 | errors: 710601 | 10.1 req/s | ETA: 229.3h
+[PROGRESS] 1,680,000/10,000,000 (16.80%) | hits: 38 | errors: 710614 | 10.0 req/s | ETA: 230.0h
+[PROGRESS] 1,685,000/10,000,000 (16.85%) | hits: 38 | errors: 710622 | 10.0 req/s | ETA: 230.8h
+[PROGRESS] 1,690,000/10,000,000 (16.90%) | hits: 38 | errors: 710632 | 10.0 req/s | ETA: 231.4h
+[PROGRESS] 1,695,000/10,000,000 (16.95%) | hits: 38 | errors: 710646 | 9.9 req/s | ETA: 232.0h
+[PROGRESS] 1,700,000/10,000,000 (17.00%) | hits: 38 | errors: 710651 | 9.9 req/s | ETA: 232.4h
+[PROGRESS] 1,705,000/10,000,000 (17.05%) | hits: 38 | errors: 710656 | 9.9 req/s | ETA: 233.1h
+[PROGRESS] 1,710,000/10,000,000 (17.10%) | hits: 38 | errors: 710665 | 9.9 req/s | ETA: 233.6h
+[PROGRESS] 1,715,000/10,000,000 (17.15%) | hits: 38 | errors: 710675 | 9.8 req/s | ETA: 234.1h
+[PROGRESS] 1,720,000/10,000,000 (17.20%) | hits: 38 | errors: 710685 | 9.8 req/s | ETA: 234.8h
+[PROGRESS] 1,725,000/10,000,000 (17.25%) | hits: 38 | errors: 710696 | 9.8 req/s | ETA: 235.5h
+[PROGRESS] 1,730,000/10,000,000 (17.30%) | hits: 38 | errors: 710700 | 9.7 req/s | ETA: 235.9h
+[PROGRESS] 1,735,000/10,000,000 (17.35%) | hits: 38 | errors: 710709 | 9.7 req/s | ETA: 236.6h
+[PROGRESS] 1,740,000/10,000,000 (17.40%) | hits: 38 | errors: 710715 | 9.7 req/s | ETA: 237.2h
+[PROGRESS] 1,745,000/10,000,000 (17.45%) | hits: 38 | errors: 710720 | 9.6 req/s | ETA: 237.7h
+[PROGRESS] 1,750,000/10,000,000 (17.50%) | hits: 38 | errors: 710720 | 9.6 req/s | ETA: 238.2h
+[PROGRESS] 1,755,000/10,000,000 (17.55%) | hits: 38 | errors: 710730 | 9.6 req/s | ETA: 238.7h
+[PROGRESS] 1,760,000/10,000,000 (17.60%) | hits: 38 | errors: 710739 | 9.6 req/s | ETA: 239.3h
+[PROGRESS] 1,765,000/10,000,000 (17.65%) | hits: 41 | errors: 710750 | 9.5 req/s | ETA: 239.7h
+[PROGRESS] 1,770,000/10,000,000 (17.70%) | hits: 41 | errors: 710751 | 9.5 req/s | ETA: 240.1h
+[PROGRESS] 1,775,000/10,000,000 (17.75%) | hits: 41 | errors: 710771 | 9.5 req/s | ETA: 240.8h
+[PROGRESS] 1,780,000/10,000,000 (17.80%) | hits: 41 | errors: 710777 | 9.5 req/s | ETA: 241.3h
+[PROGRESS] 1,785,000/10,000,000 (17.85%) | hits: 42 | errors: 710785 | 9.4 req/s | ETA: 241.9h
+[PROGRESS] 1,790,000/10,000,000 (17.90%) | hits: 42 | errors: 710785 | 9.4 req/s | ETA: 242.2h
+[PROGRESS] 1,795,000/10,000,000 (17.95%) | hits: 42 | errors: 710789 | 9.4 req/s | ETA: 242.6h
+[PROGRESS] 1,800,000/10,000,000 (18.00%) | hits: 42 | errors: 710799 | 9.4 req/s | ETA: 243.2h
+[PROGRESS] 1,805,000/10,000,000 (18.05%) | hits: 42 | errors: 710809 | 9.3 req/s | ETA: 243.8h
+[PROGRESS] 1,810,000/10,000,000 (18.10%) | hits: 42 | errors: 710813 | 9.3 req/s | ETA: 244.3h
+[PROGRESS] 1,815,000/10,000,000 (18.15%) | hits: 42 | errors: 710815 | 9.3 req/s | ETA: 244.6h
+[PROGRESS] 1,820,000/10,000,000 (18.20%) | hits: 42 | errors: 710824 | 9.3 req/s | ETA: 245.2h
+[PROGRESS] 1,825,000/10,000,000 (18.25%) | hits: 42 | errors: 710833 | 9.2 req/s | ETA: 245.6h
+[PROGRESS] 1,830,000/10,000,000 (18.30%) | hits: 42 | errors: 710836 | 9.2 req/s | ETA: 246.0h
+[PROGRESS] 1,835,000/10,000,000 (18.35%) | hits: 42 | errors: 710841 | 9.2 req/s | ETA: 246.4h
+[PROGRESS] 1,840,000/10,000,000 (18.40%) | hits: 42 | errors: 710846 | 9.2 req/s | ETA: 246.7h
+[PROGRESS] 1,845,000/10,000,000 (18.45%) | hits: 42 | errors: 710861 | 9.2 req/s | ETA: 247.1h
+[PROGRESS] 1,850,000/10,000,000 (18.50%) | hits: 42 | errors: 710870 | 9.2 req/s | ETA: 247.4h
+[PROGRESS] 1,855,000/10,000,000 (18.55%) | hits: 42 | errors: 710873 | 9.1 req/s | ETA: 247.8h
+[PROGRESS] 1,860,000/10,000,000 (18.60%) | hits: 42 | errors: 710888 | 9.1 req/s | ETA: 248.4h
+[PROGRESS] 1,865,000/10,000,000 (18.65%) | hits: 42 | errors: 710901 | 9.1 req/s | ETA: 248.5h
+[PROGRESS] 1,870,000/10,000,000 (18.70%) | hits: 42 | errors: 710907 | 9.1 req/s | ETA: 248.8h
+[PROGRESS] 1,875,000/10,000,000 (18.75%) | hits: 42 | errors: 710915 | 9.1 req/s | ETA: 249.2h
+[PROGRESS] 1,880,000/10,000,000 (18.80%) | hits: 42 | errors: 710923 | 9.0 req/s | ETA: 249.5h
+[PROGRESS] 1,885,000/10,000,000 (18.85%) | hits: 42 | errors: 710935 | 9.0 req/s | ETA: 249.9h
+[PROGRESS] 1,890,000/10,000,000 (18.90%) | hits: 42 | errors: 710938 | 9.0 req/s | ETA: 250.2h
+[PROGRESS] 1,895,000/10,000,000 (18.95%) | hits: 42 | errors: 710945 | 9.0 req/s | ETA: 250.6h
+[PROGRESS] 1,900,000/10,000,000 (19.00%) | hits: 42 | errors: 710954 | 9.0 req/s | ETA: 251.0h
+[PROGRESS] 1,905,000/10,000,000 (19.05%) | hits: 42 | errors: 710959 | 9.0 req/s | ETA: 251.1h
+[PROGRESS] 1,910,000/10,000,000 (19.10%) | hits: 42 | errors: 710965 | 8.9 req/s | ETA: 251.5h
+[PROGRESS] 1,915,000/10,000,000 (19.15%) | hits: 42 | errors: 710991 | 8.9 req/s | ETA: 252.1h
+[PROGRESS] 1,920,000/10,000,000 (19.20%) | hits: 43 | errors: 710997 | 8.9 req/s | ETA: 252.1h
+[PROGRESS] 1,925,000/10,000,000 (19.25%) | hits: 44 | errors: 711009 | 8.9 req/s | ETA: 252.4h
+[PROGRESS] 1,930,000/10,000,000 (19.30%) | hits: 44 | errors: 711015 | 8.9 req/s | ETA: 252.8h
+[PROGRESS] 1,935,000/10,000,000 (19.35%) | hits: 46 | errors: 711043 | 8.8 req/s | ETA: 253.2h
+[PROGRESS] 1,940,000/10,000,000 (19.40%) | hits: 46 | errors: 711072 | 8.8 req/s | ETA: 253.6h
+[PROGRESS] 1,945,000/10,000,000 (19.45%) | hits: 49 | errors: 711111 | 8.8 req/s | ETA: 254.1h
+[PROGRESS] 1,950,000/10,000,000 (19.50%) | hits: 55 | errors: 711193 | 8.8 req/s | ETA: 254.8h
+[PROGRESS] 1,955,000/10,000,000 (19.55%) | hits: 71 | errors: 711272 | 8.7 req/s | ETA: 255.4h
+[PROGRESS] 1,960,000/10,000,000 (19.60%) | hits: 77 | errors: 711348 | 8.7 req/s | ETA: 256.0h
+[PROGRESS] 1,965,000/10,000,000 (19.65%) | hits: 83 | errors: 711381 | 8.7 req/s | ETA: 256.5h
+[PROGRESS] 1,970,000/10,000,000 (19.70%) | hits: 83 | errors: 711387 | 8.7 req/s | ETA: 256.9h
+[PROGRESS] 1,975,000/10,000,000 (19.75%) | hits: 83 | errors: 711407 | 8.7 req/s | ETA: 257.2h
+[PROGRESS] 1,980,000/10,000,000 (19.80%) | hits: 83 | errors: 711413 | 8.7 req/s | ETA: 257.4h
+[PROGRESS] 1,985,000/10,000,000 (19.85%) | hits: 83 | errors: 711424 | 8.6 req/s | ETA: 257.5h
+[PROGRESS] 1,990,000/10,000,000 (19.90%) | hits: 86 | errors: 711476 | 8.6 req/s | ETA: 258.0h
+[PROGRESS] 1,995,000/10,000,000 (19.95%) | hits: 86 | errors: 711480 | 8.6 req/s | ETA: 258.3h
+[PROGRESS] 2,000,000/10,000,000 (20.00%) | hits: 86 | errors: 711484 | 8.6 req/s | ETA: 258.4h
+[PROGRESS] 2,005,000/10,000,000 (20.05%) | hits: 86 | errors: 711494 | 8.6 req/s | ETA: 258.7h
+[PROGRESS] 2,010,000/10,000,000 (20.10%) | hits: 86 | errors: 711500 | 8.6 req/s | ETA: 259.0h
+[PROGRESS] 2,015,000/10,000,000 (20.15%) | hits: 86 | errors: 711504 | 8.6 req/s | ETA: 259.1h
+[PROGRESS] 2,020,000/10,000,000 (20.20%) | hits: 86 | errors: 711509 | 8.5 req/s | ETA: 259.4h
+[PROGRESS] 2,025,000/10,000,000 (20.25%) | hits: 86 | errors: 711515 | 8.5 req/s | ETA: 259.5h
+[PROGRESS] 2,030,000/10,000,000 (20.30%) | hits: 86 | errors: 711519 | 8.5 req/s | ETA: 259.9h
+[PROGRESS] 2,035,000/10,000,000 (20.35%) | hits: 86 | errors: 711530 | 8.5 req/s | ETA: 260.1h
+[PROGRESS] 2,040,000/10,000,000 (20.40%) | hits: 86 | errors: 711538 | 8.5 req/s | ETA: 260.3h
+[PROGRESS] 2,045,000/10,000,000 (20.45%) | hits: 87 | errors: 711548 | 8.5 req/s | ETA: 260.6h
+[PROGRESS] 2,050,000/10,000,000 (20.50%) | hits: 87 | errors: 711555 | 8.5 req/s | ETA: 260.8h
+[PROGRESS] 2,055,000/10,000,000 (20.55%) | hits: 87 | errors: 711559 | 8.5 req/s | ETA: 261.1h
+[PROGRESS] 2,060,000/10,000,000 (20.60%) | hits: 87 | errors: 711563 | 8.4 req/s | ETA: 261.3h
+[PROGRESS] 2,065,000/10,000,000 (20.65%) | hits: 87 | errors: 711572 | 8.4 req/s | ETA: 261.8h
+[PROGRESS] 2,070,000/10,000,000 (20.70%) | hits: 87 | errors: 711575 | 8.4 req/s | ETA: 262.0h
+[PROGRESS] 2,075,000/10,000,000 (20.75%) | hits: 87 | errors: 711579 | 8.4 req/s | ETA: 262.1h
+[PROGRESS] 2,080,000/10,000,000 (20.80%) | hits: 87 | errors: 711582 | 8.4 req/s | ETA: 262.3h
+[PROGRESS] 2,085,000/10,000,000 (20.85%) | hits: 87 | errors: 711583 | 8.4 req/s | ETA: 262.4h
+[PROGRESS] 2,090,000/10,000,000 (20.90%) | hits: 87 | errors: 711584 | 8.4 req/s | ETA: 262.6h
+[PROGRESS] 2,095,000/10,000,000 (20.95%) | hits: 87 | errors: 711590 | 8.4 req/s | ETA: 262.8h
+[PROGRESS] 2,100,000/10,000,000 (21.00%) | hits: 87 | errors: 711590 | 8.3 req/s | ETA: 262.9h
+[PROGRESS] 2,105,000/10,000,000 (21.05%) | hits: 87 | errors: 711592 | 8.3 req/s | ETA: 263.1h
+[PROGRESS] 2,110,000/10,000,000 (21.10%) | hits: 87 | errors: 711595 | 8.3 req/s | ETA: 263.2h
+[PROGRESS] 2,115,000/10,000,000 (21.15%) | hits: 87 | errors: 711599 | 8.3 req/s | ETA: 263.5h
+[PROGRESS] 2,120,000/10,000,000 (21.20%) | hits: 87 | errors: 711602 | 8.3 req/s | ETA: 263.5h
+[PROGRESS] 2,125,000/10,000,000 (21.25%) | hits: 87 | errors: 711608 | 8.3 req/s | ETA: 263.7h
+[PROGRESS] 2,130,000/10,000,000 (21.30%) | hits: 87 | errors: 711613 | 8.3 req/s | ETA: 263.9h
+[PROGRESS] 2,135,000/10,000,000 (21.35%) | hits: 87 | errors: 711621 | 8.3 req/s | ETA: 264.2h
+[PROGRESS] 2,140,000/10,000,000 (21.40%) | hits: 87 | errors: 711632 | 8.3 req/s | ETA: 264.4h
+[PROGRESS] 2,145,000/10,000,000 (21.45%) | hits: 87 | errors: 711636 | 8.2 req/s | ETA: 264.6h
+[PROGRESS] 2,150,000/10,000,000 (21.50%) | hits: 87 | errors: 711639 | 8.2 req/s | ETA: 264.7h
+[PROGRESS] 2,155,000/10,000,000 (21.55%) | hits: 87 | errors: 711641 | 8.2 req/s | ETA: 264.7h
+[PROGRESS] 2,160,000/10,000,000 (21.60%) | hits: 87 | errors: 711646 | 8.2 req/s | ETA: 264.8h
+[PROGRESS] 2,165,000/10,000,000 (21.65%) | hits: 87 | errors: 711655 | 8.2 req/s | ETA: 265.2h
+[PROGRESS] 2,170,000/10,000,000 (21.70%) | hits: 87 | errors: 711661 | 8.2 req/s | ETA: 265.3h
+[PROGRESS] 2,175,000/10,000,000 (21.75%) | hits: 87 | errors: 711668 | 8.2 req/s | ETA: 265.4h
+[PROGRESS] 2,180,000/10,000,000 (21.80%) | hits: 87 | errors: 711675 | 8.2 req/s | ETA: 265.6h
+[PROGRESS] 2,185,000/10,000,000 (21.85%) | hits: 88 | errors: 711678 | 8.2 req/s | ETA: 265.9h
+[PROGRESS] 2,190,000/10,000,000 (21.90%) | hits: 88 | errors: 711686 | 8.2 req/s | ETA: 266.1h
+[PROGRESS] 2,195,000/10,000,000 (21.95%) | hits: 88 | errors: 711687 | 8.1 req/s | ETA: 266.3h
+[PROGRESS] 2,200,000/10,000,000 (22.00%) | hits: 88 | errors: 711694 | 8.1 req/s | ETA: 266.6h
+[PROGRESS] 2,205,000/10,000,000 (22.05%) | hits: 88 | errors: 711698 | 8.1 req/s | ETA: 266.6h
+[PROGRESS] 2,210,000/10,000,000 (22.10%) | hits: 88 | errors: 711703 | 8.1 req/s | ETA: 266.8h
+[PROGRESS] 2,215,000/10,000,000 (22.15%) | hits: 88 | errors: 711709 | 8.1 req/s | ETA: 266.9h
+[PROGRESS] 2,220,000/10,000,000 (22.20%) | hits: 88 | errors: 711713 | 8.1 req/s | ETA: 267.1h
+[PROGRESS] 2,225,000/10,000,000 (22.25%) | hits: 88 | errors: 711725 | 8.1 req/s | ETA: 267.4h
+[PROGRESS] 2,230,000/10,000,000 (22.30%) | hits: 88 | errors: 711737 | 8.1 req/s | ETA: 267.7h
+[PROGRESS] 2,235,000/10,000,000 (22.35%) | hits: 88 | errors: 711738 | 8.1 req/s | ETA: 267.6h
+[PROGRESS] 2,240,000/10,000,000 (22.40%) | hits: 88 | errors: 711742 | 8.1 req/s | ETA: 267.7h
+[PROGRESS] 2,245,000/10,000,000 (22.45%) | hits: 88 | errors: 711746 | 8.0 req/s | ETA: 267.9h
+[PROGRESS] 2,250,000/10,000,000 (22.50%) | hits: 88 | errors: 711751 | 8.0 req/s | ETA: 268.0h
+[PROGRESS] 2,255,000/10,000,000 (22.55%) | hits: 88 | errors: 711754 | 8.0 req/s | ETA: 268.1h
+[PROGRESS] 2,260,000/10,000,000 (22.60%) | hits: 88 | errors: 711754 | 8.0 req/s | ETA: 268.1h
+[PROGRESS] 2,265,000/10,000,000 (22.65%) | hits: 88 | errors: 711759 | 8.0 req/s | ETA: 268.3h
+[PROGRESS] 2,270,000/10,000,000 (22.70%) | hits: 88 | errors: 711761 | 8.0 req/s | ETA: 268.4h
+[PROGRESS] 2,275,000/10,000,000 (22.75%) | hits: 88 | errors: 711765 | 8.0 req/s | ETA: 268.6h
+[PROGRESS] 2,280,000/10,000,000 (22.80%) | hits: 88 | errors: 711774 | 8.0 req/s | ETA: 268.8h
+[PROGRESS] 2,285,000/10,000,000 (22.85%) | hits: 88 | errors: 711788 | 8.0 req/s | ETA: 269.1h
+[PROGRESS] 2,290,000/10,000,000 (22.90%) | hits: 88 | errors: 711791 | 8.0 req/s | ETA: 269.4h
+[PROGRESS] 2,295,000/10,000,000 (22.95%) | hits: 88 | errors: 711794 | 7.9 req/s | ETA: 269.5h
+[PROGRESS] 2,300,000/10,000,000 (23.00%) | hits: 88 | errors: 711801 | 7.9 req/s | ETA: 269.6h
+[PROGRESS] 2,305,000/10,000,000 (23.05%) | hits: 88 | errors: 711811 | 7.9 req/s | ETA: 269.8h
+[PROGRESS] 2,310,000/10,000,000 (23.10%) | hits: 88 | errors: 711818 | 7.9 req/s | ETA: 269.8h
+[PROGRESS] 2,315,000/10,000,000 (23.15%) | hits: 88 | errors: 711819 | 7.9 req/s | ETA: 270.0h
+[PROGRESS] 2,320,000/10,000,000 (23.20%) | hits: 88 | errors: 711829 | 7.9 req/s | ETA: 270.3h
+[PROGRESS] 2,325,000/10,000,000 (23.25%) | hits: 88 | errors: 711832 | 7.9 req/s | ETA: 270.3h
+[PROGRESS] 2,330,000/10,000,000 (23.30%) | hits: 88 | errors: 711839 | 7.9 req/s | ETA: 270.3h
+[PROGRESS] 2,335,000/10,000,000 (23.35%) | hits: 88 | errors: 711840 | 7.9 req/s | ETA: 270.4h
+[PROGRESS] 2,340,000/10,000,000 (23.40%) | hits: 88 | errors: 711847 | 7.9 req/s | ETA: 270.4h
+[PROGRESS] 2,345,000/10,000,000 (23.45%) | hits: 88 | errors: 711849 | 7.9 req/s | ETA: 270.4h
+[PROGRESS] 2,350,000/10,000,000 (23.50%) | hits: 88 | errors: 711854 | 7.9 req/s | ETA: 270.6h
+[PROGRESS] 2,355,000/10,000,000 (23.55%) | hits: 88 | errors: 711854 | 7.8 req/s | ETA: 270.6h
+[PROGRESS] 2,360,000/10,000,000 (23.60%) | hits: 88 | errors: 711861 | 7.8 req/s | ETA: 270.9h
+[PROGRESS] 2,365,000/10,000,000 (23.65%) | hits: 88 | errors: 711867 | 7.8 req/s | ETA: 271.1h
+[PROGRESS] 2,370,000/10,000,000 (23.70%) | hits: 88 | errors: 711870 | 7.8 req/s | ETA: 271.2h
+[PROGRESS] 2,375,000/10,000,000 (23.75%) | hits: 88 | errors: 711870 | 7.8 req/s | ETA: 271.2h
+[PROGRESS] 2,380,000/10,000,000 (23.80%) | hits: 88 | errors: 711872 | 7.8 req/s | ETA: 271.3h
+[PROGRESS] 2,385,000/10,000,000 (23.85%) | hits: 88 | errors: 711876 | 7.8 req/s | ETA: 271.5h
+[PROGRESS] 2,390,000/10,000,000 (23.90%) | hits: 88 | errors: 711881 | 7.8 req/s | ETA: 271.5h
+[PROGRESS] 2,395,000/10,000,000 (23.95%) | hits: 88 | errors: 711885 | 7.8 req/s | ETA: 271.5h
+[PROGRESS] 2,400,000/10,000,000 (24.00%) | hits: 88 | errors: 711887 | 7.8 req/s | ETA: 271.6h
+[PROGRESS] 2,405,000/10,000,000 (24.05%) | hits: 88 | errors: 711888 | 7.8 req/s | ETA: 271.7h
+[PROGRESS] 2,410,000/10,000,000 (24.10%) | hits: 88 | errors: 711892 | 7.8 req/s | ETA: 271.7h
+[PROGRESS] 2,415,000/10,000,000 (24.15%) | hits: 88 | errors: 711898 | 7.8 req/s | ETA: 271.8h
+[PROGRESS] 2,420,000/10,000,000 (24.20%) | hits: 88 | errors: 711901 | 7.7 req/s | ETA: 271.9h
+[PROGRESS] 2,425,000/10,000,000 (24.25%) | hits: 88 | errors: 711905 | 7.7 req/s | ETA: 271.9h
+[PROGRESS] 2,430,000/10,000,000 (24.30%) | hits: 88 | errors: 711909 | 7.7 req/s | ETA: 272.0h
+[PROGRESS] 2,435,000/10,000,000 (24.35%) | hits: 88 | errors: 711917 | 7.7 req/s | ETA: 272.2h
+[PROGRESS] 2,440,000/10,000,000 (24.40%) | hits: 88 | errors: 711929 | 7.7 req/s | ETA: 272.5h
+[PROGRESS] 2,445,000/10,000,000 (24.45%) | hits: 88 | errors: 711940 | 7.7 req/s | ETA: 272.7h
+[PROGRESS] 2,450,000/10,000,000 (24.50%) | hits: 88 | errors: 711943 | 7.7 req/s | ETA: 273.0h
+[PROGRESS] 2,455,000/10,000,000 (24.55%) | hits: 88 | errors: 711947 | 7.7 req/s | ETA: 273.2h
+[PROGRESS] 2,460,000/10,000,000 (24.60%) | hits: 88 | errors: 711950 | 7.7 req/s | ETA: 273.3h
+[PROGRESS] 2,465,000/10,000,000 (24.65%) | hits: 88 | errors: 711953 | 7.7 req/s | ETA: 273.4h
+[PROGRESS] 2,470,000/10,000,000 (24.70%) | hits: 88 | errors: 711959 | 7.6 req/s | ETA: 273.5h
+[PROGRESS] 2,475,000/10,000,000 (24.75%) | hits: 88 | errors: 711962 | 7.6 req/s | ETA: 273.4h
+[PROGRESS] 2,480,000/10,000,000 (24.80%) | hits: 88 | errors: 711969 | 7.6 req/s | ETA: 273.7h
+[PROGRESS] 2,485,000/10,000,000 (24.85%) | hits: 88 | errors: 711972 | 7.6 req/s | ETA: 273.6h
+[PROGRESS] 2,490,000/10,000,000 (24.90%) | hits: 88 | errors: 711977 | 7.6 req/s | ETA: 273.6h
+[PROGRESS] 2,495,000/10,000,000 (24.95%) | hits: 88 | errors: 711984 | 7.6 req/s | ETA: 273.6h
+[PROGRESS] 2,500,000/10,000,000 (25.00%) | hits: 88 | errors: 711988 | 7.6 req/s | ETA: 273.6h
+[PROGRESS] 2,505,000/10,000,000 (25.05%) | hits: 88 | errors: 711997 | 7.6 req/s | ETA: 273.8h
+[PROGRESS] 2,510,000/10,000,000 (25.10%) | hits: 88 | errors: 711998 | 7.6 req/s | ETA: 273.8h
+[PROGRESS] 2,515,000/10,000,000 (25.15%) | hits: 88 | errors: 712002 | 7.6 req/s | ETA: 273.8h
+[PROGRESS] 2,520,000/10,000,000 (25.20%) | hits: 88 | errors: 712005 | 7.6 req/s | ETA: 273.9h
+[PROGRESS] 2,525,000/10,000,000 (25.25%) | hits: 88 | errors: 712015 | 7.6 req/s | ETA: 274.1h
+[PROGRESS] 2,530,000/10,000,000 (25.30%) | hits: 88 | errors: 712021 | 7.6 req/s | ETA: 274.3h
+[PROGRESS] 2,535,000/10,000,000 (25.35%) | hits: 88 | errors: 712026 | 7.6 req/s | ETA: 274.5h
+[PROGRESS] 2,540,000/10,000,000 (25.40%) | hits: 88 | errors: 712038 | 7.5 req/s | ETA: 274.8h
+[PROGRESS] 2,545,000/10,000,000 (25.45%) | hits: 88 | errors: 712044 | 7.5 req/s | ETA: 275.0h
+[PROGRESS] 2,550,000/10,000,000 (25.50%) | hits: 88 | errors: 712048 | 7.5 req/s | ETA: 275.0h
+[PROGRESS] 2,555,000/10,000,000 (25.55%) | hits: 88 | errors: 712056 | 7.5 req/s | ETA: 275.1h
+[PROGRESS] 2,560,000/10,000,000 (25.60%) | hits: 88 | errors: 712059 | 7.5 req/s | ETA: 275.2h
+[PROGRESS] 2,565,000/10,000,000 (25.65%) | hits: 88 | errors: 712068 | 7.5 req/s | ETA: 275.3h
+[PROGRESS] 2,570,000/10,000,000 (25.70%) | hits: 88 | errors: 712074 | 7.5 req/s | ETA: 275.3h
+[PROGRESS] 2,575,000/10,000,000 (25.75%) | hits: 88 | errors: 712082 | 7.5 req/s | ETA: 275.5h
+[PROGRESS] 2,580,000/10,000,000 (25.80%) | hits: 88 | errors: 712094 | 7.5 req/s | ETA: 275.7h
+[PROGRESS] 2,585,000/10,000,000 (25.85%) | hits: 88 | errors: 712099 | 7.5 req/s | ETA: 275.9h
+[PROGRESS] 2,590,000/10,000,000 (25.90%) | hits: 88 | errors: 712107 | 7.5 req/s | ETA: 276.1h
+[PROGRESS] 2,595,000/10,000,000 (25.95%) | hits: 88 | errors: 716012 | 7.5 req/s | ETA: 275.6h
+[PROGRESS] 2,600,000/10,000,000 (26.00%) | hits: 88 | errors: 721012 | 7.5 req/s | ETA: 274.9h
+[PROGRESS] 2,605,000/10,000,000 (26.05%) | hits: 88 | errors: 726012 | 7.5 req/s | ETA: 274.1h
+[PROGRESS] 2,610,000/10,000,000 (26.10%) | hits: 88 | errors: 731012 | 7.5 req/s | ETA: 273.4h
+[PROGRESS] 2,615,000/10,000,000 (26.15%) | hits: 88 | errors: 736012 | 7.5 req/s | ETA: 272.7h
+[PROGRESS] 2,620,000/10,000,000 (26.20%) | hits: 88 | errors: 741012 | 7.5 req/s | ETA: 272.0h
+[PROGRESS] 2,625,000/10,000,000 (26.25%) | hits: 88 | errors: 746012 | 7.6 req/s | ETA: 271.3h
+[PROGRESS] 2,630,000/10,000,000 (26.30%) | hits: 88 | errors: 751012 | 7.6 req/s | ETA: 270.6h
+[PROGRESS] 2,635,000/10,000,000 (26.35%) | hits: 88 | errors: 756012 | 7.6 req/s | ETA: 269.9h
+[PROGRESS] 2,640,000/10,000,000 (26.40%) | hits: 88 | errors: 761012 | 7.6 req/s | ETA: 269.2h
+[PROGRESS] 2,645,000/10,000,000 (26.45%) | hits: 88 | errors: 766012 | 7.6 req/s | ETA: 268.5h
+[PROGRESS] 2,650,000/10,000,000 (26.50%) | hits: 88 | errors: 771012 | 7.6 req/s | ETA: 267.8h
+[PROGRESS] 2,655,000/10,000,000 (26.55%) | hits: 88 | errors: 776012 | 7.6 req/s | ETA: 267.2h
+[PROGRESS] 2,660,000/10,000,000 (26.60%) | hits: 88 | errors: 781012 | 7.7 req/s | ETA: 266.5h
+[PROGRESS] 2,665,000/10,000,000 (26.65%) | hits: 88 | errors: 786012 | 7.7 req/s | ETA: 265.8h
+[PROGRESS] 2,670,000/10,000,000 (26.70%) | hits: 88 | errors: 791012 | 7.7 req/s | ETA: 265.1h
+[PROGRESS] 2,675,000/10,000,000 (26.75%) | hits: 88 | errors: 796012 | 7.7 req/s | ETA: 264.4h
+[PROGRESS] 2,680,000/10,000,000 (26.80%) | hits: 88 | errors: 801012 | 7.7 req/s | ETA: 263.8h
+[PROGRESS] 2,685,000/10,000,000 (26.85%) | hits: 88 | errors: 806012 | 7.7 req/s | ETA: 263.1h
+[PROGRESS] 2,690,000/10,000,000 (26.90%) | hits: 88 | errors: 811012 | 7.7 req/s | ETA: 262.4h
+[PROGRESS] 2,695,000/10,000,000 (26.95%) | hits: 88 | errors: 816012 | 7.8 req/s | ETA: 261.8h
+[PROGRESS] 2,700,000/10,000,000 (27.00%) | hits: 88 | errors: 821012 | 7.8 req/s | ETA: 261.1h
+[PROGRESS] 2,705,000/10,000,000 (27.05%) | hits: 88 | errors: 826012 | 7.8 req/s | ETA: 260.4h
+[PROGRESS] 2,710,000/10,000,000 (27.10%) | hits: 88 | errors: 831012 | 7.8 req/s | ETA: 259.8h
+[PROGRESS] 2,715,000/10,000,000 (27.15%) | hits: 88 | errors: 836012 | 7.8 req/s | ETA: 259.1h
+[PROGRESS] 2,720,000/10,000,000 (27.20%) | hits: 88 | errors: 841012 | 7.8 req/s | ETA: 258.5h
+[PROGRESS] 2,725,000/10,000,000 (27.25%) | hits: 88 | errors: 846012 | 7.8 req/s | ETA: 257.8h
+[PROGRESS] 2,730,000/10,000,000 (27.30%) | hits: 88 | errors: 851012 | 7.9 req/s | ETA: 257.2h
+[PROGRESS] 2,735,000/10,000,000 (27.35%) | hits: 88 | errors: 856012 | 7.9 req/s | ETA: 256.5h
+[PROGRESS] 2,740,000/10,000,000 (27.40%) | hits: 88 | errors: 861012 | 7.9 req/s | ETA: 255.9h
+[PROGRESS] 2,745,000/10,000,000 (27.45%) | hits: 88 | errors: 866012 | 7.9 req/s | ETA: 255.2h
+[PROGRESS] 2,750,000/10,000,000 (27.50%) | hits: 88 | errors: 871012 | 7.9 req/s | ETA: 254.6h
+[PROGRESS] 2,755,000/10,000,000 (27.55%) | hits: 88 | errors: 876012 | 7.9 req/s | ETA: 254.0h
+[PROGRESS] 2,760,000/10,000,000 (27.60%) | hits: 88 | errors: 881012 | 7.9 req/s | ETA: 253.3h
+[PROGRESS] 2,765,000/10,000,000 (27.65%) | hits: 88 | errors: 886012 | 8.0 req/s | ETA: 252.7h
+[PROGRESS] 2,770,000/10,000,000 (27.70%) | hits: 88 | errors: 891012 | 8.0 req/s | ETA: 252.1h
+[PROGRESS] 2,775,000/10,000,000 (27.75%) | hits: 88 | errors: 896012 | 8.0 req/s | ETA: 251.4h
+[PROGRESS] 2,780,000/10,000,000 (27.80%) | hits: 88 | errors: 901012 | 8.0 req/s | ETA: 250.8h
+[PROGRESS] 2,785,000/10,000,000 (27.85%) | hits: 88 | errors: 906012 | 8.0 req/s | ETA: 250.2h
+[PROGRESS] 2,790,000/10,000,000 (27.90%) | hits: 88 | errors: 911012 | 8.0 req/s | ETA: 249.6h
+[PROGRESS] 2,795,000/10,000,000 (27.95%) | hits: 88 | errors: 916012 | 8.0 req/s | ETA: 248.9h
+[PROGRESS] 2,800,000/10,000,000 (28.00%) | hits: 88 | errors: 921012 | 8.1 req/s | ETA: 248.3h
+[PROGRESS] 2,805,000/10,000,000 (28.05%) | hits: 88 | errors: 926012 | 8.1 req/s | ETA: 247.7h
+[PROGRESS] 2,810,000/10,000,000 (28.10%) | hits: 88 | errors: 931012 | 8.1 req/s | ETA: 247.1h
+[PROGRESS] 2,815,000/10,000,000 (28.15%) | hits: 88 | errors: 936012 | 8.1 req/s | ETA: 246.5h
+[PROGRESS] 2,820,000/10,000,000 (28.20%) | hits: 88 | errors: 941012 | 8.1 req/s | ETA: 245.9h
+[PROGRESS] 2,825,000/10,000,000 (28.25%) | hits: 88 | errors: 946012 | 8.1 req/s | ETA: 245.3h
+[PROGRESS] 2,830,000/10,000,000 (28.30%) | hits: 88 | errors: 951012 | 8.1 req/s | ETA: 244.7h
+[PROGRESS] 2,835,000/10,000,000 (28.35%) | hits: 88 | errors: 956012 | 8.2 req/s | ETA: 244.1h
+[PROGRESS] 2,840,000/10,000,000 (28.40%) | hits: 88 | errors: 961012 | 8.2 req/s | ETA: 243.5h
+[PROGRESS] 2,845,000/10,000,000 (28.45%) | hits: 88 | errors: 961554 | 8.2 req/s | ETA: 243.1h
+[PROGRESS] 2,850,000/10,000,000 (28.50%) | hits: 88 | errors: 961557 | 8.2 req/s | ETA: 242.7h
+[PROGRESS] 2,855,000/10,000,000 (28.55%) | hits: 88 | errors: 961558 | 8.2 req/s | ETA: 242.3h
+[PROGRESS] 2,860,000/10,000,000 (28.60%) | hits: 88 | errors: 961559 | 8.2 req/s | ETA: 241.9h
+[PROGRESS] 2,865,000/10,000,000 (28.65%) | hits: 88 | errors: 961561 | 8.2 req/s | ETA: 241.6h
+[PROGRESS] 2,870,000/10,000,000 (28.70%) | hits: 88 | errors: 961564 | 8.2 req/s | ETA: 241.2h
+[PROGRESS] 2,875,000/10,000,000 (28.75%) | hits: 88 | errors: 961566 | 8.2 req/s | ETA: 240.8h
+[PROGRESS] 2,880,000/10,000,000 (28.80%) | hits: 88 | errors: 961573 | 8.2 req/s | ETA: 240.5h
+[PROGRESS] 2,885,000/10,000,000 (28.85%) | hits: 88 | errors: 961576 | 8.2 req/s | ETA: 240.1h
+[PROGRESS] 2,890,000/10,000,000 (28.90%) | hits: 88 | errors: 961583 | 8.2 req/s | ETA: 239.8h
+[PROGRESS] 2,895,000/10,000,000 (28.95%) | hits: 88 | errors: 961586 | 8.2 req/s | ETA: 239.4h
+[PROGRESS] 2,900,000/10,000,000 (29.00%) | hits: 88 | errors: 961588 | 8.3 req/s | ETA: 239.0h
+[PROGRESS] 2,905,000/10,000,000 (29.05%) | hits: 88 | errors: 961590 | 8.3 req/s | ETA: 238.7h
+[PROGRESS] 2,910,000/10,000,000 (29.10%) | hits: 88 | errors: 961592 | 8.3 req/s | ETA: 238.3h
+[PROGRESS] 2,915,000/10,000,000 (29.15%) | hits: 88 | errors: 961594 | 8.3 req/s | ETA: 238.0h
+[PROGRESS] 2,920,000/10,000,000 (29.20%) | hits: 88 | errors: 961596 | 8.3 req/s | ETA: 237.6h
+[PROGRESS] 2,925,000/10,000,000 (29.25%) | hits: 88 | errors: 961599 | 8.3 req/s | ETA: 237.3h
+[PROGRESS] 2,930,000/10,000,000 (29.30%) | hits: 88 | errors: 961605 | 8.3 req/s | ETA: 236.9h
+[PROGRESS] 2,935,000/10,000,000 (29.35%) | hits: 88 | errors: 961607 | 8.3 req/s | ETA: 236.6h
+[PROGRESS] 2,940,000/10,000,000 (29.40%) | hits: 88 | errors: 961608 | 8.3 req/s | ETA: 236.2h
+[PROGRESS] 2,945,000/10,000,000 (29.45%) | hits: 88 | errors: 961610 | 8.3 req/s | ETA: 235.9h
+[PROGRESS] 2,950,000/10,000,000 (29.50%) | hits: 88 | errors: 961612 | 8.3 req/s | ETA: 235.5h
+[PROGRESS] 2,955,000/10,000,000 (29.55%) | hits: 88 | errors: 961612 | 8.3 req/s | ETA: 235.2h
+[PROGRESS] 2,960,000/10,000,000 (29.60%) | hits: 88 | errors: 961617 | 8.3 req/s | ETA: 234.9h
+[PROGRESS] 2,965,000/10,000,000 (29.65%) | hits: 88 | errors: 961619 | 8.3 req/s | ETA: 234.5h
+[PROGRESS] 2,970,000/10,000,000 (29.70%) | hits: 88 | errors: 961621 | 8.3 req/s | ETA: 234.1h
+[PROGRESS] 2,975,000/10,000,000 (29.75%) | hits: 88 | errors: 961625 | 8.3 req/s | ETA: 233.8h
+[PROGRESS] 2,980,000/10,000,000 (29.80%) | hits: 88 | errors: 961628 | 8.4 req/s | ETA: 233.5h
+[PROGRESS] 2,985,000/10,000,000 (29.85%) | hits: 88 | errors: 961635 | 8.4 req/s | ETA: 233.1h
+[PROGRESS] 2,990,000/10,000,000 (29.90%) | hits: 88 | errors: 961640 | 8.4 req/s | ETA: 232.8h
+[PROGRESS] 2,995,000/10,000,000 (29.95%) | hits: 88 | errors: 961642 | 8.4 req/s | ETA: 232.5h
+[PROGRESS] 3,000,000/10,000,000 (30.00%) | hits: 88 | errors: 961644 | 8.4 req/s | ETA: 232.1h
+[PROGRESS] 3,005,000/10,000,000 (30.05%) | hits: 88 | errors: 961645 | 8.4 req/s | ETA: 231.8h
+[PROGRESS] 3,010,000/10,000,000 (30.10%) | hits: 88 | errors: 961651 | 8.4 req/s | ETA: 231.4h
+[PROGRESS] 3,015,000/10,000,000 (30.15%) | hits: 88 | errors: 961652 | 8.4 req/s | ETA: 231.1h
+[PROGRESS] 3,020,000/10,000,000 (30.20%) | hits: 88 | errors: 961653 | 8.4 req/s | ETA: 230.7h
+[PROGRESS] 3,025,000/10,000,000 (30.25%) | hits: 88 | errors: 961655 | 8.4 req/s | ETA: 230.4h
+[PROGRESS] 3,030,000/10,000,000 (30.30%) | hits: 88 | errors: 961660 | 8.4 req/s | ETA: 230.1h
+[PROGRESS] 3,035,000/10,000,000 (30.35%) | hits: 88 | errors: 961665 | 8.4 req/s | ETA: 229.7h
+[PROGRESS] 3,040,000/10,000,000 (30.40%) | hits: 88 | errors: 961669 | 8.4 req/s | ETA: 229.4h
+[PROGRESS] 3,045,000/10,000,000 (30.45%) | hits: 88 | errors: 961671 | 8.4 req/s | ETA: 229.1h
+[PROGRESS] 3,050,000/10,000,000 (30.50%) | hits: 88 | errors: 961672 | 8.4 req/s | ETA: 228.7h
+[PROGRESS] 3,055,000/10,000,000 (30.55%) | hits: 88 | errors: 961672 | 8.4 req/s | ETA: 228.4h
+[PROGRESS] 3,060,000/10,000,000 (30.60%) | hits: 88 | errors: 961672 | 8.5 req/s | ETA: 228.1h
+[PROGRESS] 3,065,000/10,000,000 (30.65%) | hits: 88 | errors: 961676 | 8.5 req/s | ETA: 227.7h
+[PROGRESS] 3,070,000/10,000,000 (30.70%) | hits: 88 | errors: 961680 | 8.5 req/s | ETA: 227.4h
+[PROGRESS] 3,075,000/10,000,000 (30.75%) | hits: 88 | errors: 961681 | 8.5 req/s | ETA: 227.1h
+[PROGRESS] 3,080,000/10,000,000 (30.80%) | hits: 88 | errors: 961683 | 8.5 req/s | ETA: 226.7h
+[PROGRESS] 3,085,000/10,000,000 (30.85%) | hits: 88 | errors: 961687 | 8.5 req/s | ETA: 226.4h
+[PROGRESS] 3,090,000/10,000,000 (30.90%) | hits: 88 | errors: 961692 | 8.5 req/s | ETA: 226.2h
+[PROGRESS] 3,095,000/10,000,000 (30.95%) | hits: 88 | errors: 961699 | 8.5 req/s | ETA: 225.8h
+[PROGRESS] 3,100,000/10,000,000 (31.00%) | hits: 88 | errors: 961702 | 8.5 req/s | ETA: 225.5h
+[PROGRESS] 3,105,000/10,000,000 (31.05%) | hits: 88 | errors: 961702 | 8.5 req/s | ETA: 225.2h
+[PROGRESS] 3,110,000/10,000,000 (31.10%) | hits: 88 | errors: 961710 | 8.5 req/s | ETA: 224.9h
+[PROGRESS] 3,115,000/10,000,000 (31.15%) | hits: 88 | errors: 961712 | 8.5 req/s | ETA: 224.6h
+[PROGRESS] 3,120,000/10,000,000 (31.20%) | hits: 88 | errors: 961714 | 8.5 req/s | ETA: 224.2h
+[PROGRESS] 3,125,000/10,000,000 (31.25%) | hits: 88 | errors: 961719 | 8.5 req/s | ETA: 223.9h
+[PROGRESS] 3,130,000/10,000,000 (31.30%) | hits: 88 | errors: 961723 | 8.5 req/s | ETA: 223.6h
+[PROGRESS] 3,135,000/10,000,000 (31.35%) | hits: 88 | errors: 961729 | 8.5 req/s | ETA: 223.3h
+[PROGRESS] 3,140,000/10,000,000 (31.40%) | hits: 88 | errors: 966157 | 8.6 req/s | ETA: 222.8h
+[PROGRESS] 3,145,000/10,000,000 (31.45%) | hits: 88 | errors: 971157 | 8.6 req/s | ETA: 222.3h
+[PROGRESS] 3,150,000/10,000,000 (31.50%) | hits: 88 | errors: 976157 | 8.6 req/s | ETA: 221.8h
+[PROGRESS] 3,155,000/10,000,000 (31.55%) | hits: 88 | errors: 981157 | 8.6 req/s | ETA: 221.3h
+[PROGRESS] 3,160,000/10,000,000 (31.60%) | hits: 88 | errors: 983928 | 8.6 req/s | ETA: 220.8h
+[PROGRESS] 3,165,000/10,000,000 (31.65%) | hits: 88 | errors: 983930 | 8.6 req/s | ETA: 220.5h
+[PROGRESS] 3,170,000/10,000,000 (31.70%) | hits: 88 | errors: 983932 | 8.6 req/s | ETA: 220.2h
+[PROGRESS] 3,175,000/10,000,000 (31.75%) | hits: 88 | errors: 983935 | 8.6 req/s | ETA: 219.9h
+[PROGRESS] 3,180,000/10,000,000 (31.80%) | hits: 88 | errors: 983938 | 8.6 req/s | ETA: 219.6h
+[PROGRESS] 3,185,000/10,000,000 (31.85%) | hits: 88 | errors: 983938 | 8.6 req/s | ETA: 219.3h
+[PROGRESS] 3,190,000/10,000,000 (31.90%) | hits: 88 | errors: 983939 | 8.6 req/s | ETA: 219.0h
+[PROGRESS] 3,195,000/10,000,000 (31.95%) | hits: 88 | errors: 983942 | 8.6 req/s | ETA: 218.6h
+[PROGRESS] 3,200,000/10,000,000 (32.00%) | hits: 88 | errors: 983944 | 8.7 req/s | ETA: 218.3h
+[PROGRESS] 3,205,000/10,000,000 (32.05%) | hits: 88 | errors: 983947 | 8.7 req/s | ETA: 218.0h
+[PROGRESS] 3,210,000/10,000,000 (32.10%) | hits: 88 | errors: 983952 | 8.7 req/s | ETA: 217.7h
+[PROGRESS] 3,215,000/10,000,000 (32.15%) | hits: 88 | errors: 983956 | 8.7 req/s | ETA: 217.4h
+[PROGRESS] 3,220,000/10,000,000 (32.20%) | hits: 88 | errors: 983957 | 8.7 req/s | ETA: 217.1h
+[PROGRESS] 3,225,000/10,000,000 (32.25%) | hits: 88 | errors: 983958 | 8.7 req/s | ETA: 216.8h
+[PROGRESS] 3,230,000/10,000,000 (32.30%) | hits: 88 | errors: 983964 | 8.7 req/s | ETA: 216.5h
+[PROGRESS] 3,235,000/10,000,000 (32.35%) | hits: 88 | errors: 983967 | 8.7 req/s | ETA: 216.2h
+[PROGRESS] 3,240,000/10,000,000 (32.40%) | hits: 88 | errors: 983974 | 8.7 req/s | ETA: 215.9h
+[PROGRESS] 3,245,000/10,000,000 (32.45%) | hits: 88 | errors: 983974 | 8.7 req/s | ETA: 215.6h
+[PROGRESS] 3,250,000/10,000,000 (32.50%) | hits: 88 | errors: 983981 | 8.7 req/s | ETA: 215.3h
+[PROGRESS] 3,255,000/10,000,000 (32.55%) | hits: 88 | errors: 983987 | 8.7 req/s | ETA: 215.0h
+[PROGRESS] 3,260,000/10,000,000 (32.60%) | hits: 88 | errors: 983989 | 8.7 req/s | ETA: 214.7h
+[PROGRESS] 3,265,000/10,000,000 (32.65%) | hits: 88 | errors: 983991 | 8.7 req/s | ETA: 214.4h
+[PROGRESS] 3,270,000/10,000,000 (32.70%) | hits: 88 | errors: 983994 | 8.7 req/s | ETA: 214.1h
+[PROGRESS] 3,275,000/10,000,000 (32.75%) | hits: 88 | errors: 983996 | 8.7 req/s | ETA: 213.8h
+[PROGRESS] 3,280,000/10,000,000 (32.80%) | hits: 88 | errors: 983997 | 8.7 req/s | ETA: 213.5h
+[PROGRESS] 3,285,000/10,000,000 (32.85%) | hits: 88 | errors: 983999 | 8.8 req/s | ETA: 213.2h
+[PROGRESS] 3,290,000/10,000,000 (32.90%) | hits: 88 | errors: 984002 | 8.8 req/s | ETA: 212.9h
+[PROGRESS] 3,295,000/10,000,000 (32.95%) | hits: 88 | errors: 984002 | 8.8 req/s | ETA: 212.6h
+[PROGRESS] 3,300,000/10,000,000 (33.00%) | hits: 88 | errors: 984009 | 8.8 req/s | ETA: 212.3h
+[PROGRESS] 3,305,000/10,000,000 (33.05%) | hits: 88 | errors: 984009 | 8.8 req/s | ETA: 212.0h
+[PROGRESS] 3,310,000/10,000,000 (33.10%) | hits: 88 | errors: 984015 | 8.8 req/s | ETA: 211.7h
+[PROGRESS] 3,315,000/10,000,000 (33.15%) | hits: 88 | errors: 984017 | 8.8 req/s | ETA: 211.4h
+[PROGRESS] 3,320,000/10,000,000 (33.20%) | hits: 88 | errors: 984018 | 8.8 req/s | ETA: 211.1h
+[PROGRESS] 3,325,000/10,000,000 (33.25%) | hits: 88 | errors: 984020 | 8.8 req/s | ETA: 210.8h
+[PROGRESS] 3,330,000/10,000,000 (33.30%) | hits: 88 | errors: 984021 | 8.8 req/s | ETA: 210.5h
+[PROGRESS] 3,335,000/10,000,000 (33.35%) | hits: 88 | errors: 984024 | 8.8 req/s | ETA: 210.2h
+[PROGRESS] 3,340,000/10,000,000 (33.40%) | hits: 88 | errors: 984026 | 8.8 req/s | ETA: 209.9h
+[PROGRESS] 3,345,000/10,000,000 (33.45%) | hits: 88 | errors: 984029 | 8.8 req/s | ETA: 209.6h
+[PROGRESS] 3,350,000/10,000,000 (33.50%) | hits: 88 | errors: 984036 | 8.8 req/s | ETA: 209.4h
+[PROGRESS] 3,355,000/10,000,000 (33.55%) | hits: 88 | errors: 984047 | 8.8 req/s | ETA: 209.1h
+[PROGRESS] 3,360,000/10,000,000 (33.60%) | hits: 88 | errors: 984059 | 8.8 req/s | ETA: 208.9h
+[PROGRESS] 3,365,000/10,000,000 (33.65%) | hits: 88 | errors: 984068 | 8.8 req/s | ETA: 208.7h
+[PROGRESS] 3,370,000/10,000,000 (33.70%) | hits: 88 | errors: 984077 | 8.8 req/s | ETA: 208.4h
+[PROGRESS] 3,375,000/10,000,000 (33.75%) | hits: 88 | errors: 984082 | 8.8 req/s | ETA: 208.2h
+[PROGRESS] 3,380,000/10,000,000 (33.80%) | hits: 88 | errors: 984095 | 8.8 req/s | ETA: 208.1h
+[PROGRESS] 3,385,000/10,000,000 (33.85%) | hits: 88 | errors: 984110 | 8.8 req/s | ETA: 207.9h
+[PROGRESS] 3,390,000/10,000,000 (33.90%) | hits: 88 | errors: 984121 | 8.8 req/s | ETA: 207.8h
+[PROGRESS] 3,395,000/10,000,000 (33.95%) | hits: 88 | errors: 984130 | 8.8 req/s | ETA: 207.7h
+[PROGRESS] 3,400,000/10,000,000 (34.00%) | hits: 88 | errors: 984139 | 8.8 req/s | ETA: 207.5h
+[PROGRESS] 3,405,000/10,000,000 (34.05%) | hits: 88 | errors: 984147 | 8.8 req/s | ETA: 207.4h
+[PROGRESS] 3,410,000/10,000,000 (34.10%) | hits: 88 | errors: 984160 | 8.8 req/s | ETA: 207.2h
+[PROGRESS] 3,415,000/10,000,000 (34.15%) | hits: 88 | errors: 984172 | 8.8 req/s | ETA: 207.1h
+[PROGRESS] 3,420,000/10,000,000 (34.20%) | hits: 88 | errors: 984183 | 8.8 req/s | ETA: 206.9h
+[PROGRESS] 3,425,000/10,000,000 (34.25%) | hits: 88 | errors: 984189 | 8.8 req/s | ETA: 206.8h
+[PROGRESS] 3,430,000/10,000,000 (34.30%) | hits: 88 | errors: 984200 | 8.8 req/s | ETA: 206.6h
+[PROGRESS] 3,435,000/10,000,000 (34.35%) | hits: 88 | errors: 984849 | 8.8 req/s | ETA: 206.4h
+[PROGRESS] 3,440,000/10,000,000 (34.40%) | hits: 88 | errors: 989849 | 8.8 req/s | ETA: 206.0h
+[PROGRESS] 3,445,000/10,000,000 (34.45%) | hits: 88 | errors: 994849 | 8.9 req/s | ETA: 205.5h
+[PROGRESS] 3,450,000/10,000,000 (34.50%) | hits: 88 | errors: 999849 | 8.9 req/s | ETA: 205.1h
+[PROGRESS] 3,455,000/10,000,000 (34.55%) | hits: 88 | errors: 1004849 | 8.9 req/s | ETA: 204.6h
+[PROGRESS] 3,460,000/10,000,000 (34.60%) | hits: 88 | errors: 1009849 | 8.9 req/s | ETA: 204.1h
+[PROGRESS] 3,465,000/10,000,000 (34.65%) | hits: 88 | errors: 1014849 | 8.9 req/s | ETA: 203.7h
+[PROGRESS] 3,470,000/10,000,000 (34.70%) | hits: 88 | errors: 1019849 | 8.9 req/s | ETA: 203.2h
+[PROGRESS] 3,475,000/10,000,000 (34.75%) | hits: 88 | errors: 1024849 | 8.9 req/s | ETA: 202.8h
+[PROGRESS] 3,480,000/10,000,000 (34.80%) | hits: 88 | errors: 1029849 | 9.0 req/s | ETA: 202.4h
+[PROGRESS] 3,485,000/10,000,000 (34.85%) | hits: 88 | errors: 1034849 | 9.0 req/s | ETA: 201.9h
+[PROGRESS] 3,490,000/10,000,000 (34.90%) | hits: 88 | errors: 1039849 | 9.0 req/s | ETA: 201.5h
+[PROGRESS] 3,495,000/10,000,000 (34.95%) | hits: 88 | errors: 1044849 | 9.0 req/s | ETA: 201.0h
+[PROGRESS] 3,500,000/10,000,000 (35.00%) | hits: 88 | errors: 1049849 | 9.0 req/s | ETA: 200.6h
+[PROGRESS] 3,505,000/10,000,000 (35.05%) | hits: 88 | errors: 1054849 | 9.0 req/s | ETA: 200.1h
+[PROGRESS] 3,510,000/10,000,000 (35.10%) | hits: 88 | errors: 1059849 | 9.0 req/s | ETA: 199.7h
+[PROGRESS] 3,515,000/10,000,000 (35.15%) | hits: 88 | errors: 1064849 | 9.0 req/s | ETA: 199.3h
+[PROGRESS] 3,520,000/10,000,000 (35.20%) | hits: 88 | errors: 1069849 | 9.1 req/s | ETA: 198.8h
+[PROGRESS] 3,525,000/10,000,000 (35.25%) | hits: 88 | errors: 1074849 | 9.1 req/s | ETA: 198.4h
+[PROGRESS] 3,530,000/10,000,000 (35.30%) | hits: 88 | errors: 1079849 | 9.1 req/s | ETA: 198.0h
+[PROGRESS] 3,535,000/10,000,000 (35.35%) | hits: 88 | errors: 1084849 | 9.1 req/s | ETA: 197.5h
+[PROGRESS] 3,540,000/10,000,000 (35.40%) | hits: 88 | errors: 1089849 | 9.1 req/s | ETA: 197.1h
+[PROGRESS] 3,545,000/10,000,000 (35.45%) | hits: 88 | errors: 1094849 | 9.1 req/s | ETA: 196.7h
+[PROGRESS] 3,550,000/10,000,000 (35.50%) | hits: 88 | errors: 1099849 | 9.1 req/s | ETA: 196.2h
+[PROGRESS] 3,555,000/10,000,000 (35.55%) | hits: 88 | errors: 1104849 | 9.1 req/s | ETA: 195.8h
+[PROGRESS] 3,560,000/10,000,000 (35.60%) | hits: 88 | errors: 1109849 | 9.2 req/s | ETA: 195.4h
+[PROGRESS] 3,565,000/10,000,000 (35.65%) | hits: 88 | errors: 1114849 | 9.2 req/s | ETA: 195.0h
+[PROGRESS] 3,570,000/10,000,000 (35.70%) | hits: 88 | errors: 1119849 | 9.2 req/s | ETA: 194.5h
+[PROGRESS] 3,575,000/10,000,000 (35.75%) | hits: 88 | errors: 1124849 | 9.2 req/s | ETA: 194.1h
+[PROGRESS] 3,580,000/10,000,000 (35.80%) | hits: 88 | errors: 1129849 | 9.2 req/s | ETA: 193.7h
+[PROGRESS] 3,585,000/10,000,000 (35.85%) | hits: 88 | errors: 1134849 | 9.2 req/s | ETA: 193.3h
+[PROGRESS] 3,590,000/10,000,000 (35.90%) | hits: 88 | errors: 1139849 | 9.2 req/s | ETA: 192.8h
+[PROGRESS] 3,595,000/10,000,000 (35.95%) | hits: 88 | errors: 1144849 | 9.2 req/s | ETA: 192.4h
+[PROGRESS] 3,600,000/10,000,000 (36.00%) | hits: 88 | errors: 1149849 | 9.3 req/s | ETA: 192.0h
+[PROGRESS] 3,605,000/10,000,000 (36.05%) | hits: 88 | errors: 1154849 | 9.3 req/s | ETA: 191.6h
+[PROGRESS] 3,610,000/10,000,000 (36.10%) | hits: 88 | errors: 1159849 | 9.3 req/s | ETA: 191.2h
+[PROGRESS] 3,615,000/10,000,000 (36.15%) | hits: 88 | errors: 1164849 | 9.3 req/s | ETA: 190.8h
+[PROGRESS] 3,620,000/10,000,000 (36.20%) | hits: 88 | errors: 1169849 | 9.3 req/s | ETA: 190.4h
+[PROGRESS] 3,625,000/10,000,000 (36.25%) | hits: 88 | errors: 1174849 | 9.3 req/s | ETA: 189.9h
+[PROGRESS] 3,630,000/10,000,000 (36.30%) | hits: 88 | errors: 1179849 | 9.3 req/s | ETA: 189.5h
+[PROGRESS] 3,635,000/10,000,000 (36.35%) | hits: 88 | errors: 1184849 | 9.3 req/s | ETA: 189.1h
+[PROGRESS] 3,640,000/10,000,000 (36.40%) | hits: 88 | errors: 1189849 | 9.4 req/s | ETA: 188.7h
+[PROGRESS] 3,645,000/10,000,000 (36.45%) | hits: 88 | errors: 1194849 | 9.4 req/s | ETA: 188.3h
+[PROGRESS] 3,650,000/10,000,000 (36.50%) | hits: 88 | errors: 1199849 | 9.4 req/s | ETA: 187.9h
+[PROGRESS] 3,655,000/10,000,000 (36.55%) | hits: 88 | errors: 1204849 | 9.4 req/s | ETA: 187.5h
+[PROGRESS] 3,660,000/10,000,000 (36.60%) | hits: 88 | errors: 1209849 | 9.4 req/s | ETA: 187.1h
+[PROGRESS] 3,665,000/10,000,000 (36.65%) | hits: 88 | errors: 1214849 | 9.4 req/s | ETA: 186.7h
+[PROGRESS] 3,670,000/10,000,000 (36.70%) | hits: 88 | errors: 1219849 | 9.4 req/s | ETA: 186.3h
+[PROGRESS] 3,675,000/10,000,000 (36.75%) | hits: 88 | errors: 1224849 | 9.5 req/s | ETA: 185.9h
+[PROGRESS] 3,680,000/10,000,000 (36.80%) | hits: 88 | errors: 1229849 | 9.5 req/s | ETA: 185.5h
+[PROGRESS] 3,685,000/10,000,000 (36.85%) | hits: 88 | errors: 1234849 | 9.5 req/s | ETA: 185.1h
+[PROGRESS] 3,690,000/10,000,000 (36.90%) | hits: 88 | errors: 1239849 | 9.5 req/s | ETA: 184.7h
+[PROGRESS] 3,695,000/10,000,000 (36.95%) | hits: 88 | errors: 1244849 | 9.5 req/s | ETA: 184.3h
+[PROGRESS] 3,700,000/10,000,000 (37.00%) | hits: 88 | errors: 1245445 | 9.5 req/s | ETA: 184.1h
+[PROGRESS] 3,705,000/10,000,000 (37.05%) | hits: 88 | errors: 1245452 | 9.5 req/s | ETA: 183.8h
+[PROGRESS] 3,710,000/10,000,000 (37.10%) | hits: 88 | errors: 1245459 | 9.5 req/s | ETA: 183.6h
+[PROGRESS] 3,715,000/10,000,000 (37.15%) | hits: 88 | errors: 1245466 | 9.5 req/s | ETA: 183.4h
+[PROGRESS] 3,720,000/10,000,000 (37.20%) | hits: 88 | errors: 1245473 | 9.5 req/s | ETA: 183.2h
+[PROGRESS] 3,725,000/10,000,000 (37.25%) | hits: 88 | errors: 1245483 | 9.5 req/s | ETA: 183.0h
+[PROGRESS] 3,730,000/10,000,000 (37.30%) | hits: 88 | errors: 1245491 | 9.5 req/s | ETA: 182.8h
+[PROGRESS] 3,735,000/10,000,000 (37.35%) | hits: 88 | errors: 1245497 | 9.5 req/s | ETA: 182.5h
+[PROGRESS] 3,740,000/10,000,000 (37.40%) | hits: 88 | errors: 1245502 | 9.5 req/s | ETA: 182.3h
+[PROGRESS] 3,745,000/10,000,000 (37.45%) | hits: 88 | errors: 1245508 | 9.5 req/s | ETA: 182.1h
+[PROGRESS] 3,750,000/10,000,000 (37.50%) | hits: 88 | errors: 1245511 | 9.5 req/s | ETA: 181.8h
+[PROGRESS] 3,755,000/10,000,000 (37.55%) | hits: 88 | errors: 1245512 | 9.6 req/s | ETA: 181.6h
+[PROGRESS] 3,760,000/10,000,000 (37.60%) | hits: 88 | errors: 1245515 | 9.6 req/s | ETA: 181.4h
+[PROGRESS] 3,765,000/10,000,000 (37.65%) | hits: 88 | errors: 1245520 | 9.6 req/s | ETA: 181.1h
+[PROGRESS] 3,770,000/10,000,000 (37.70%) | hits: 88 | errors: 1245534 | 9.6 req/s | ETA: 180.9h
+[PROGRESS] 3,775,000/10,000,000 (37.75%) | hits: 88 | errors: 1245544 | 9.6 req/s | ETA: 180.8h
+[PROGRESS] 3,780,000/10,000,000 (37.80%) | hits: 88 | errors: 1245550 | 9.6 req/s | ETA: 180.7h
+[PROGRESS] 3,785,000/10,000,000 (37.85%) | hits: 88 | errors: 1245559 | 9.6 req/s | ETA: 180.6h
+[PROGRESS] 3,790,000/10,000,000 (37.90%) | hits: 88 | errors: 1245565 | 9.6 req/s | ETA: 180.4h
+[PROGRESS] 3,795,000/10,000,000 (37.95%) | hits: 88 | errors: 1245572 | 9.6 req/s | ETA: 180.3h
+[PROGRESS] 3,800,000/10,000,000 (38.00%) | hits: 88 | errors: 1245584 | 9.6 req/s | ETA: 180.1h
+[PROGRESS] 3,805,000/10,000,000 (38.05%) | hits: 88 | errors: 1245601 | 9.6 req/s | ETA: 180.0h
+[PROGRESS] 3,810,000/10,000,000 (38.10%) | hits: 88 | errors: 1245611 | 9.6 req/s | ETA: 179.9h
+[PROGRESS] 3,815,000/10,000,000 (38.15%) | hits: 88 | errors: 1245623 | 9.6 req/s | ETA: 179.8h
+[PROGRESS] 3,820,000/10,000,000 (38.20%) | hits: 88 | errors: 1245647 | 9.6 req/s | ETA: 179.7h
+[PROGRESS] 3,825,000/10,000,000 (38.25%) | hits: 88 | errors: 1245656 | 9.6 req/s | ETA: 179.6h
+[PROGRESS] 3,830,000/10,000,000 (38.30%) | hits: 88 | errors: 1245668 | 9.6 req/s | ETA: 179.4h
+[PROGRESS] 3,835,000/10,000,000 (38.35%) | hits: 88 | errors: 1245682 | 9.5 req/s | ETA: 179.4h
+[PROGRESS] 3,840,000/10,000,000 (38.40%) | hits: 88 | errors: 1245699 | 9.5 req/s | ETA: 179.2h
+[PROGRESS] 3,845,000/10,000,000 (38.45%) | hits: 88 | errors: 1245707 | 9.5 req/s | ETA: 179.1h
+[PROGRESS] 3,850,000/10,000,000 (38.50%) | hits: 88 | errors: 1245716 | 9.5 req/s | ETA: 179.0h
+[PROGRESS] 3,855,000/10,000,000 (38.55%) | hits: 88 | errors: 1245723 | 9.5 req/s | ETA: 178.8h
+[PROGRESS] 3,860,000/10,000,000 (38.60%) | hits: 88 | errors: 1245724 | 9.5 req/s | ETA: 178.7h
+[PROGRESS] 3,865,000/10,000,000 (38.65%) | hits: 88 | errors: 1245728 | 9.5 req/s | ETA: 178.5h
+[PROGRESS] 3,870,000/10,000,000 (38.70%) | hits: 88 | errors: 1245737 | 9.5 req/s | ETA: 178.3h
+[PROGRESS] 3,875,000/10,000,000 (38.75%) | hits: 88 | errors: 1245752 | 9.5 req/s | ETA: 178.2h
+[PROGRESS] 3,880,000/10,000,000 (38.80%) | hits: 88 | errors: 1245771 | 9.5 req/s | ETA: 178.1h
+[PROGRESS] 3,885,000/10,000,000 (38.85%) | hits: 88 | errors: 1245795 | 9.5 req/s | ETA: 178.0h
+[PROGRESS] 3,890,000/10,000,000 (38.90%) | hits: 88 | errors: 1245806 | 9.5 req/s | ETA: 177.9h
+[PROGRESS] 3,895,000/10,000,000 (38.95%) | hits: 88 | errors: 1245823 | 9.5 req/s | ETA: 177.8h
+[PROGRESS] 3,900,000/10,000,000 (39.00%) | hits: 88 | errors: 1245830 | 9.5 req/s | ETA: 177.6h
+[PROGRESS] 3,905,000/10,000,000 (39.05%) | hits: 88 | errors: 1245841 | 9.5 req/s | ETA: 177.5h
+[PROGRESS] 3,910,000/10,000,000 (39.10%) | hits: 88 | errors: 1245849 | 9.5 req/s | ETA: 177.4h
+[PROGRESS] 3,915,000/10,000,000 (39.15%) | hits: 88 | errors: 1245862 | 9.5 req/s | ETA: 177.4h
+[PROGRESS] 3,920,000/10,000,000 (39.20%) | hits: 88 | errors: 1245872 | 9.5 req/s | ETA: 177.3h
+[PROGRESS] 3,925,000/10,000,000 (39.25%) | hits: 88 | errors: 1245876 | 9.5 req/s | ETA: 177.1h
+[PROGRESS] 3,930,000/10,000,000 (39.30%) | hits: 88 | errors: 1245890 | 9.5 req/s | ETA: 177.0h
+[PROGRESS] 3,935,000/10,000,000 (39.35%) | hits: 88 | errors: 1245904 | 9.5 req/s | ETA: 176.9h
+[PROGRESS] 3,940,000/10,000,000 (39.40%) | hits: 88 | errors: 1245913 | 9.5 req/s | ETA: 176.8h
+[PROGRESS] 3,945,000/10,000,000 (39.45%) | hits: 88 | errors: 1245916 | 9.5 req/s | ETA: 176.6h
+[PROGRESS] 3,950,000/10,000,000 (39.50%) | hits: 88 | errors: 1245928 | 9.5 req/s | ETA: 176.5h
+[PROGRESS] 3,955,000/10,000,000 (39.55%) | hits: 88 | errors: 1245939 | 9.5 req/s | ETA: 176.4h
+[PROGRESS] 3,960,000/10,000,000 (39.60%) | hits: 88 | errors: 1245951 | 9.5 req/s | ETA: 176.3h
+[PROGRESS] 3,965,000/10,000,000 (39.65%) | hits: 88 | errors: 1245962 | 9.5 req/s | ETA: 176.1h
+[PROGRESS] 3,970,000/10,000,000 (39.70%) | hits: 88 | errors: 1245971 | 9.5 req/s | ETA: 176.0h
+[PROGRESS] 3,975,000/10,000,000 (39.75%) | hits: 88 | errors: 1245984 | 9.5 req/s | ETA: 175.9h
+[PROGRESS] 3,980,000/10,000,000 (39.80%) | hits: 88 | errors: 1245993 | 9.5 req/s | ETA: 175.7h
+[PROGRESS] 3,985,000/10,000,000 (39.85%) | hits: 88 | errors: 1246002 | 9.5 req/s | ETA: 175.6h
+[PROGRESS] 3,990,000/10,000,000 (39.90%) | hits: 88 | errors: 1246013 | 9.5 req/s | ETA: 175.5h
+[PROGRESS] 3,995,000/10,000,000 (39.95%) | hits: 88 | errors: 1246021 | 9.5 req/s | ETA: 175.3h
+[PROGRESS] 4,000,000/10,000,000 (40.00%) | hits: 88 | errors: 1246034 | 9.5 req/s | ETA: 175.2h
+[PROGRESS] 4,005,000/10,000,000 (40.05%) | hits: 88 | errors: 1246038 | 9.5 req/s | ETA: 175.0h
+[PROGRESS] 4,010,000/10,000,000 (40.10%) | hits: 88 | errors: 1246048 | 9.5 req/s | ETA: 174.9h
+[PROGRESS] 4,015,000/10,000,000 (40.15%) | hits: 88 | errors: 1246057 | 9.5 req/s | ETA: 174.8h
+[PROGRESS] 4,020,000/10,000,000 (40.20%) | hits: 88 | errors: 1246069 | 9.5 req/s | ETA: 174.7h
+[PROGRESS] 4,025,000/10,000,000 (40.25%) | hits: 88 | errors: 1246083 | 9.5 req/s | ETA: 174.5h
+[PROGRESS] 4,030,000/10,000,000 (40.30%) | hits: 88 | errors: 1246092 | 9.5 req/s | ETA: 174.4h
+[PROGRESS] 4,035,000/10,000,000 (40.35%) | hits: 88 | errors: 1246099 | 9.5 req/s | ETA: 174.3h
+[PROGRESS] 4,040,000/10,000,000 (40.40%) | hits: 88 | errors: 1246109 | 9.5 req/s | ETA: 174.1h
+[PROGRESS] 4,045,000/10,000,000 (40.45%) | hits: 88 | errors: 1246123 | 9.5 req/s | ETA: 174.0h
+[PROGRESS] 4,050,000/10,000,000 (40.50%) | hits: 88 | errors: 1246138 | 9.5 req/s | ETA: 173.9h
+[PROGRESS] 4,055,000/10,000,000 (40.55%) | hits: 88 | errors: 1246151 | 9.5 req/s | ETA: 173.8h
+[PROGRESS] 4,060,000/10,000,000 (40.60%) | hits: 88 | errors: 1246167 | 9.5 req/s | ETA: 173.7h
+[PROGRESS] 4,065,000/10,000,000 (40.65%) | hits: 88 | errors: 1246176 | 9.5 req/s | ETA: 173.6h
+[PROGRESS] 4,070,000/10,000,000 (40.70%) | hits: 88 | errors: 1246185 | 9.5 req/s | ETA: 173.4h
+[PROGRESS] 4,075,000/10,000,000 (40.75%) | hits: 88 | errors: 1246200 | 9.5 req/s | ETA: 173.3h
+[PROGRESS] 4,080,000/10,000,000 (40.80%) | hits: 88 | errors: 1246207 | 9.5 req/s | ETA: 173.2h
+[PROGRESS] 4,085,000/10,000,000 (40.85%) | hits: 88 | errors: 1246215 | 9.5 req/s | ETA: 173.1h
+[PROGRESS] 4,090,000/10,000,000 (40.90%) | hits: 88 | errors: 1246232 | 9.5 req/s | ETA: 173.1h
+[PROGRESS] 4,095,000/10,000,000 (40.95%) | hits: 88 | errors: 1246242 | 9.5 req/s | ETA: 173.0h
+[PROGRESS] 4,100,000/10,000,000 (41.00%) | hits: 88 | errors: 1246248 | 9.5 req/s | ETA: 173.0h
+[PROGRESS] 4,105,000/10,000,000 (41.05%) | hits: 88 | errors: 1246257 | 9.5 req/s | ETA: 172.9h
+[PROGRESS] 4,110,000/10,000,000 (41.10%) | hits: 88 | errors: 1246271 | 9.5 req/s | ETA: 172.9h
+[PROGRESS] 4,115,000/10,000,000 (41.15%) | hits: 88 | errors: 1246275 | 9.5 req/s | ETA: 172.8h
+[PROGRESS] 4,120,000/10,000,000 (41.20%) | hits: 88 | errors: 1246282 | 9.5 req/s | ETA: 172.7h
+[PROGRESS] 4,125,000/10,000,000 (41.25%) | hits: 88 | errors: 1246289 | 9.5 req/s | ETA: 172.7h
+[PROGRESS] 4,130,000/10,000,000 (41.30%) | hits: 88 | errors: 1246297 | 9.4 req/s | ETA: 172.6h
+[PROGRESS] 4,135,000/10,000,000 (41.35%) | hits: 88 | errors: 1246305 | 9.4 req/s | ETA: 172.5h
+[PROGRESS] 4,140,000/10,000,000 (41.40%) | hits: 88 | errors: 1246307 | 9.4 req/s | ETA: 172.5h
+[PROGRESS] 4,145,000/10,000,000 (41.45%) | hits: 88 | errors: 1246315 | 9.4 req/s | ETA: 172.6h
+[PROGRESS] 4,150,000/10,000,000 (41.50%) | hits: 88 | errors: 1246324 | 9.4 req/s | ETA: 172.7h
+[PROGRESS] 4,155,000/10,000,000 (41.55%) | hits: 88 | errors: 1246325 | 9.4 req/s | ETA: 172.7h
+[PROGRESS] 4,160,000/10,000,000 (41.60%) | hits: 88 | errors: 1246329 | 9.4 req/s | ETA: 172.7h
+[PROGRESS] 4,165,000/10,000,000 (41.65%) | hits: 88 | errors: 1246335 | 9.4 req/s | ETA: 172.7h
+[PROGRESS] 4,170,000/10,000,000 (41.70%) | hits: 88 | errors: 1246343 | 9.4 req/s | ETA: 172.7h
+[PROGRESS] 4,175,000/10,000,000 (41.75%) | hits: 88 | errors: 1246346 | 9.4 req/s | ETA: 172.7h
+[PROGRESS] 4,180,000/10,000,000 (41.80%) | hits: 88 | errors: 1246356 | 9.4 req/s | ETA: 172.8h
+[PROGRESS] 4,185,000/10,000,000 (41.85%) | hits: 88 | errors: 1246360 | 9.4 req/s | ETA: 172.7h
+[PROGRESS] 4,190,000/10,000,000 (41.90%) | hits: 88 | errors: 1246367 | 9.3 req/s | ETA: 172.6h
+[PROGRESS] 4,195,000/10,000,000 (41.95%) | hits: 88 | errors: 1246369 | 9.3 req/s | ETA: 172.6h
+[PROGRESS] 4,200,000/10,000,000 (42.00%) | hits: 88 | errors: 1246377 | 9.3 req/s | ETA: 172.6h
+[PROGRESS] 4,205,000/10,000,000 (42.05%) | hits: 88 | errors: 1246391 | 9.3 req/s | ETA: 172.7h
+[PROGRESS] 4,210,000/10,000,000 (42.10%) | hits: 88 | errors: 1246400 | 9.3 req/s | ETA: 172.8h
+[PROGRESS] 4,215,000/10,000,000 (42.15%) | hits: 88 | errors: 1246401 | 9.3 req/s | ETA: 172.8h
+[PROGRESS] 4,220,000/10,000,000 (42.20%) | hits: 88 | errors: 1246404 | 9.3 req/s | ETA: 172.8h
+[PROGRESS] 4,225,000/10,000,000 (42.25%) | hits: 88 | errors: 1246420 | 9.3 req/s | ETA: 172.7h
+[PROGRESS] 4,230,000/10,000,000 (42.30%) | hits: 88 | errors: 1246426 | 9.3 req/s | ETA: 172.8h
+[PROGRESS] 4,235,000/10,000,000 (42.35%) | hits: 88 | errors: 1246426 | 9.3 req/s | ETA: 172.8h
+[PROGRESS] 4,240,000/10,000,000 (42.40%) | hits: 88 | errors: 1246426 | 9.3 req/s | ETA: 172.8h
+[PROGRESS] 4,245,000/10,000,000 (42.45%) | hits: 88 | errors: 1246440 | 9.2 req/s | ETA: 172.8h
+[PROGRESS] 4,250,000/10,000,000 (42.50%) | hits: 88 | errors: 1246459 | 9.2 req/s | ETA: 172.8h
+[PROGRESS] 4,255,000/10,000,000 (42.55%) | hits: 89 | errors: 1246482 | 9.2 req/s | ETA: 172.9h
+[PROGRESS] 4,260,000/10,000,000 (42.60%) | hits: 90 | errors: 1246522 | 9.2 req/s | ETA: 172.9h
+[PROGRESS] 4,265,000/10,000,000 (42.65%) | hits: 93 | errors: 1246552 | 9.2 req/s | ETA: 172.9h
+[PROGRESS] 4,270,000/10,000,000 (42.70%) | hits: 93 | errors: 1246562 | 9.2 req/s | ETA: 172.9h
+[PROGRESS] 4,275,000/10,000,000 (42.75%) | hits: 94 | errors: 1246595 | 9.2 req/s | ETA: 173.0h
+[PROGRESS] 4,280,000/10,000,000 (42.80%) | hits: 94 | errors: 1246634 | 9.2 req/s | ETA: 173.0h
+[PROGRESS] 4,285,000/10,000,000 (42.85%) | hits: 94 | errors: 1246651 | 9.2 req/s | ETA: 173.0h
+[PROGRESS] 4,290,000/10,000,000 (42.90%) | hits: 94 | errors: 1246663 | 9.2 req/s | ETA: 173.0h
+[PROGRESS] 4,295,000/10,000,000 (42.95%) | hits: 95 | errors: 1246687 | 9.2 req/s | ETA: 173.1h
+[PROGRESS] 4,300,000/10,000,000 (43.00%) | hits: 95 | errors: 1246698 | 9.1 req/s | ETA: 173.1h
+[PROGRESS] 4,305,000/10,000,000 (43.05%) | hits: 95 | errors: 1246701 | 9.1 req/s | ETA: 173.0h
+[PROGRESS] 4,310,000/10,000,000 (43.10%) | hits: 95 | errors: 1246713 | 9.1 req/s | ETA: 173.1h
+[PROGRESS] 4,315,000/10,000,000 (43.15%) | hits: 95 | errors: 1246719 | 9.1 req/s | ETA: 173.1h
+[PROGRESS] 4,320,000/10,000,000 (43.20%) | hits: 95 | errors: 1246721 | 9.1 req/s | ETA: 173.1h
+[PROGRESS] 4,325,000/10,000,000 (43.25%) | hits: 95 | errors: 1246732 | 9.1 req/s | ETA: 173.2h
+[PROGRESS] 4,330,000/10,000,000 (43.30%) | hits: 95 | errors: 1246739 | 9.1 req/s | ETA: 173.2h
+[PROGRESS] 4,335,000/10,000,000 (43.35%) | hits: 95 | errors: 1246766 | 9.1 req/s | ETA: 173.2h
+
+[SIGNAL] Caught signal 15. Shutting down...
+[MAIN] Resuming from checkpoint: 4684867 (37064684867.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:13:13
+[MAIN] Rate: 25 req/s, Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 69.2 req/s | ETA: 40.1h
+[MAIN] Restarting fresh...
+[MAIN] Resuming from checkpoint: 4684867 (37064684867.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:15:13
+[MAIN] Rate: 25 req/s, Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 99.0 req/s | ETA: 28.0h
+[MAIN] Resuming from checkpoint: 4684867 (37064684867.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:16:46
+[MAIN] Rate: 25 req/s, Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 35.9 req/s | ETA: 77.3h
+
+[SIGNAL] Caught signal 15. Shutting down...
+
+=======================================================
+  [SUMMARY] Scan stopped
+  [SUMMARY] Domains scanned: 299
+  [SUMMARY] Non-available hits: 0
+  [SUMMARY] Errors: 0
+  [SUMMARY] Elapsed: 29s (0.0h)
+  [SUMMARY] Avg rate: 10.4 req/s
+=======================================================
+[MAIN] Resuming from checkpoint: 4685167 (37064685167.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:17:23
+[MAIN] Rate: 25 req/s, Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 99.1 req/s | ETA: 28.0h
+[MAIN] Resuming from checkpoint: 4685167 (37064685167.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:19:29
+[MAIN] Rate: 25 req/s, Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 101.4 req/s | ETA: 27.4h
+[MAIN] Resuming from checkpoint: 4685167 (37064685167.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:26:13
+[MAIN] Rate: 25 req/s (limit), Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 91.7 req/s | ETA: 30.3h
+[MAIN] Starting fresh from 0 (37060000000.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:28:29
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 94.2 req/s | ETA: 29.5h
+
+[SIGNAL] Caught signal 15. Shutting down...
+
+=======================================================
+  [SUMMARY] Scan stopped
+  [SUMMARY] Domains scanned: 148
+  [SUMMARY] Hits: 0
+  [SUMMARY] Errors: 0
+  [SUMMARY] Elapsed: 17s (0.0h)
+  [SUMMARY] Avg rate: 9.0 req/s
+=======================================================
+[MAIN] Resuming from checkpoint: 4685167 (37064685167.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:28:57
+[MAIN] Rate: 25 req/s (limit), Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 113.3 req/s | ETA: 24.5h
+[MAIN] Resuming from checkpoint: 4685167 (37064685167.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:30:53
+[MAIN] Rate: 25 req/s (limit), Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 95.6 req/s | ETA: 29.1h
+[MAIN] Resuming from checkpoint: 4685167 (37064685167.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:31:21
+[MAIN] Rate: 25 req/s (limit), Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 99.7 req/s | ETA: 27.9h
+
+[SIGNAL] Caught signal 15. Shutting down...
+
+=======================================================
+  [SUMMARY] Scan stopped
+  [SUMMARY] Domains scanned: 310
+  [SUMMARY] Non-available hits: 0
+  [SUMMARY] Errors: 0
+  [SUMMARY] Elapsed: 35s (0.0h)
+  [SUMMARY] Avg rate: 8.9 req/s
+=======================================================
+
+[SIGNAL] Caught signal 15. Shutting down...
+
+=======================================================
+  [SUMMARY] Scan stopped
+  [SUMMARY] Domains scanned: 191
+  [SUMMARY] Non-available hits: 0
+  [SUMMARY] Errors: 0
+  [SUMMARY] Elapsed: 33s (0.0h)
+  [SUMMARY] Avg rate: 5.7 req/s
+=======================================================
+[MAIN] Resuming from checkpoint: 4685359 (37064685359.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:32:01
+[MAIN] Rate: 25 req/s (limit), Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 88.7 req/s | ETA: 31.3h
+[MAIN] Resuming from checkpoint: 4685359 (37064685359.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 1
+[MAIN] Start: 2026-05-18 01:33:48
+[MAIN] Rate: 25 req/s (limit), Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 107.1 req/s | ETA: 25.9h
+[MAIN] Resuming from checkpoint: 4685359 (37064685359.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 1
+[MAIN] Start: 2026-05-18 01:38:45
+[MAIN] Rate: 25 req/s (limit), Max retries: 1, Backoff: 2.0s
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 50.2 req/s | ETA: 55.3h
+[MAIN] Resuming from checkpoint: 4685359 (37064685359.lt)
+[MAIN] Range: 0 to 9999999 (10,000,000 domains)
+[MAIN] Threads: 4
+[MAIN] Start: 2026-05-18 01:43:41
+[PROGRESS] 1/10,000,000 (0.00%) | hits: 0 | errors: 0 | 26.6 req/s | ETA: 104.3h
+[PROGRESS] 5,000/10,000,000 (0.05%) | hits: 0 | errors: 9 | 12.3 req/s | ETA: 226.0h
+[PROGRESS] 10,000/10,000,000 (0.10%) | hits: 0 | errors: 19 | 12.0 req/s | ETA: 231.8h
+[PROGRESS] 15,000/10,000,000 (0.15%) | hits: 0 | errors: 33 | 11.1 req/s | ETA: 250.4h
+[PROGRESS] 20,000/10,000,000 (0.20%) | hits: 0 | errors: 45 | 11.2 req/s | ETA: 246.7h
+[PROGRESS] 25,000/10,000,000 (0.25%) | hits: 0 | errors: 54 | 11.2 req/s | ETA: 246.7h
+[PROGRESS] 30,000/10,000,000 (0.30%) | hits: 0 | errors: 68 | 10.7 req/s | ETA: 259.6h
+[PROGRESS] 35,000/10,000,000 (0.35%) | hits: 0 | errors: 75 | 10.3 req/s | ETA: 269.5h
+[PROGRESS] 40,000/10,000,000 (0.40%) | hits: 0 | errors: 81 | 10.0 req/s | ETA: 277.3h
+[PROGRESS] 45,000/10,000,000 (0.45%) | hits: 0 | errors: 89 | 9.7 req/s | ETA: 285.7h
+[PROGRESS] 50,000/10,000,000 (0.50%) | hits: 0 | errors: 96 | 9.4 req/s | ETA: 293.6h
+[PROGRESS] 55,000/10,000,000 (0.55%) | hits: 0 | errors: 104 | 9.1 req/s | ETA: 302.6h
+[PROGRESS] 60,000/10,000,000 (0.60%) | hits: 0 | errors: 109 | 9.0 req/s | ETA: 305.9h
+[PROGRESS] 65,000/10,000,000 (0.65%) | hits: 0 | errors: 133 | 8.7 req/s | ETA: 316.5h
+[PROGRESS] 70,000/10,000,000 (0.70%) | hits: 0 | errors: 149 | 8.3 req/s | ETA: 330.9h
+[PROGRESS] 75,000/10,000,000 (0.75%) | hits: 0 | errors: 166 | 8.1 req/s | ETA: 340.0h
+[PROGRESS] 80,000/10,000,000 (0.80%) | hits: 0 | errors: 185 | 7.9 req/s | ETA: 348.4h
+[PROGRESS] 85,000/10,000,000 (0.85%) | hits: 0 | errors: 185 | 7.7 req/s | ETA: 356.3h
