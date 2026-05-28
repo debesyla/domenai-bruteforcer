@@ -149,6 +149,8 @@ Thumbs.db
 
 # Project-specific
 # Generated output files
+output/
+!output/.gitkeep
 assets/output/*
 !assets/output/.gitkeep
 !assets/.gitkeep
