@@ -28,12 +28,20 @@ import queue
 import signal
 import sqlite3
 import threading
+import re
 import time
 from contextlib import closing, contextmanager
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from pybloom_live import ScalableBloomFilter
+
+# Optional: unidecode for character normalization (e.g., ë → e)
+try:
+    from unidecode import unidecode as _unidecode
+except ImportError:
+    _unidecode = None  # graceful fallback, no-op
+
 
 # ------------------------
 # Hardcoded settings (from plan)
@@ -52,6 +60,7 @@ CONCURRENCY = 40  # worker tasks (reduced for stability)
 CHECK_TIMEOUT = 6
 MAX_RETRIES = 1
 RETRY_BACKOFF = 2  # seconds
+MAX_UNKNOWN_RETRIES = 1  # how many times to re-scan domains that returned 'unknown'
 
 # Batching
 BATCH_IMPORT_SIZE = 5000
@@ -95,6 +104,39 @@ def now_ts() -> float:
 
 def normalize_domain(d: str) -> str:
     return d.strip().lower()
+
+
+def clean_domain(raw: str) -> tuple:
+    """
+    Returns (cleaned_domain, None) if valid,
+    or (None, error_reason) if rejected.
+    """
+    if not raw or not raw.strip():
+        return None, "empty"
+
+    # Normalise: strip whitespace, remove trailing dot, lowercase
+    domain = raw.strip().rstrip(".").lower()
+
+    # 1. Turn non-Latin letters (ë, ü, 中文, etc.) into closest Latin chars
+    if _unidecode is not None:
+        domain = _unidecode(domain)
+
+    # 2. Allow ONLY a-z, 0-9, hyphens and dots (already ASCII after unidecode)
+    if not re.fullmatch(r"[a-z0-9\-\.]+", domain):
+        return None, "invalid characters"
+
+    # 3. Check each label (part between dots)
+    for label in domain.split("."):
+        if len(label) < 2:
+            return None, "domain label too short (min 2 chars)"
+        if len(label) > 63:
+            return None, "label exceeds 63 characters"
+        if label.startswith("-") or label.endswith("-"):
+            return None, "hyphen at start or end of label"
+        if "--" in label and not label.startswith("xn--"):
+            return None, "consecutive hyphens"
+
+    return domain, None
 
 
 # ------------------------
@@ -245,6 +287,7 @@ def import_domains_for_tld(
 
     print(f"[IMPORT] Importing .{tld} from {file_path}...")
     inserted = 0
+    skipped = 0
     to_insert: List[Tuple[str, str, str]] = []
 
     with path.open("r", encoding="utf-8", errors="ignore") as fh:
@@ -252,9 +295,18 @@ def import_domains_for_tld(
             original_domain = line.strip().lower()
             if not original_domain:
                 continue
+
+            # Validate & normalise domain before processing
+            cleaned, reason = clean_domain(original_domain)
+            if cleaned is None:
+                skipped += 1
+                continue
+            original_domain = cleaned  # use cleaned version (unidecoded, lowered, stripped)
+
             # Strip the original TLD suffix to get the SLD, then form .lt domain
             sld = original_domain.rsplit(".", 1)[0]
             if not sld:
+                skipped += 1
                 continue
             lt_domain = f"{sld}.lt"
 
@@ -275,6 +327,8 @@ def import_domains_for_tld(
             bloom.add(d)
         inserted += len(to_insert)
 
+    if skipped:
+        print(f"[IMPORT] Filtered out {skipped} invalid domains from .{tld}.")
     print(f"[IMPORT] Inserted {inserted} new .lt domains for .{tld}.")
     return inserted
 
@@ -930,6 +984,72 @@ async def run_scanner_on_pending(output_dir: str = OUTPUT_DIR):
         print("[SCANNER] Picker thread didn't exit cleanly.")
 
     print("[SCANNER] Scan complete.")
+
+    # --- Auto-retry unknown domains ---
+    for retry in range(MAX_UNKNOWN_RETRIES):
+        conn_retry = get_db_conn(DB_PATH)
+        cur_retry = conn_retry.cursor()
+        cur_retry.execute("SELECT COUNT(*) FROM domains WHERE status='unknown';")
+        unknown_count = cur_retry.fetchone()[0]
+        conn_retry.close()
+
+        if unknown_count == 0:
+            break
+
+        print(f"[RETRY] {unknown_count} domain(s) returned 'unknown' — re-scanning (attempt {retry + 1}/{MAX_UNKNOWN_RETRIES})...")
+
+        # Reset unknowns back to pending
+        conn_retry = get_db_conn(DB_PATH)
+        cur_retry = conn_retry.cursor()
+        cur_retry.execute("UPDATE domains SET status='pending', in_progress=0, last_checked=NULL WHERE status='unknown';")
+        conn_retry.commit()
+        conn_retry.close()
+
+        # Re-run scanner
+        shutdown_event = threading.Event()
+        shutdown_flag = asyncio.Event()
+        loop = asyncio.get_running_loop()
+
+        picker_queue: asyncio.Queue = asyncio.Queue(maxsize=CONCURRENCY * 2)
+        writer_thread_q: queue.Queue = queue.Queue()
+
+        picker = PickerThread(DB_PATH, picker_queue, shutdown_event, loop)
+        picker.start()
+
+        writer = WriterThread(DB_PATH, writer_thread_q, output_dir, shutdown_event)
+        writer.start()
+
+        token_bucket = TokenBucket(RATE)
+        await token_bucket.start()
+
+        stats_retry: Dict[str, int] = {"completed": 0}
+        stats_lock = asyncio.Lock()
+
+        worker_tasks = [
+            asyncio.create_task(worker_task(i, picker_queue, writer_thread_q, token_bucket, shutdown_flag, stats_retry, stats_lock))
+            for i in range(CONCURRENCY)
+        ]
+        progress_task = asyncio.create_task(progress_logger(DB_PATH, shutdown_flag, stats_retry, stats_lock))
+        install_signal_handlers(loop, shutdown_event, shutdown_flag)
+
+        print(f"[RETRY] Restarting scanner for {unknown_count} domains...")
+        try:
+            await asyncio.gather(*worker_tasks)
+            print(f"[RETRY] Re-scan complete.")
+        except asyncio.CancelledError:
+            pass
+        finally:
+            await token_bucket.stop()
+            if not progress_task.done():
+                progress_task.cancel()
+                try:
+                    await progress_task
+                except asyncio.CancelledError:
+                    pass
+
+        shutdown_event.set()
+        writer.join(timeout=10.0)
+        picker.join(timeout=2.0)
 
 
 # ------------------------
