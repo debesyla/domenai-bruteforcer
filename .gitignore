@@ -164,3 +164,9 @@ assets/input.txt
 # Runtime data (special-phones branch)
 assets/phone_scan_checkpoint.txt
 assets/phone_hits.txt
+
+# Runtime artifacts (phone scanner & misc)
+assets/phone_scan_log.txt
+assets/phone_scanner.pid
+assets/abudhabi_output/
+scanner-branch/
