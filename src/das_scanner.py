@@ -8,7 +8,7 @@ via DAS, and outputs a CSV and stats file.
 
 Features:
 - Imports from TLD files, forming .lt mirror domains
-- Bloom filter deduplication across TLDs
+- Durable cross-TLD/cross-restart dedup (seen_twins table + in-memory bloom accelerator)
 - Picker thread: atomically selects pending domains and marks them in_progress
 - Async worker tasks: rate-limited TCP queries to das.domreg.lt:4343
 - Writer thread: batched DB updates and buffered per-status text files
@@ -68,6 +68,15 @@ PICK_BATCH_SIZE = 15
 WRITE_BATCH_SIZE = 1000
 FILE_BUFFER_SIZE = 10000
 
+# Dedup / bloom filter
+# The seen_twins table is the AUTHORITATIVE dedup record; the bloom is only a fast
+# in-memory accelerator, so a false positive just costs a DB confirm (never a dropped
+# domain) and the capacity/error_rate can be modest.
+BLOOM_INITIAL_CAPACITY = 50_000_000
+BLOOM_ERROR_RATE = 0.01
+# Max bound-parameters per "IN (...)" query; stay well under SQLITE_MAX_VARIABLE_NUMBER.
+DB_QUERY_CHUNK = 900
+
 # Logging / progress
 PROGRESS_INTERVAL = 1800  # domains between progress logs
 IMPORT_LOG_INTERVAL = 100000
@@ -126,7 +135,16 @@ def clean_domain(raw: str) -> tuple:
         return None, "invalid characters"
 
     # 3. Check each label (part between dots)
-    for label in domain.split("."):
+    labels = domain.split(".")
+
+    # Must be at least SLD.TLD — reject dotless / bare-TLD input (a stray "com" line
+    # would otherwise become the bogus twin "com.lt"). NOTE: subdomains (www.example.com)
+    # and multi-part TLDs (example.co.uk) are NOT normalized here; handling those
+    # correctly needs a public-suffix list. This only rejects the clearly-malformed case.
+    if len(labels) < 2:
+        return None, "not a domain (needs at least SLD.TLD)"
+
+    for label in labels:
         if len(label) < 2:
             return None, "domain label too short (min 2 chars)"
         if len(label) > 63:
@@ -167,6 +185,14 @@ def init_db(conn: sqlite3.Connection) -> None:
     CREATE INDEX IF NOT EXISTS idx_status ON domains(status);
     CREATE INDEX IF NOT EXISTS idx_pending ON domains(status, in_progress);
     CREATE INDEX IF NOT EXISTS idx_source_tld ON domains(source_tld);
+
+    -- Durable dedup: every .lt twin that has been SCANNED (in any TLD, any run) is
+    -- recorded here. This table is NEVER deleted by the per-TLD cleanup, so cross-TLD
+    -- and cross-restart dedup survives crashes. The in-memory bloom is rebuilt from it
+    -- on startup.
+    CREATE TABLE IF NOT EXISTS seen_twins (
+      domain TEXT PRIMARY KEY
+    );
     """
     )
     conn.commit()
@@ -242,14 +268,110 @@ def _batch_insert(conn: sqlite3.Connection, rows: List[Tuple[str]]) -> None:
     conn.commit()
 
 
-def _batch_insert_mirror(conn: sqlite3.Connection, rows: List[Tuple[str, str, str]]) -> None:
-    """Insert domains with original_domain and source_tld metadata."""
+def _batch_insert_mirror(conn: sqlite3.Connection, rows: List[Tuple[str, str, str]]) -> int:
+    """Insert twins into the `domains` scan queue (INSERT OR IGNORE on the domain
+    PRIMARY KEY). Returns the number of rows ACTUALLY inserted — collisions are not
+    counted — so callers can report accurate import totals."""
     cur = conn.cursor()
+    before = conn.total_changes
     cur.executemany(
         "INSERT OR IGNORE INTO domains(domain, original_domain, source_tld) VALUES (?, ?, ?);",
         rows,
     )
+    inserted = conn.total_changes - before
     conn.commit()
+    return inserted
+
+
+def _existing_twins(conn: sqlite3.Connection, twins: List[str]) -> set:
+    """Return the subset of `twins` already recorded in seen_twins (the authoritative
+    dedup record). Chunked to stay under SQLite's bound-parameter limit."""
+    found: set = set()
+    cur = conn.cursor()
+    for i in range(0, len(twins), DB_QUERY_CHUNK):
+        chunk = twins[i:i + DB_QUERY_CHUNK]
+        placeholders = ",".join("?" for _ in chunk)
+        cur.execute(
+            f"SELECT domain FROM seen_twins WHERE domain IN ({placeholders});", chunk
+        )
+        found.update(row[0] for row in cur.fetchall())
+    return found
+
+
+def rebuild_bloom_from_seen(db_path: str, bloom: ScalableBloomFilter) -> int:
+    """Repopulate the in-memory bloom from the durable seen_twins table so cross-TLD
+    dedup survives process restarts. Returns the number of twins loaded."""
+    conn = get_db_conn(db_path)
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM seen_twins;")
+        total = cur.fetchone()[0]
+        if not total:
+            return 0
+        print(f"[BLOOM] Rebuilding filter from {total} previously-seen twins...")
+        cur.execute("SELECT domain FROM seen_twins;")
+        loaded = 0
+        for (domain,) in cur:
+            bloom.add(domain)
+            loaded += 1
+            if loaded % 1_000_000 == 0:
+                print(f"[BLOOM] Loaded {loaded}/{total}...")
+        print(f"[BLOOM] Filter rebuilt with {loaded} twins.")
+        return loaded
+    finally:
+        conn.close()
+
+
+def record_seen_twins(db_path: str, tld: str, bloom: ScalableBloomFilter) -> int:
+    """Mark a TLD's SCANNED twins as durably seen (seen_twins table + bloom) so they are
+    never re-imported or re-scanned under a later TLD or after a restart. Only
+    non-pending rows are recorded, so an interrupted scan never marks a twin done before
+    it has actually been checked. Returns the number of twins recorded."""
+    conn = get_db_conn(db_path)
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT OR IGNORE INTO seen_twins(domain) "
+            "SELECT domain FROM domains WHERE source_tld = ? AND status != 'pending';",
+            (tld,),
+        )
+        conn.commit()
+        cur.execute(
+            "SELECT domain FROM domains WHERE source_tld = ? AND status != 'pending';",
+            (tld,),
+        )
+        recorded = 0
+        for (domain,) in cur:
+            bloom.add(domain)
+            recorded += 1
+        return recorded
+    finally:
+        conn.close()
+
+
+def delete_tld_rows(db_path: str, tld: str) -> None:
+    """Remove a TLD's rows from the `domains` scan queue (idempotent). seen_twins is
+    durable and intentionally left untouched."""
+    conn = get_db_conn(db_path)
+    try:
+        conn.execute("DELETE FROM domains WHERE source_tld = ?;", (tld,))
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def pending_count_for_tld(db_path: str, tld: str) -> int:
+    """How many of a TLD's twins are still pending (i.e., not yet scanned)."""
+    conn = get_db_conn(db_path)
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT COUNT(*) FROM domains WHERE source_tld = ? AND status = 'pending';",
+            (tld,),
+        )
+        return cur.fetchone()[0]
+    finally:
+        conn.close()
 
 
 def reset_in_progress(conn: sqlite3.Connection) -> int:
@@ -277,8 +399,15 @@ def import_domains_for_tld(
     batch_size: int = BATCH_IMPORT_SIZE,
 ) -> int:
     """
-    Read a TLD file, form .lt twins, skip duplicates via bloom filter,
-    insert into DB. Returns count of new rows inserted.
+    Read a TLD file, form .lt twins, and queue twins that have not been scanned yet.
+
+    Dedup is authoritative via the persistent seen_twins table (survives restarts and
+    the per-TLD cleanup). The in-memory `bloom` is a fast pre-filter kept as a superset
+    of seen_twins (rebuilt at startup, updated when a TLD completes):
+      * a bloom MISS means the twin has definitely never been scanned -> queue it;
+      * a bloom HIT is confirmed against seen_twins, so a false positive never silently
+        drops a real domain.
+    Returns the count of new twins queued for scanning.
     """
     path = Path(file_path)
     if not path.exists():
@@ -286,9 +415,28 @@ def import_domains_for_tld(
         return 0
 
     print(f"[IMPORT] Importing .{tld} from {file_path}...")
-    inserted = 0
-    skipped = 0
-    to_insert: List[Tuple[str, str, str]] = []
+    inserted = 0      # new twins queued for scanning
+    skipped = 0       # invalid / malformed input lines
+    duplicates = 0    # twins already scanned before (deduped away)
+
+    new_batch: Dict[str, Tuple[str, str, str]] = {}    # bloom miss -> definitely new
+    check_batch: Dict[str, Tuple[str, str, str]] = {}  # bloom hit  -> confirm vs seen_twins
+
+    def flush():
+        nonlocal inserted, duplicates
+        # Bloom misses are guaranteed new (the bloom is a superset of seen_twins).
+        if new_batch:
+            inserted += _batch_insert_mirror(conn, list(new_batch.values()))
+            new_batch.clear()
+        # Bloom hits may be false positives: only the ones NOT in seen_twins are new.
+        if check_batch:
+            twins = list(check_batch.keys())
+            existing = _existing_twins(conn, twins)
+            duplicates += len(existing)
+            fresh = [check_batch[t] for t in twins if t not in existing]
+            if fresh:
+                inserted += _batch_insert_mirror(conn, fresh)
+            check_batch.clear()
 
     with path.open("r", encoding="utf-8", errors="ignore") as fh:
         for line in fh:
@@ -301,35 +449,35 @@ def import_domains_for_tld(
             if cleaned is None:
                 skipped += 1
                 continue
-            original_domain = cleaned  # use cleaned version (unidecoded, lowered, stripped)
+            original_domain = cleaned  # cleaned version (unidecoded, lowered, stripped)
 
-            # Strip the original TLD suffix to get the SLD, then form .lt domain
+            # Strip the original TLD suffix to get the SLD, then form the .lt twin
             sld = original_domain.rsplit(".", 1)[0]
             if not sld:
                 skipped += 1
                 continue
             lt_domain = f"{sld}.lt"
 
-            if lt_domain in bloom:
+            # Intra-batch dedup: don't stage the same twin twice before a flush.
+            if lt_domain in new_batch or lt_domain in check_batch:
+                duplicates += 1
                 continue
 
-            to_insert.append((lt_domain, original_domain, tld))
-            if len(to_insert) >= batch_size:
-                _batch_insert_mirror(conn, to_insert)
-                for d, _, _ in to_insert:
-                    bloom.add(d)
-                inserted += len(to_insert)
-                to_insert.clear()
+            if lt_domain in bloom:
+                check_batch[lt_domain] = (lt_domain, original_domain, tld)
+            else:
+                new_batch[lt_domain] = (lt_domain, original_domain, tld)
 
-    if to_insert:
-        _batch_insert_mirror(conn, to_insert)
-        for d, _, _ in to_insert:
-            bloom.add(d)
-        inserted += len(to_insert)
+            if len(new_batch) + len(check_batch) >= batch_size:
+                flush()
+
+    flush()
 
     if skipped:
         print(f"[IMPORT] Filtered out {skipped} invalid domains from .{tld}.")
-    print(f"[IMPORT] Inserted {inserted} new .lt domains for .{tld}.")
+    if duplicates:
+        print(f"[IMPORT] Skipped {duplicates} already-scanned twins from .{tld}.")
+    print(f"[IMPORT] Queued {inserted} new .lt domains for .{tld}.")
     return inserted
 
 
@@ -1082,11 +1230,11 @@ async def main_async(args):
     """
     Crash-safe loop over TLD files:
     For each TLD file in tld_lists/:
-      1. Import domains (forming .lt twins), skip dupes via bloom filter
+      1. Import domains (forming .lt twins), skip twins already scanned (durable dedup)
       2. Scan pending domains via DAS engine
-      3. Export results to CSV
-      4. Calculate & save stats
-      5. Clean up DB rows for this TLD
+      3. Record this TLD's scanned twins as durably seen (seen_twins + bloom)
+      4. Export results to CSV and calculate & save stats (the done-marker)
+      5. Clean up the scan queue rows for this TLD
     Then write a global summary.
     """
     ensure_dirs()
@@ -1096,8 +1244,13 @@ async def main_async(args):
     init_db(conn)
     conn.close()
 
-    # Bloom filter for cross-TLD dedup
-    bloom = ScalableBloomFilter(initial_capacity=100_000_000, error_rate=0.001)
+    # Bloom filter: fast in-memory accelerator for dedup. The AUTHORITATIVE dedup record
+    # is the persistent seen_twins table; rebuild the bloom from it so cross-TLD dedup
+    # survives restarts (a false positive only triggers a DB confirm, never a drop).
+    bloom = ScalableBloomFilter(
+        initial_capacity=BLOOM_INITIAL_CAPACITY, error_rate=BLOOM_ERROR_RATE
+    )
+    rebuild_bloom_from_seen(DB_PATH, bloom)
 
     tld_input_dir = Path(TLD_INPUT_DIR)
     output_root = Path(OUTPUT_ROOT)
@@ -1134,33 +1287,50 @@ async def main_async(args):
                     all_stats[tld] = {"total": total, "registered": registered, "index": idx}
             except Exception:
                 pass
+            # Idempotent cleanup: a crash between export and the per-TLD delete can leave
+            # this completed TLD's rows in `domains`; drop them so they aren't re-scanned
+            # under a later TLD. seen_twins is durable and left untouched.
+            delete_tld_rows(DB_PATH, tld)
             continue
 
         print(f"\n=== Processing .{tld} ===")
 
-        # 1. Import this TLD's domains
-        conn = get_db_conn(DB_PATH)
-        import_domains_for_tld(conn, tld, str(tld_file), bloom)
-        conn.close()
+        try:
+            # 1. Import this TLD's domains (queue new twins; skip already-scanned ones)
+            conn = get_db_conn(DB_PATH)
+            try:
+                import_domains_for_tld(conn, tld, str(tld_file), bloom)
+            finally:
+                conn.close()
 
-        # 2. Scan all pending domains
-        await run_scanner_on_pending(str(output_dir))
+            # 2. Scan all pending domains
+            await run_scanner_on_pending(str(output_dir))
 
-        # 3. Export results for this TLD
-        export_results_for_tld(DB_PATH, tld, output_dir)
+            # If the scan was interrupted (e.g. a shutdown signal), some twins are still
+            # pending. Do NOT mark the TLD done — leave it un-exported so it fully resumes
+            # next run — and stop processing further TLDs.
+            if pending_count_for_tld(DB_PATH, tld) > 0:
+                print(f"[MAIN] .{tld} scan incomplete (pending remain); will resume next run. Stopping.")
+                break
 
-        # 4. Calculate & save stats
-        stats = calculate_mirror_index(DB_PATH, tld)
-        all_stats[tld] = stats
-        write_stats(stats, tld, output_dir)
+            # 3. Record this TLD's scanned twins as durably seen BEFORE writing the
+            #    done-marker, so a completed TLD is always reflected in seen_twins.
+            record_seen_twins(DB_PATH, tld, bloom)
 
-        # 5. Clean up DB to keep it lean (CRITICAL for stability)
-        conn = get_db_conn(DB_PATH)
-        cur = conn.cursor()
-        cur.execute("DELETE FROM domains WHERE source_tld = ?;", (tld,))
-        conn.commit()
-        conn.close()
-        print(f"[CLEANUP] Removed .{tld} data from DB.\n")
+            # 4. Export results + stats (these files are the crash-recovery done-marker)
+            export_results_for_tld(DB_PATH, tld, output_dir)
+            stats = calculate_mirror_index(DB_PATH, tld)
+            all_stats[tld] = stats
+            write_stats(stats, tld, output_dir)
+
+            # 5. Clean up the scan queue to keep the DB lean (seen_twins stays durable)
+            delete_tld_rows(DB_PATH, tld)
+            print(f"[CLEANUP] Removed .{tld} data from DB.\n")
+        except Exception as e:
+            # Don't let one bad TLD abort the whole multi-TLD run; it has no done-marker,
+            # so it will be retried on the next run.
+            print(f"[ERROR] Failed to process .{tld}: {e!r}. Skipping to next TLD.\n")
+            continue
 
     # Final global summary
     if all_stats:
