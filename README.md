@@ -9,7 +9,7 @@ This readme.md and most of the code was AI-generated, human reviewed.
 ## Features
 
 - Processes 60M+ domains efficiently
-- Asynchronous workers with rate limiting (28 req/sec)
+- Asynchronous workers with rate limiting (30 req/sec) + adaptive back-off and retries
 - Durable cross-TLD/cross-restart dedup (`seen_twins` table + bloom accelerator)
 - Resume capability after interruptions
 - Outputs to SQLite DB and per-status text files

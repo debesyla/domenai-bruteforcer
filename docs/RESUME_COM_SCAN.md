@@ -1,71 +1,69 @@
-# Resuming the scan with `.com` (without re-checking already-scanned twins)
+# Runbook: scan `.com` (for the operator agent)
 
-**Goal:** every TLD except `.com` has already been scanned; their results live under
-`output/<tld>/`. We now want to scan the huge `.com` list, but **skip every `.lt` twin
-that was already checked under another TLD** instead of re-querying ~100M domains. Twins
-that previously came back `unknown` (timeouts / errors / unparseable replies) are the one
-exception — those are **re-scanned**, not skipped.
+Follow these steps **in order**. Copy-paste each command exactly. After each step, check
+the "Expected" line. If reality does not match Expected, **stop and report to the humans**
+instead of guessing.
 
-How it works: a durable `seen_twins` table records every twin that has a clear result.
-The scanner rebuilds its in-memory bloom filter from that table on startup and skips those
-twins at import time. False positives are confirmed against the table, so no real domain is
-ever silently dropped.
+Everything runs from the repo:
+`/home/kaukas/.openclaw/workspace/domenai-bruteforcer` (adjust if your path differs).
 
-> These instructions are self-contained. Run them from the repo root
-> (`/home/kaukas/.openclaw/workspace/domenai-bruteforcer` — adjust if different).
+### File map — where things live (do not move them)
+
+| What | Where |
+|---|---|
+| Fixed scanner code | branch **`all-tld-scanner`** (git) |
+| The `.com` list to scan (~160M lines) | `tld_lists_holt/com.txt` |
+| Results from previously scanned TLDs | `output/<tld>/` (already on disk) |
+| Working database (fresh, we create it) | `com_scan.db` |
+| Scan log | `/tmp/com_scan.log` |
+| Process id | `/tmp/com_scan.pid` |
 
 ---
 
-## 0. Be on the fixed code
-
-The dedup fix and the backfill tool are on branch `claude/bloom-filter-review-ktar2z`.
-Your scan data is safe — `output/` and `*.db` are gitignored, so switching branches will
-not touch them.
+## Step 1 — Update the code
 
 ```bash
-git stash -u 2>/dev/null || true
-git fetch origin claude/bloom-filter-review-ktar2z
-git checkout claude/bloom-filter-review-ktar2z
-git pull origin claude/bloom-filter-review-ktar2z
+cd /home/kaukas/.openclaw/workspace/domenai-bruteforcer
+git stash -u 2>/dev/null || true          # park any local edits
+git fetch origin all-tld-scanner
+git checkout all-tld-scanner
+git pull --ff-only origin all-tld-scanner
 ```
 
-Sanity check you have the new code:
+Expected: `git log --oneline -1` shows a recent commit mentioning "retry" or "backfill" or
+"dedup". Verify the tools exist:
 
 ```bash
-grep -c seen_twins src/das_scanner.py   # must be > 0
-ls backfill_seen_twins.py               # must exist
+grep -c seen_twins src/das_scanner.py     # must be > 0
+ls backfill_seen_twins.py                 # must exist
 ```
 
-Dependencies (`pybloom_live`, `unidecode`) are already installed from the previous scans.
-If an import ever fails: `pip install -r requirements.txt`.
+## Step 2 — Tune the machine (one-time, reduces failed requests)
 
-We use a dedicated DB `com_scan.db` for a clean slate — use the **same** `--db` for the
-backfill and the scan.
+```bash
+ulimit -n 65535
+sudo sysctl -w net.ipv4.tcp_tw_reuse=1 2>/dev/null || echo "no sudo — skip (still fine)"
+sudo sysctl -w net.ipv4.ip_local_port_range="1024 65535" 2>/dev/null || true
+```
 
-## 1. Backfill the "already-checked" set from existing results
+Expected: `ulimit -n` now prints `65535`. (The sudo lines are best-effort; if they fail, continue.)
 
-Reads `output/<tld>/domains.csv` (and per-status `.txt` files as a fallback) and records
-every twin with a **clear** status into `seen_twins`. `unknown` twins are intentionally
-left out so they get re-scanned.
+## Step 3 — Seed the dedup table from prior results
+
+This records every already-checked `.lt` twin so we don't re-check it. Use `com_scan.db`
+here and for the scan — **the same DB file for both.**
 
 ```bash
 python3 backfill_seen_twins.py --db com_scan.db --output-root output
 ```
 
-Check the final line: `seen_twins now N unique`. **N should be roughly the number you
-already scanned (~100M).** If N is near zero, stop and fix `--output-root`/`--db` before
-continuing — otherwise everything would be re-scanned.
+Expected: the last line says `seen_twins now N unique` with **N in the low millions**
+(≈8–9M). If N is `0` or a few hundred, **stop and report** — the results folder is wrong.
 
-## 2. Confirm the `.com` list is in place
+> Note: N is only a few million, NOT ~100M. Most prior TLDs were only partly scanned, so
+> there isn't much to skip. That's expected — do not treat a "small" N as an error.
 
-The list is at `tld_lists_holt/com.txt` (one domain per line, e.g. `example.com`). We point
-`--tld-dir` at that folder so **only** `.com` is processed:
-
-```bash
-wc -l tld_lists_holt/com.txt   # expect ~160,000,000
-```
-
-## 3. Launch the scan (background, survives disconnects)
+## Step 4 — Start the scan (runs for weeks; survives disconnects)
 
 ```bash
 setsid python3 -u src/das_scanner.py \
@@ -75,53 +73,79 @@ echo $! > /tmp/com_scan.pid
 echo "started PID $(cat /tmp/com_scan.pid)"
 ```
 
-What the log shows, in order:
-1. `[BLOOM] Rebuilding filter from ~100,000,000 previously-seen twins...` — a few minutes,
-   happens on every start. Normal.
-2. `[IMPORT] Skipped <~100M> already-scanned twins` and
-   `[IMPORT] Queued <~60M> new .lt domains` — **this is the proof the dedup worked.**
-   The import itself takes a while (it streams 160M lines and confirms the hits against the
-   DB) before scanning visibly starts.
-3. `[SCANNER] <~60M> domains pending` → scanning begins at 28 req/sec.
+## Step 5 — Verify it actually started deduping (do this ~15 min after Step 4)
 
-## 4. Monitoring & reporting duties (openclaw: do this, don't just launch and leave)
+```bash
+grep -E "Skipped|Queued" /tmp/com_scan.log | tail -3
+```
 
-Do not block waiting — use your periodic self-check-in / loop, and **report to the user**:
+Expected two lines like:
+```
+[IMPORT] Skipped <a few million> already-scanned twins from .com.
+[IMPORT] Queued  ~150,000,000 new .lt domains for .com.
+```
 
-- **Right after import:** report the exact `Skipped` and `Queued` numbers. If `Skipped` is
-  ~0, raise the alarm — the backfill didn't take.
-- **Every few hours:** report progress, hits, and ETA. Gather it with:
+- If you see them → **good, report to humans that the scan is running** (see Step 6).
+- If `Skipped` is `0` → **stop and report** (dedup didn't load).
+- If the import is still running (no lines yet) → wait, it streams 160M lines and takes a while.
 
-  ```bash
-  # remaining vs done for .com
-  sqlite3 com_scan.db "SELECT status, COUNT(*) FROM domains WHERE source_tld='com' GROUP BY status;"
-  # free .lt twins found so far (the interesting output):
-  wc -l output/com/available.txt 2>/dev/null
-  # latest progress/ETA lines the scanner prints:
-  grep -E "PROGRESS|ETA|remaining" /tmp/com_scan.log | tail -3
-  ```
+## Step 6 — Report back to the humans
 
-  Progress ≈ (queued − pending) / queued. Report % done, `available` count, and the ETA.
-- **Liveness:** if the process is gone or the log has not advanced in a while, treat it as a
-  crash — restart it (next section) and tell the user you did.
-- **When finished:** `output/com/domains.csv` and `output/com/stats.txt` appear. Report the
-  final counts (total scanned, active `.lt` mirrors, mirror index) and where the files are.
+**Report immediately when:** import finishes (Step 5 numbers), the process dies, a scan
+finishes, or you restart it.
 
-## 5. If it stops / crashes — just restart the same command
+**Otherwise report every 6 hours.** Gather the numbers:
 
-It is crash-safe and resumable. Re-run the **exact** launch command from step 3. On restart
-the scanner rebuilds the bloom from `seen_twins` and picks up `.com`'s remaining pending
-rows — nothing already scanned is redone.
+```bash
+kill -0 "$(cat /tmp/com_scan.pid)" 2>/dev/null && echo "ALIVE" || echo "DEAD"
+sqlite3 com_scan.db "SELECT status, COUNT(*) FROM domains WHERE source_tld='com' GROUP BY status;"
+wc -l output/com/available.txt 2>/dev/null     # free .lt twins found so far
+grep -E "PROGRESS|ETA|remaining" /tmp/com_scan.log | tail -2
+grep -c THROTTLE /tmp/com_scan.log             # how many times it auto-slowed for failures
+```
 
-**Do not re-run the backfill** on a restart (harmless but pointless). Only re-run it if you
-wipe `com_scan.db`.
+Then post this exact template, filled in:
 
-## Notes
+```
+.com scan status
+- process: ALIVE / DEAD
+- pending (left to scan): <number>
+- done this run: <available + registered + blocked + ... counts>
+- available .lt found: <wc -l of available.txt>
+- unknown so far: <unknown count>
+- throttle events: <grep -c THROTTLE>
+- latest ETA from log: <paste line>
+```
 
-- **Rate / ETA:** the scanner runs at **28 req/sec** (`RATE` in `src/das_scanner.py`). At
-  that rate ~60M domains is on the order of **~25 days**. To go faster, raise `RATE` (and
-  `CONCURRENCY`) — but only as far as `das.domreg.lt` tolerates without rate-limiting or
-  banning. Changing it takes effect on the next restart.
-- **Disk:** `seen_twins` at ~100M rows is a few GB in SQLite — make sure there's headroom.
-- **Live results** stream to `output/com/available.txt` (and `registered.txt`, etc.) as they
-  are found — you don't have to wait for the end.
+**Raise a flag (report now, don't wait 6h) if:** process is DEAD, `pending` hasn't dropped
+between two reports, or `throttle events` keeps climbing fast (means it's getting blocked —
+the humans may want to lower `RATE`).
+
+## Step 7 — If it dies or stalls, restart it
+
+It is crash-safe. Re-run the **Step 4** command exactly. It rebuilds its filter from
+`seen_twins` and resumes `.com`'s remaining `pending` rows — nothing already scanned is
+redone. **Do NOT re-run Step 3 (backfill)** on a restart.
+
+---
+
+## Reference — normal log lines (do not panic)
+
+- `[BLOOM] Rebuilding filter from N previously-seen twins...` — startup, a few minutes. Normal.
+- `[THROTTLE] 25 failures in a row — pausing 15s to recover.` — the scanner auto-slowed
+  because domreg dropped some requests. Normal and good; it protects the run. Only worry if
+  it happens constantly.
+- `[RETRY] ... re-scanning (attempt X/5)` — after the main pass, it re-tries the `unknown`
+  results up to 5 times with waits between. Normal; this is what drives the failure count down.
+
+## Reference — settings (in `src/das_scanner.py`, change only if a human asks)
+
+- `RATE = 30` — requests/sec. This is the registrar's sanctioned max. Do not exceed 30.
+- `MAX_UNKNOWN_RETRIES = 5`, `UNKNOWN_RETRY_BACKOFF = 20` — retry passes for failed lookups.
+- `ADAPTIVE_FAIL_STREAK = 25`, `ADAPTIVE_COOLDOWN = 15` — auto-slowdown on failure bursts.
+
+## Reality check — this is a long run
+
+`.com` is ~160M domains and dedup only removes a few million, so ~150M get scanned. At 30/s
+that first pass is **~8 weeks**, plus retry passes. That is expected. Keep it alive, keep
+reporting, and let the humans decide if they want to narrow the scope.

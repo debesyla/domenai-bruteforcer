@@ -55,12 +55,19 @@ TLD_INPUT_DIR = "tld_lists"
 OUTPUT_ROOT = "output"
 
 # Performance / behavior
-RATE = 28  # requests/sec (token bucket)
-CONCURRENCY = 40  # worker tasks (reduced for stability)
+RATE = 30  # requests/sec — registrar-sanctioned limit; do not exceed
+CONCURRENCY = 40  # worker tasks
 CHECK_TIMEOUT = 6
-MAX_RETRIES = 1
+MAX_RETRIES = 1  # per-request connection retries inside das_check
 RETRY_BACKOFF = 2  # seconds
-MAX_UNKNOWN_RETRIES = 1  # how many times to re-scan domains that returned 'unknown'
+MAX_UNKNOWN_RETRIES = 5  # re-scan passes for 'unknown' results (failures are transient — retry recovers ~95%/pass)
+UNKNOWN_RETRY_BACKOFF = 20  # base seconds to wait before each unknown re-scan pass (grows per pass)
+
+# Adaptive back-off. An 'unknown' is an empty/failed reply — domreg returns no error message,
+# so a block looks the same as a genuine miss. Failures arrive in transient bursts, so a run of
+# consecutive failures trips a short cooldown instead of burning domains into 'unknown'.
+ADAPTIVE_FAIL_STREAK = 25  # consecutive failures (no success in between) that trip a cooldown
+ADAPTIVE_COOLDOWN = 15  # seconds to pause when tripped
 
 # Batching
 BATCH_IMPORT_SIZE = 5000
@@ -664,12 +671,28 @@ class TokenBucket:
 
     def __init__(self, rate_per_sec: float, capacity: Optional[int] = None):
         self.rate = rate_per_sec
-        self.capacity = capacity if capacity is not None else int(max(1, rate_per_sec * 2))
+        # Smoother pacing: ~1 second of burst (was 2x, which could momentarily exceed the limit).
+        self.capacity = capacity if capacity is not None else int(max(1, rate_per_sec))
         self._tokens = float(self.capacity)
         self._lock = asyncio.Lock()
         self._last = now_ts()
         self._refill_task = None
         self._running = False
+        # Adaptive circuit breaker (see ADAPTIVE_* settings).
+        self._consecutive_fail = 0
+        self._cooldown_until = 0.0
+
+    def report(self, ok: bool) -> None:
+        """Workers call this after each request. A run of consecutive failures trips a short
+        cooldown so we stop hammering during a transient block/overload window."""
+        if ok:
+            self._consecutive_fail = 0
+        else:
+            self._consecutive_fail += 1
+            if self._consecutive_fail >= ADAPTIVE_FAIL_STREAK:
+                self._cooldown_until = now_ts() + ADAPTIVE_COOLDOWN
+                self._consecutive_fail = 0
+                print(f"[THROTTLE] {ADAPTIVE_FAIL_STREAK} failures in a row — pausing {ADAPTIVE_COOLDOWN}s to recover.")
 
     async def start(self):
         self._running = True
@@ -697,6 +720,10 @@ class TokenBucket:
 
     async def get_token(self):
         while True:
+            now = now_ts()
+            if now < self._cooldown_until:
+                await asyncio.sleep(min(0.5, self._cooldown_until - now))
+                continue
             async with self._lock:
                 if self._tokens >= 1.0:
                     self._tokens -= 1.0
@@ -924,6 +951,7 @@ async def worker_task(
                 break
             await token_bucket.get_token()
             status = await das_check(domain)
+            token_bucket.report(status != "unknown")  # feed the adaptive breaker
             ts = now_ts()
             async with stats_lock:
                 stats["completed"] += 1
@@ -1145,6 +1173,11 @@ async def run_scanner_on_pending(output_dir: str = OUTPUT_DIR):
             break
 
         print(f"[RETRY] {unknown_count} domain(s) returned 'unknown' — re-scanning (attempt {retry + 1}/{MAX_UNKNOWN_RETRIES})...")
+
+        # Wait before retrying so transient failures (blocks/timeouts) have time to clear.
+        backoff = UNKNOWN_RETRY_BACKOFF * (retry + 1)
+        print(f"[RETRY] Waiting {backoff}s before re-scan pass {retry + 1}...")
+        await asyncio.sleep(backoff)
 
         # Reset unknowns back to pending
         conn_retry = get_db_conn(DB_PATH)
