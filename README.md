@@ -9,10 +9,10 @@ This readme.md and most of the code was AI-generated, human reviewed.
 ## Features
 
 - Processes 60M+ domains efficiently
-- Asynchronous workers with rate limiting (30 req/sec)
+- Asynchronous workers with rate limiting (28 req/sec)
+- Durable cross-TLD/cross-restart dedup (`seen_twins` table + bloom accelerator)
 - Resume capability after interruptions
 - Outputs to SQLite DB and per-status text files
-- Zero external dependencies (Python 3.10+ built-ins only)
 
 ## Quick Start
 
@@ -23,6 +23,13 @@ This readme.md and most of the code was AI-generated, human reviewed.
 ## Requirements
 
 - Python 3.10+
+
+## Resuming with a new TLD (e.g. `.com`) without re-checking
+
+To scan a large new TLD while skipping every `.lt` twin already checked under other TLDs,
+follow [RESUME_COM_SCAN.md](docs/RESUME_COM_SCAN.md). In short: run
+`backfill_seen_twins.py` to seed the durable dedup table from existing results, then start
+the scanner — it skips the already-checked twins automatically.
 
 ## Details
 

@@ -8,11 +8,16 @@ already checked. It reads the existing per-TLD result files under output/ and re
 every .lt twin it finds into the `seen_twins` table. The scanner then rebuilds its
 bloom from `seen_twins` on startup and skips those twins during import.
 
+Only twins with a CLEAR, resolved status are recorded. Twins whose only result was
+`unknown` (every timeout / connection error / unparseable DAS reply is stored as
+"unknown") are deliberately NOT recorded, so they get re-scanned instead of skipped.
+
 Sources, per output/<tld>/ directory:
-  * domains.csv               (written when a TLD finishes; twin is the .lt column)
+  * domains.csv               (written when a TLD finishes; columns are
+                               original_domain, lt_domain, status — status filtered)
   * <status>.txt              (available.txt, registered.txt, ... — one twin per line;
                                used as a fallback when domains.csv is absent, e.g. a
-                               TLD that was interrupted mid-scan)
+                               TLD that was interrupted mid-scan. unknown.txt is skipped)
 
 Standalone: uses only the Python stdlib. It does NOT import the scanner and does NOT
 need pybloom_live. Safe to re-run (idempotent — INSERT OR IGNORE).
@@ -25,6 +30,12 @@ import sqlite3
 COMMIT_EVERY = 50_000
 PROGRESS_EVERY = 1_000_000
 
+# Statuses that do NOT count as "already checked" — twins with these get re-scanned.
+# The scanner records every error/timeout/unparseable reply as exactly "unknown"
+# (see src/das_scanner.py: das_check / _parse_das_status), and "pending"/"" means
+# never scanned. Everything else is a definitive DAS answer and is treated as done.
+RETRY_STATUSES = {"unknown", "pending", ""}
+
 
 def ensure_schema(conn: sqlite3.Connection) -> None:
     conn.execute("PRAGMA journal_mode=WAL;")
@@ -35,14 +46,21 @@ def ensure_schema(conn: sqlite3.Connection) -> None:
 
 
 def iter_twins_from_csv(path: str):
-    """Yield the .lt twin from each CSV row (robust to column order / missing header)."""
+    """Yield the .lt twin from each CSV row, but only if its status is a clear answer.
+    Rows are (original_domain, lt_domain, status); a twin whose status is unknown/pending
+    is skipped so it will be re-scanned. Robust to a missing/extra column."""
     with open(path, newline="", encoding="utf-8", errors="ignore") as f:
         for row in csv.reader(f):
-            for cell in row:
+            twin = None
+            status = ""
+            for i, cell in enumerate(row):
                 c = cell.strip().lower()
                 if c.endswith(".lt"):
-                    yield c
+                    twin = c
+                    status = row[i + 1].strip().lower() if i + 1 < len(row) else ""
                     break
+            if twin and status not in RETRY_STATUSES:
+                yield twin
 
 
 def iter_twins_from_txt(path: str):
@@ -61,8 +79,12 @@ def tld_dir_sources(tld_dir: str):
         yield ("csv", csv_path)
         return
     for name in sorted(os.listdir(tld_dir)):
-        if name.endswith(".txt") and name != "stats.txt":
-            yield ("txt", os.path.join(tld_dir, name))
+        if not name.endswith(".txt"):
+            continue
+        stem = name[:-4].lower()  # status name, e.g. "available", "unknown", "stats"
+        if stem == "stats" or stem in RETRY_STATUSES:  # skip stats.txt and unknown.txt
+            continue
+        yield ("txt", os.path.join(tld_dir, name))
 
 
 def main() -> None:

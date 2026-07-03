@@ -55,7 +55,7 @@ TLD_INPUT_DIR = "tld_lists"
 OUTPUT_ROOT = "output"
 
 # Performance / behavior
-RATE = 30  # requests/sec (token bucket)
+RATE = 28  # requests/sec (token bucket)
 CONCURRENCY = 40  # worker tasks (reduced for stability)
 CHECK_TIMEOUT = 6
 MAX_RETRIES = 1
